@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Exercises</h1>
+    <ul>
+    {% for item in object_list %}
+        <li>{{ item.name }} - {{ item.description }}</li>
+    {% empty %}
+        <li>No exercises yet.</li>
+    {% endfor %}
+    </ul>
+    <div class="d-grid gap-2 d-md-block">
+        <a href="exercises/create">
+        <button class="btn btn-primary" type="button">Create Exercise</button>
+        </a>
+    </div>
+{% endblock %}
