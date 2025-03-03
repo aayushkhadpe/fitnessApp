@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+    <p>
+        {% for circuit in object.workoutcircuit_set.all %}
+        {{ circuit.name }}
+            <p>
+            {% for exercise in circuit.circuitexercise_set.all %}
+            {{ exercise.exercise_id.name }}
+            {% endfor %}
+            </p>
+        {% endfor %}
+    </p>
+{% endblock %}

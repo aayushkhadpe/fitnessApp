@@ -4,15 +4,17 @@
     <table class="table">
         <tbody>
             {% for item in object_list %}
-            <tr>
-                <td>
-                    <img src="https://img.youtube.com/vi/{{ item.video_id }}/maxresdefault.jpg" width="80px">
-                </td>
-                <td>
-                    <p><b>{{ item.name }}</b></p>
-                    <p class="fw-light">{{ item.duration }} minutes</p>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <a href="{% url 'workout-detail' item.id %}">
+                        <img src="https://img.youtube.com/vi/{{ item.video_id }}/maxresdefault.jpg" width="80px">
+                        </a>
+                    </td>
+                    <td>
+                        <p><b>{{ item.name }}</b></p>
+                        <p class="fw-light">{{ item.duration }} minutes</p>
+                    </td>
+                </tr>
             {% empty %}
                 No workouts yet.
             {% endfor %}

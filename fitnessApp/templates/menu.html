@@ -1,2 +1,16 @@
-<li><a href="{% url 'workouts' %}">Workouts</a></li>
-<li><a href="{% url 'exercises' %}">Exercises</a></li>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/dEh6GWQuJWhcBWWQr37R/media/66be00f080910852a6b34d3e.png" alt="Logo" width="90" class="d-inline-block align-text-top">
+        </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="{% url 'workouts' %}">Workouts</a>
+          <a class="nav-link" href="{% url 'exercises' %}">Exercises</a>
+        </div>
+      </div>
+    </div>
+</nav>

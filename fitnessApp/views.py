@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, DeleteView, ListView, TemplateView
+from django.views.generic import CreateView, DeleteView, ListView, TemplateView, DetailView
 from fitnessApp.models import *
 from fitnessApp.forms import *
 
@@ -27,4 +27,10 @@ class WorkoutCreateView(CreateView):
     model = Workout
     template_name = "workout_create.html"
     form_class = WorkoutCreateForm
+
+class WorkoutDetailView(DetailView):
+    model = Workout
+    template_name = "workout_detail.html"
+
+
     
