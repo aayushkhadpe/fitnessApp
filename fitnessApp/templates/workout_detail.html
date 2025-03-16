@@ -1,13 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
     <p>
-        {% for circuit in object.workoutcircuit_set.all %}
-        {{ circuit.name }}
-            <p>
-            {% for exercise in circuit.circuitexercise_set.all %}
-            {{ exercise.exercise_id.name }}
-            {% endfor %}
-            </p>
+        {% for workoutcircuit in object.workoutcircuit_set.all %}
+        <p><b>{{ workoutcircuit.name }}:</b></p>
+            <table class="table">
+                <tbody>
+                    {% for circuitexercise in workoutcircuit.circuitexercise_set.all %}
+                        <tr>
+                            <td width="30%">
+                                <a href="{% url 'exercise-detail' circuitexercise.exercise.id %}">
+                                <img src="https://img.youtube.com/vi/{{ circuitexercise.exercise.video_id }}/maxresdefault.jpg" width="80px" style="border-radius: 10px">
+                                </a>
+                            </td>
+                            <td>
+                                <p><b>{{ circuitexercise.exercise.name }}</b></p>
+                                <p class="fw-light">
+                                    {{ circuitexercise.mode_quantity }}
+                                    {% if circuitexercise.exercise.mode == "REPS" %}
+                                        reps
+                                    {% else %}
+                                        seconds
+                                    {% endif %}
+                                </p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         {% endfor %}
     </p>
 {% endblock %}

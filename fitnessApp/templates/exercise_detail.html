@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+        <p><b>{{ object.name }}</b></p>
+        <p>Description: {{ object.description }}</p>
+        <p>{{ object.get_mode_display }}</p>
+        <iframe width="350" height="262.5"
+        src="https://www.youtube.com/embed/{{ object.video_id }}">
+        </iframe>
+{% endblock %}

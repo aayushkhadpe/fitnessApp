@@ -13,15 +13,19 @@ class ExerciseListView(ListView):
     template_name = "exercise_list.html"
     paginate_by = 10
 
-class WorkoutListView(ListView):
-    model = Workout
-    template_name = "workout_list.html"
-    paginate_by = 10
-
 class ExerciseCreateView(CreateView):
     model = Exercise
     template_name = "exercise_create.html"
     form_class = ExerciseCreateForm
+
+class ExerciseDetailView(DetailView):
+    model = Exercise
+    template_name = "exercise_detail.html"
+
+class WorkoutListView(ListView):
+    model = Workout
+    template_name = "workout_list.html"
+    paginate_by = 10
 
 class WorkoutCreateView(CreateView):
     model = Workout
@@ -31,6 +35,5 @@ class WorkoutCreateView(CreateView):
 class WorkoutDetailView(DetailView):
     model = Workout
     template_name = "workout_detail.html"
-
 
     

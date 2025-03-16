@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 
 from fitnessApp.views import *
 
@@ -12,5 +12,5 @@ urlpatterns = [
 
     path("exercises", ExerciseListView.as_view(), name="exercises"),
     path("exercises/create", ExerciseCreateView.as_view(), name="exercise-create"),
-
+    path("exercises/<int:pk>/details", ExerciseDetailView.as_view(), name="exercise-detail"),
 ]
