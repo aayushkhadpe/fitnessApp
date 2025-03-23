@@ -10,6 +10,14 @@
         <div class="navbar-nav">
           <a class="nav-link" href="{% url 'workouts' %}">Workouts</a>
           <a class="nav-link" href="{% url 'exercises' %}">Exercises</a>
+            {% if user.is_authenticated %}
+              <form id="logout-form" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link">Logout</button>
+              </form>
+            {% else %}
+              <a class="btn btn-link" href="{% url 'login' %}?next={{ request.path }}">Login</a>
+            {% endif %}
         </div>
       </div>
     </div>
