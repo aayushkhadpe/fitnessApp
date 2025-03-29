@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+<div style="position:absolute; top: 90px;">
         <p><b>{{ object.name }}</b></p>
         <p>Description: {{ object.description }}</p>
         <p>{{ object.get_mode_display }}</p>
-        <iframe width="400" height="340"
-        src="https://www.youtube.com/embed/?playlist={{ object.video_id }}&loop=1&mute=1&autoplay=1">
-        </iframe>
+        {% include 'exercise_video.html' %}
+
+</div>
 {% endblock %}
