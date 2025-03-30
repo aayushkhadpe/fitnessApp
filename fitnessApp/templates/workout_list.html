@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% block header %}
+<p>Workouts</p>
+{% endblock %}
 {% block content %}
-    <h1>Workouts</h1>
     <table class="table">
         <tbody>
             {% for item in object_list %}

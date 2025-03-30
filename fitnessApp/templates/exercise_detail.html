@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block header %}
+<p>Details: {{ object.name }}</p>
+{% endblock %}
 {% block content %}
 <div style="position:absolute; top: 90px;">
         <p><b>{{ object.name }}</b></p>

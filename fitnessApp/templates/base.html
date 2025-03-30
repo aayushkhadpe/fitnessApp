@@ -67,30 +67,46 @@
         top: 0px;
         left: 0px;
     }
+
+    .container {
+        display: grid;
+        height: 100%;
+        grid-template-rows: 75px 1fr 75px;
+        grid-template-columns: 400px;    
+    }
+
+    .item-1{
+        display: grid;
+        background-color: lightgrey;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .item-2 { 
+        overflow: scroll;
+        scrollbar-width: none;
+        background-color: white;
+        justify-items: center;
+        align-items: center;
+    }
+
+    .item-3{  
+        background-color: transparent;
+    }
     
 </style>
 
 <body>
-<div class="content">
-    <table height="600" width="430">
-    <tr height="10%">
-        <td>
-            {% include 'menu.html' %}
-        </td>
-    </tr>
-    <tr height="80%">
-        <td>
-            <div class="container-fluid">
-                {% block content %}{% endblock %}
-            </div>
-        </td>
-    </tr>
-    <tr height="10%">
-        <td>
-            {% include 'menu.html' %}
-        </td>
-    </tr>
-    </table>
+<div class="container">
+    <div class="item-1">
+        {% block header %}{% endblock %}
+    </div>
+    <div class="item-2">
+        {% block content %}{% endblock %}
+    </div>
+    <div class="item-3">
+        {% include 'menu.html' %}
+    </div>
 </div>
 
 </body>
