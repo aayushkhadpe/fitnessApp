@@ -1,3 +1,4 @@
+<!--
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'home' %}">
@@ -22,3 +23,27 @@
       </div>
     </div>
 </nav>
+-->
+
+<div class="container">
+  <div class="item-1">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/dEh6GWQuJWhcBWWQr37R/media/66be00f080910852a6b34d3e.png" alt="Logo" width="90" class="d-inline-block align-text-top">
+    </a>
+  </div>
+  <div class="item-2">
+    <a href="{% url 'workouts' %}">Workouts</a>
+  </div>
+  <div class="item-3">
+    <a href="{% url 'exercises' %}">Exercises</a>
+  </div>
+</div>
+
+<style>
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+</style>
