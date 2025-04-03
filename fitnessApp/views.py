@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, DeleteView, ListView, TemplateView, DetailView
+from django.views.generic import CreateView, DeleteView, ListView, TemplateView, DetailView, View
 from fitnessApp.models import *
 from fitnessApp.forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -36,5 +36,10 @@ class WorkoutCreateView(LoginRequiredMixin, CreateView):
 class WorkoutDetailView(LoginRequiredMixin, DetailView):
     model = Workout
     template_name = "workout_detail.html"
+
+
+class ProfileView(View):
+    def get(self, request):
+        return render(request, 'profile.html')
 
     

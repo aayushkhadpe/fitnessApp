@@ -5,6 +5,8 @@
 		}
 	],
 	"settings": {
-		"python.languageServer": "Default"
+		"python.languageServer": "Default",
+		"explorer.compactFolders": false,
+		"scm.compactFolders": false
 	}
 }

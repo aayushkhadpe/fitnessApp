@@ -123,6 +123,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/fitnessApp/home'
-LOGOUT_REDIRECT_URL = '/fitnessApp/home'
+LOGIN_REDIRECT_URL = '/fitnessApp'
+LOGOUT_REDIRECT_URL = '/fitnessApp'
 

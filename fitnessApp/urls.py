@@ -4,8 +4,7 @@ from fitnessApp.views import *
 
 urlpatterns = [
 
-    path("home", HomeView.as_view(), name="home"),
-
+    path("", HomeView.as_view(), name="home"),
     path("workouts", WorkoutListView.as_view(), name="workouts"),
     path("workouts/create", WorkoutCreateView.as_view(), name="workout-create"),
     path("workouts/<int:pk>/details", WorkoutDetailView.as_view(), name="workout-detail"),
@@ -13,4 +12,6 @@ urlpatterns = [
     path("exercises", ExerciseListView.as_view(), name="exercises"),
     path("exercises/create", ExerciseCreateView.as_view(), name="exercise-create"),
     path("exercises/<int:pk>/details", ExerciseDetailView.as_view(), name="exercise-detail"),
+
+    path("profile", ProfileView.as_view(), name="profile"),
 ]
