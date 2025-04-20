@@ -6,4 +6,22 @@
 <head>
     Welcome to the Fitness App!
 </head>
+<p>
+    <b>Active Workouts:</b>
+    {% for item in activeSessions %}
+       <p>{{ item.workout.name }}: {{ item.scheduled_date  }}</p>
+    {% endfor %}
+</p>
+<p>
+    <b>Upcoming Workouts:</b>
+    {% for item in upcomingSessions %}
+       <p>{{ item.workout.name }}: {{ item.scheduled_date  }}</p>
+    {% endfor %}
+</p>
+<p>
+    <b>Past Workouts:</b>
+    {% for item in pastSessions %}
+       <p>{{ item.workout.name }}: {{ item.scheduled_date  }}</p>
+    {% endfor %}
+</p>
 {% endblock %}

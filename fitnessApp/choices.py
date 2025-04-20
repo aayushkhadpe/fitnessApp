@@ -30,3 +30,9 @@ MODE_CHOICES = {
     "TIME": "Time Based",
 }
 
+WORKOUT_SESSION_STATUS_CHOICES = {
+    "NOTSTARTED": "Not Started",
+    "INPROGRESS": "In Progress",
+    "COMPLETED": "Completed",
+}
+

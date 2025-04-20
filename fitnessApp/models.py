@@ -1,8 +1,12 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import AbstractUser
 from fitnessApp.choices import *
 
 # Create your models here.
+
+class FitnessAppUser(AbstractUser):
+    dummy = models.CharField(max_length=10, blank=True)
 
 class Exercise(models.Model):
     name = models.CharField(max_length=200)
@@ -45,6 +49,15 @@ class CircuitExercise(models.Model):
     # number of reps or number of seconds for the exercise based on the mode of the exercise
     mode_quantity = models.IntegerField(default = 0)
     recommended_weight = models.IntegerField(default = 0, null=True)
+
+class WorkoutSession(models.Model):
+    workout =  models.ForeignKey(Workout, on_delete=models.CASCADE)
+    user = models.ForeignKey(FitnessAppUser, on_delete=models.CASCADE)
+    scheduled_date = models.DateField(null=True, blank=True)
+    status = models.CharField(max_length=20, choices=WORKOUT_SESSION_STATUS_CHOICES, default="NOTSTARTED")
+
+
+
 
 
 

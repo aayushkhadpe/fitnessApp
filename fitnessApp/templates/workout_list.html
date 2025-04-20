@@ -16,6 +16,11 @@
                         <p><b>{{ item.name }}</b></p>
                         <p class="fw-light">{{ item.duration }} minutes</p>
                     </td>
+                    <td>
+                        <a href="{% url 'workoutsession-create' item.id %}">
+                        <button class="btn btn-primary" type="button">Add</button>
+                        </a>
+                    </td>
                 </tr>
             {% empty %}
                 No workouts yet.
