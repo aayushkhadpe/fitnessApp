@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import CreateView, DeleteView, ListView, TemplateView, DetailView, View
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -62,7 +62,56 @@ class WorkoutSessionCreateView(LoginRequiredMixin, CreateView):
         form.instance.workout = workout
         form.instance.user = self.request.user
 
-        return super().form_valid(form)
+        response = super().form_valid(form)
+
+        seq = 1
+        before = 10
+
+        for circuit in workout.workoutcircuit_set.all():
+            for setnumber in range(1, circuit.sets + 1):
+
+                circuitexercises = circuit.circuitexercise_set.all()
+                lastelement = circuitexercises.last()
+                firstelement = circuitexercises.first()
+                
+                for circuitexercise in circuitexercises:
+
+                    after = circuit.set_rest if circuitexercise == lastelement else circuit.exercise_rest
+
+                    WorkoutSessionStep.objects.create(
+                        workoutSession = self.object,
+                        circuit = circuit,
+                        exercise = circuitexercise.exercise,
+                        set = setnumber,
+                        rest_after = after,
+                        rest_before = before,
+                        sequence_number = seq,
+                        first_flag = (circuitexercise == firstelement),
+                        last_flag = (circuitexercise == lastelement),
+                    )
+
+                    seq += 1
+                    before = after
+
+        return response
+
+class WorkoutSessionRunView(LoginRequiredMixin, DetailView):
+    model = WorkoutSession
+    template_name = "workoutsession_run.html"
+
+class WorkoutSessionStepView(LoginRequiredMixin, DetailView):
+    model = WorkoutSessionStep
+    template_name = "workoutsession_step.html"
+
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+        
+        # Custom lookup logic, e.g., using a different field
+        workoutsession_id = self.kwargs.get('workoutsession_id')
+        sequencenumber = self.kwargs.get('sequencenumber')
+        obj = get_object_or_404(queryset, workoutSession=workoutsession_id, sequence_number=sequencenumber)
+        return obj
 
 class ProfileView(View):
     def get(self, request):

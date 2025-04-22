@@ -9,7 +9,12 @@
 <p>
     <b>Active Workouts:</b>
     {% for item in activeSessions %}
-       <p>{{ item.workout.name }}: {{ item.scheduled_date  }}</p>
+       <p>
+        {{ item.workout.name }}: {{ item.scheduled_date  }}
+       <a href="{% url 'workoutsession-run' item.id %}">
+            <button class="btn btn-primary" type="button">Start</button>
+        </a>
+        </p>
     {% endfor %}
 </p>
 <p>

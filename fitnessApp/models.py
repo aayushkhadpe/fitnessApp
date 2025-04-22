@@ -56,6 +56,20 @@ class WorkoutSession(models.Model):
     scheduled_date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=WORKOUT_SESSION_STATUS_CHOICES, default="NOTSTARTED")
 
+class WorkoutSessionStep(models.Model):
+    workoutSession = models.ForeignKey(WorkoutSession, on_delete=models.CASCADE)
+    circuit = models.ForeignKey(WorkoutCircuit, on_delete=models.CASCADE)
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+    set = models.IntegerField(default = 0)
+    rest_after = models.IntegerField(default = 0)
+    rest_before = models.IntegerField(default = 0)
+    sequence_number = models.IntegerField(default = 0)
+    first_flag = models.BooleanField(default=False)
+    last_flag = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['sequence_number']
+
 
 
 

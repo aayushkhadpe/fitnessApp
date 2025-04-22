@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block header %}
+<p>Run: {{ object.workoutSession.workout.name }}</p>
+{% endblock %}
+{% block content %}
+<p>Rest: {{ object.rest_before }} Seconds</p>
+<p>{{ object.exercise.name }}</p>
+{% include 'exercise_video.html' with video_id=object.exercise.video_id %}
+
+<form method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:-1 %}">
+    <button class="btn btn-primary" {% if object.sequence_number == 1 %}disabled{% endif %} type="submit">Previous</button>
+</form>
+
+<form method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:1 %}">
+    <button class="btn btn-primary" {% if object.sequence_number == object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %} type="submit">Skip</button>
+</form>
+{% endblock %}
