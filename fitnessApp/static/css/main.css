@@ -1,5 +1,5 @@
 body {
-    background: #555;
+    background: white
 }
 
 .page {
@@ -7,14 +7,14 @@ body {
     height: 100%;
     max-width: 500px;
     margin: auto;
-    grid-template-rows: 75px 1fr 75px;
+    grid-template-rows: 3rem 1fr 5rem;
     grid-template-columns: 100%;
     justify-content: center;
 }
 
 .header {
     display: grid;
-    background-color: rgb(240,240,240);
+    background-color: rgb(243, 242, 248);;
     justify-content: center;
     align-items: center;
 }
@@ -23,12 +23,15 @@ body {
     display: grid;
     overflow: scroll;
     scrollbar-width: none;
-    background-color: white;
+    background-color: rgb(243, 242, 248);
+    padding: 10px;
 }
 
 .footer {  
     display: grid;
-    background-color: rgb(240,240,240);
+    background-color: white;
+    border: 1px;
+    border-top: 1px solid rgb(100, 100, 100);
 }
 
 .menu {
@@ -59,3 +62,23 @@ body {
     text-decoration: none;
 }
 
+
+
+.workout-section-heading-today, .workout-section-heading-upcoming, .workout-section-heading-past {
+    border-left: 0.30rem solid;
+    margin-bottom: 0.75rem;
+    padding-left: 0.25rem;
+    line-height: 1rem;
+}
+
+.workout-section-heading-today {
+    border-left-color: darkblue;
+}
+
+.workout-section-heading-upcoming {
+    border-left-color: green;
+}
+
+.workout-section-heading-past {
+    border-left-color: darkorange;
+}
