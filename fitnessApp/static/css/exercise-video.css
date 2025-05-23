@@ -22,10 +22,20 @@
     grid-area: 3 / 1 / 4 / 1
   }
   
-  .exercisevideo-wholeblock {
+  .exercisevideo-wholeblock-transparent {
     background-color: transparent;
+    font-size: 24px; 
     z-index: 2;
     grid-area: 1 / 1 / 4 / 1;
+  }
+
+  .exercisevideo-wholeblock-grey {
+    visibility: hidden;
+    background-color: grey;
+    opacity: 0.5;
+    font-size: 24px; 
+    z-index: 3;
+    grid-area: 1 / 1 / 4 / 1; 
   }
   
   .exercisevideo-video {

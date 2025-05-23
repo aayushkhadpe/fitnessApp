@@ -38,6 +38,7 @@ class WorkoutSessionCreateView(LoginRequiredMixin, CreateView):
                         workoutSession = self.object,
                         circuit = circuit,
                         exercise = circuitexercise.exercise,
+                        circuit_exercise = circuitexercise,
                         set = setnumber,
                         rest_after = after,
                         rest_before = before,

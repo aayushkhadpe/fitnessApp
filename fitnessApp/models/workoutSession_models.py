@@ -16,6 +16,7 @@ class WorkoutSessionStep(models.Model):
     workoutSession = models.ForeignKey(WorkoutSession, on_delete=models.CASCADE)
     circuit = models.ForeignKey(WorkoutCircuit, on_delete=models.CASCADE)
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+    circuit_exercise = models.ForeignKey(CircuitExercise, on_delete=models.CASCADE)
     set = models.IntegerField(default = 0)
     rest_after = models.IntegerField(default = 0)
     rest_before = models.IntegerField(default = 0)

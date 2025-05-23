@@ -1,12 +1,71 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script>
+      var totalSeconds = "{{ object.rest_before }}";
+      var check = "{{ object.exercise.mode }}";
+      var exerciseTime = "{{ object.circuit_exercise.mode_quantity }}";
+      var modeQuantity = "{{ object.circuit_exercise.mode_quantity }}";
+    </script>
+    <script src="{% static 'js/workoutSessionRun.js' %}"></script>
+{% endblock %}
+
 {% block header %}
 <p>Workout: {{ object.workoutSession.workout.name }}</p>
 {% endblock %}
 {% block content %}
-<table>
+
+<div class="video">
+    <div class="video-format">
+        {% include 'exercise_video.html' with video_id=object.exercise.video_id name=object.exercise.name %}
+    </div>
+</div>
+<div class="controls-grid">
+  <div class="rest-exercise-display" id="rest-div">
+    <p>Rest: {{ object.rest_before }} Seconds</p>
+  </div>
+  <div class="rest-exercise-display" id="exercise-div">
+    <p>Exercise: {{ object.exercise.name }}</p>
+  </div>
+  <div class="previous-button">
+    <form method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:-1 %}">
+                <button class="btn btn-outline-dark" {% if object.sequence_number == 1 %}disabled{% endif %} type="submit">
+                    <img src="{% static 'images/previous.svg' %}">
+                </button>
+            </form>
+  </div>
+  <div class="next-button">
+    <form id="next-form" method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:1 %}">
+                <button class="btn btn-outline-dark" {% if object.sequence_number == object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %} type="submit">
+                    <img src="{% static 'images/next.svg' %}">
+                </button>
+            </form>
+  </div>
+  <div class="pause-resume-button">
+    <button id="pause-button" class="pause">Pause</button>
+  </div>
+  <div class="timer" id="timer-div">
+    <div id="div-timer" class="timer-wrapper">
+                <svg class="timer-svg">
+                    <circle class="circle-bg" cx="100" cy="100" r="90"/>
+                    <circle class="circle-progress" cx="100" cy="100" r="90" />
+                </svg>
+        <div class="time-text" id="time-text">--:--</div>
+    </div>
+  </div>
+  <div class="timer" id="reps-div">
+    <p>{{ object.circuit_exercise.mode_quantity }} Reps</p>
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- <table>
     <tr>
         <td align="middle">
+            <p>Rest: {{ object.rest_before }} Seconds</p>
             <p>{{ object.exercise.name }}</p>
             {% include 'exercise_video.html' with video_id=object.exercise.video_id %}
         </td>
@@ -20,9 +79,21 @@
                     <img src="{% static 'images/previous.svg' %}">
                 </button>
             </form>
+        </td> 
+        <td align="middle">
+            <div>
+                <button id="pause-button" class="pause">Pause</button>
+            <div>
+            <div id="div-timer" class="timer-wrapper">
+                <svg class="timer-svg">
+                    <circle class="circle-bg" cx="100" cy="100" r="90"/>
+                    <circle class="circle-progress" cx="100" cy="100" r="90" />
+                </svg>
+                <div class="time-text" id="time-text">--:--</div>
+            </div>
         </td>
         <td align="right">
-            <form method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:1 %}">
+            <form id="next-form" method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:1 %}">
                 <button class="btn btn-outline-dark" {% if object.sequence_number == object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %} type="submit">
                     <img src="{% static 'images/next.svg' %}">
                 </button>
@@ -31,4 +102,4 @@
     </tr>
 </table>
 
-{% endblock %}
+ -->

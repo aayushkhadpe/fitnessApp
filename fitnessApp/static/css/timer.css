@@ -1,0 +1,36 @@
+.timer-wrapper {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+
+ .circle-bg {
+      stroke: #e6e6e6;
+      fill: none;
+      stroke-width: 12;
+    }
+
+ .circle-progress {
+      stroke: #e63946;
+      fill: none;
+      stroke-width: 12;
+      stroke-linecap: round;
+      transform: rotate(-90deg);
+      transform-origin: center;
+      transition: stroke-dashoffset 1s linear;
+    }
+
+ .time-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #333;
+    }
+
+.timer-svg {
+    width: 200px;
+    height: 200px;
+  }
