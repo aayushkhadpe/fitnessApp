@@ -4,6 +4,8 @@
 <h6>Home</h6>
 {% endblock %}
 {% block content %}
+
+{% if user.is_authenticated %}
 <h6>Hi <b>{{ user.first_name }}</b>!</h6></br></h6>
 
 <div class="workout-section-heading-today"><b class="text-muted font-monospace">TODAY'S PLAN</b></div>
@@ -46,5 +48,7 @@
     {{ item.workout.name }}: {{ item.scheduled_date  }}
 </p>
 {% endfor %}
-
+{% else %}
+<p>Welcome to the Fitness App!</p>
+{% endif %}
 {% endblock %}
