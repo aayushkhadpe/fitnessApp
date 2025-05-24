@@ -49,7 +49,7 @@
                 </div>
             </a>
             {% else %}
-            <a class="menu_link" href="{% url 'login' %}?next={{ request.path }}">
+            <a class="menu_link" href="{% url 'login' %}">
                 <div class="menu_item">
                     <img class="menu_img" src="{% static 'images/menu_user.svg' %}">
                     <span class="menu_label">Sign In</span>

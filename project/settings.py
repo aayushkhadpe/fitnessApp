@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'fitnessApp'
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'fitnessApp',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +70,8 @@ TEMPLATES = [
     },
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
 WSGI_APPLICATION = 'project.wsgi.application'
 
 
@@ -89,16 +93,10 @@ AUTH_USER_MODEL = 'fitnessApp.FitnessAppUser'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'OPTIONS': {
+            'min_length': 4, 
+        }
     },
 ]
 
@@ -127,4 +125,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/fitnessApp'
 LOGOUT_REDIRECT_URL = '/fitnessApp'
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
