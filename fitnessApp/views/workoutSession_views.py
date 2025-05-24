@@ -67,5 +67,9 @@ class WorkoutSessionStepView(LoginRequiredMixin, DetailView):
         # Custom lookup logic, e.g., using a different field
         workoutsession_id = self.kwargs.get('workoutsession_id')
         sequencenumber = self.kwargs.get('sequencenumber')
+
         obj = get_object_or_404(queryset, workoutSession=workoutsession_id, sequence_number=sequencenumber)
+        obj.workoutSession.current_step_sequence = sequencenumber
+        obj.workoutSession.save()
+        
         return obj

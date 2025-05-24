@@ -3,9 +3,15 @@
 <p>Run: {{ object.workout.name }}</p>
 {% endblock %}
 {% block content %}
-<p>
-    <a href="{% url 'workoutsession-step'  workoutsession_id=object.id sequencenumber=1 %}">
-        <button class="btn btn-primary" type="button">Let's Go!</button>
+<p> 
+    <a href="{% url 'workoutsession-step'  workoutsession_id=object.id sequencenumber=object.current_step_sequence %}">
+        <button class="btn btn-primary" type="button">
+            {% if object.current_step_sequence == 1 %}
+                Start Workout!
+            {% else %}
+                Resume Workout!
+            {% endif %}
+        </button>
     </a>
 </p>
 {% for item in object.workoutsessionstep_set.all %}

@@ -31,8 +31,7 @@ MODE_CHOICES = {
 }
 
 WORKOUT_SESSION_STATUS_CHOICES = {
-    "NOTSTARTED": "Not Started",
-    "INPROGRESS": "In Progress",
+    "CREATED": "Created",
     "COMPLETED": "Completed",
 }
 
