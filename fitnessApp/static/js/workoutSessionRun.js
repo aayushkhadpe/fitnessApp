@@ -9,6 +9,16 @@ progressCircle.style.strokeDashoffset = 0;
 let isPaused = false;
 let interval;
 
+function hideElement(id)
+{
+  document.getElementById(id).style.visibility = "hidden";
+}
+
+function showElement(id)
+{
+  document.getElementById(id).style.visibility = "visible";
+}
+
 function formatTime(seconds)
 {
   const m = Math.floor(seconds / 60);
@@ -30,15 +40,14 @@ function startTimer()
 {
 
   // when timer starts, gray out video and hide the exercise and reps div, show pause button
-  document.getElementById('grey').style.visibility = "visible";
-  document.getElementById('exercise-div').classList.add('hidden');
-  document.getElementById('reps-div').classList.add('hidden');
-  document.getElementById("pause-button").style.display = "inline-block";
+  showElement('grey');
+  hideElement('exercise-div');
+  hideElement('reps-div');
+  showElement("pause-button");
 
   const timeText = document.getElementById("time-text");
   timeText.textContent = formatTime(remaining);
 
-  
   interval = setInterval(() =>
   {
     if (isPaused)
@@ -71,9 +80,9 @@ function startTimer()
           startTimer();
 
           // rest timer was done. hide the rest timer related divs (gray overlay on video, and rest message line) and display the exercise div
-          document.getElementById('rest-div').classList.add('hidden');
-          document.getElementById('exercise-div').classList.remove('hidden');
-          document.getElementById('grey').style.visibility = "hidden";
+          hideElement('rest-div');
+          showElement('exercise-div');
+          hideElement('grey');
 
           break;
 
@@ -84,14 +93,14 @@ function startTimer()
 
         // rest timer was done for reps based exercise. switch the divs.
         case "REPS":
-          document.getElementById('rest-div').classList.add('hidden');
-          document.getElementById('timer-div').classList.add('hidden');
+          hideElement('rest-div');
+          hideElement('timer-div');
 
-          document.getElementById('exercise-div').classList.remove('hidden');
-          document.getElementById('reps-div').classList.remove('hidden');
+          showElement('exercise-div');
+          showElement('reps-div');
 
-          document.getElementById('grey').style.visibility = "hidden";
-          document.getElementById("pause-button").style.display = "none";
+          hideElement('grey');
+          hideElement("pause-button");
           break;
       }
     }
