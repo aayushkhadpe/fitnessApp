@@ -18,4 +18,6 @@ urlpatterns = [
     path("workoutsessions/<int:workoutsession_id>/run/<int:sequencenumber>", WorkoutSessionStepView.as_view(), name="workoutsession-step"),  
 
     path("profile", ProfileView.as_view(), name="profile"),
+    path("profile/<int:pk>/details", AccountUpdateView.as_view(), name="account-details"),  
+
 ]

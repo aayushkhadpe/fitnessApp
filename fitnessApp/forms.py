@@ -1,6 +1,8 @@
 from django import forms
 from datetime import date
-from fitnessApp.models import Exercise, Workout, WorkoutSession
+from django.forms import CharField, EmailField
+from django.contrib.auth.forms import UserCreationForm, UsernameField
+from fitnessApp.models import Exercise, Workout, WorkoutSession, FitnessAppUser
 
 class ExerciseCreateForm(forms.ModelForm):
     class Meta:
@@ -23,3 +25,11 @@ class WorkoutSessionCreateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['scheduled_date'].required = False
+
+class FitnessAppUserUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = FitnessAppUser
+        fields = ("first_name", "last_name")
+        field_classes = {"first_name": CharField, "last_name": CharField}
+        labels = {"first_name": "First Name", "last_name": "Last Name"}

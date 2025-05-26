@@ -16,6 +16,8 @@
     <p>Please login to see this page.</p>
   {% endif %}
 {% endif %}
+<div>
+<p><h3><b>WELCOME BACK!</b></h3></p>
 
 <form method="post">{% csrf_token %}
   {{ form|crispy }}
@@ -23,7 +25,11 @@
   <input type="hidden" name="next" value="{{ next }}">
 </form>
 
-<p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
-<p><a href="{% url 'signup' %}">Sign up</a></p>
+<p><a class="link-body-emphasis" href="{% url 'password_reset' %}">Forgot Password?</a></p>
+</br>
+</br>
+<p><h6><b>Don't have an account?</b></h6></p>
+<p><a class="link-body-emphasis" href="{% url 'signup' %}"><b>SIGN UP</b></a></p>
+</div>
 
 {% endblock %}
