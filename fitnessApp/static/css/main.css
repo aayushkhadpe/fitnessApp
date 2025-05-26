@@ -132,3 +132,23 @@ body {
   grid-area: 3 / 2 / 4 / 3;
 }
 
+.fitnessapp-progress-container {
+      width: 100%;
+      background: #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 20px;
+      margin: 20px 0;
+    }
+
+.fitnessapp-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #4caf50;
+      text-align: center;
+      color: white;
+      line-height: 30px;
+      transition: width 0.3s ease;
+    }
+
+

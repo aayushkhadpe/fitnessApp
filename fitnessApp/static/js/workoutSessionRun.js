@@ -9,6 +9,21 @@ progressCircle.style.strokeDashoffset = 0;
 let isPaused = false;
 let interval;
 
+setProgress(1.0 - (1.0 / totalSeconds));
+startTimer();
+
+const pauseButton = document.getElementById("pause-button");
+
+pauseButton.addEventListener("click", () =>
+{
+  isPaused = !isPaused;
+  pauseButton.textContent = isPaused ? "Resume" : "Pause";
+}
+);
+
+updateProgress();
+
+
 function hideElement(id)
 {
   document.getElementById(id).style.visibility = "hidden";
@@ -105,17 +120,18 @@ function startTimer()
       }
     }
   }, 1000);
-
 }
 
-setProgress(1.0 - (1.0 / totalSeconds));
-startTimer();
+function updateProgress() {
+      const progress = (current_initial / current_final) * 100;
 
-const pauseButton = document.getElementById("pause-button");
+      const progressBar = document.getElementById('progressBar');
+      progressBar.style.background = 'green';
+      progressBar.style.width = progress + '%';
+    }
 
-pauseButton.addEventListener("click", () =>
-{
-  isPaused = !isPaused;
-  pauseButton.textContent = isPaused ? "Resume" : "Pause";
-}
-);
+
+
+
+
+

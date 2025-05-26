@@ -8,6 +8,8 @@
       var check = "{{ object.exercise.mode }}";
       var exerciseTime = "{{ object.circuit_exercise.mode_quantity }}";
       var modeQuantity = "{{ object.circuit_exercise.mode_quantity }}";
+      var current_initial = "{{ object.workoutSession.current_step_sequence }}";
+      var current_final = "{{ object.workoutSession.workoutsessionstep_set.all|length }}";
     </script>
     <script src="{% static 'js/workoutSessionRun.js' %}"></script>
 {% endblock %}
@@ -16,6 +18,10 @@
 <p>Workout: {{ object.workoutSession.workout.name }}</p>
 {% endblock %}
 {% block content %}
+<div class="fitnessapp-progress-container">
+    <div class="fitnessapp-progress-bar" id="progressBar">
+    </div>
+</div>
 
 <div class="video">
     <div class="video-format">
@@ -38,10 +44,10 @@
   </div>
   <div class="next-button">
     <form id="next-form" method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:1 %}">
-                <button class="btn btn-outline-dark" {% if object.sequence_number == object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %} type="submit">
-                    <img src="{% static 'images/next.svg' %}">
-                </button>
-            </form>
+        <button class="btn btn-outline-dark" {% if object.sequence_number == object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %} type="submit">
+            <img src="{% static 'images/next.svg' %}">
+        </button>
+    </form>
   </div>
   <div class="pause-resume-button">
     <button id="pause-button" class="pause">Pause</button>
@@ -62,44 +68,3 @@
 
 {% endblock %}
 
-<!-- <table>
-    <tr>
-        <td align="middle">
-            <p>Rest: {{ object.rest_before }} Seconds</p>
-            <p>{{ object.exercise.name }}</p>
-            {% include 'exercise_video.html' with video_id=object.exercise.video_id %}
-        </td>
-    </tr>
-</table>
-<table>
-    <tr>
-        <td align="left">
-            <form method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:-1 %}">
-                <button class="btn btn-outline-dark" {% if object.sequence_number == 1 %}disabled{% endif %} type="submit">
-                    <img src="{% static 'images/previous.svg' %}">
-                </button>
-            </form>
-        </td> 
-        <td align="middle">
-            <div>
-                <button id="pause-button" class="pause">Pause</button>
-            <div>
-            <div id="div-timer" class="timer-wrapper">
-                <svg class="timer-svg">
-                    <circle class="circle-bg" cx="100" cy="100" r="90"/>
-                    <circle class="circle-progress" cx="100" cy="100" r="90" />
-                </svg>
-                <div class="time-text" id="time-text">--:--</div>
-            </div>
-        </td>
-        <td align="right">
-            <form id="next-form" method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:1 %}">
-                <button class="btn btn-outline-dark" {% if object.sequence_number == object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %} type="submit">
-                    <img src="{% static 'images/next.svg' %}">
-                </button>
-            </form>
-        </td>
-    </tr>
-</table>
-
- -->
