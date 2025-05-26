@@ -1,32 +1,29 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block header %}
-<p>Login</p>
-{% endblock %}
+{% block title %}Sign In{% endblock %}
+
 {% block content %}
 
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
+{% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+  {% else %}
+    <p>Please login to see this page.</p>
   {% endif %}
+{% endif %}
 
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-    {% else %}
-      <p>Please login to see this page.</p>
-    {% endif %}
-  {% endif %}
+<form method="post">{% csrf_token %}
+  {{ form|crispy }}
+  <input class="btn btn-success" type="submit" value="Sign In">
+  <input type="hidden" name="next" value="{{ next }}">
+</form>
 
-  <form method="post">{% csrf_token %}
-    {{ form|crispy }}
-    <input class="btn btn-success" type="submit" value="Sign In">
-    <input type="hidden" name="next" value="{{ next }}">
-  </form>
-
-  {# Assumes you set up the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-  <p><a href="{% url 'signup' %}">Sign Up</a></p>
+<p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
+<p><a href="{% url 'signup' %}">Sign up</a></p>
 
 {% endblock %}

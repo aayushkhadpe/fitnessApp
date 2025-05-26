@@ -1,7 +1,8 @@
 {
     "name": "Fitness App",
     "short_name": "Fitness App",
-    "start_url": "../fitnessApp/",
+    "start_url": "../",
+    "scope": "../",
     "background_color": "#ffffff",
     "description": "A fitness app",
     "display": "standalone",

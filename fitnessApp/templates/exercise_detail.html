@@ -1,12 +1,14 @@
 {% extends "base.html" %}
-{% block header %}
-<p>Details: {{ object.name }}</p>
-{% endblock %}
+
+{% block title %}Details: {{ object.name }}{% endblock %}
+
 {% block content %}
+
 <div>
         {% include 'exercise_video.html' with video_id=object.video_id %}
         <p><b>{{ object.name }}</b></p>
         <p>Description: {{ object.description }}</p>
         <p>{{ object.get_mode_display }}</p>
 </div>
+
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block header %}
-<p>Details: {{ object.name }}</p>
-{% endblock %}
+
+{% block title %}Details: {{ object.name }}{% endblock %}
+
 {% block content %}
     <p>
         {% for workoutcircuit in object.workoutcircuit_set.all %}
