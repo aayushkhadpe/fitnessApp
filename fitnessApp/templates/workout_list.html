@@ -3,30 +3,37 @@
 {% block title %}Workouts{% endblock %}
 
 {% block content %}
-    <table class="table">
-        <tbody>
+<div>
             {% for item in object_list %}
-                <tr>
-                    <td>
-                        <a href="{% url 'workout-detail' item.id %}">
-                        <img src="https://img.youtube.com/vi/{{ item.video_id }}/maxresdefault.jpg" width="80px" style="border-radius: 10px">
+                    <div class="workout-item-div" style="margin: 5px; border-radius: 10px; background-color: white; height: 6rem;">
+                        <a class="fitnessapp-profile-item" href="{% url 'workout-detail' item.id %}">
+                            <div>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <img src="https://img.youtube.com/vi/{{ item.video_id }}/maxresdefault.jpg" width="80px"
+                                                    style="border-radius: 10px">
+                                            </td>
+                                            <td>
+                                                <p><b>{{ item.name }}</b></p>
+                                                <p class="fw-light">{{ item.duration }} minutes</p>
+                                            </td>
+                                            <td>
+                                                <a href="{% url 'workoutsession-create' item.id %}">
+                                                    <button class="btn btn-primary" type="button">Add</button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </a>
-                    </td>
-                    <td>
-                        <p><b>{{ item.name }}</b></p>
-                        <p class="fw-light">{{ item.duration }} minutes</p>
-                    </td>
-                    <td>
-                        <a href="{% url 'workoutsession-create' item.id %}">
-                        <button class="btn btn-primary" type="button">Add</button>
-                        </a>
-                    </td>
-                </tr>
+                    </div>
             {% empty %}
                 No workouts yet.
             {% endfor %}
-        </tbody>
-      </table>
+            </div>
     <div class="d-grid gap-2 d-md-block">
         <a href="workouts/create">
         <button class="btn btn-primary" type="button">Create Workout</button>

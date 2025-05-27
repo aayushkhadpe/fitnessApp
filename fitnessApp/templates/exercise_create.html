@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %}Create Exercise{% endblock %}
 
 {% block content %}
 
 <form action="" method="post">{% csrf_token %}
-    {{ form }}
+    {{ form|crispy }}
     <input type="submit" value="Save">
 </form>
 
