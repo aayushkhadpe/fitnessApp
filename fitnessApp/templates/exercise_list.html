@@ -3,31 +3,26 @@
 {% block title %}Exercise List{% endblock %}
 
 {% block content %}
-
-<table class="table">
-    <tbody>
-        {% for item in object_list %}
-        <tr>
-            <td>
-                <a href="{% url 'exercise-detail' item.id %}">
-                    <img src="https://img.youtube.com/vi/{{ item.video_id }}/maxresdefault.jpg" width="80px"
-                        style="border-radius: 10px">
-                </a>
-            </td>
-            <td>
-                <p><b>{{ item.name }}</b></p>
-                <p class="fw-light">{{ item.get_mode_display }}</p>
-            </td>
-        </tr>
-        {% empty %}
-        No exercises yet.
-        {% endfor %}
-    </tbody>
-</table>
-<div class="d-grid gap-2 d-md-block">
-    <a href="exercises/create">
-        <button class="btn btn-primary" type="button">Create Exercise</button>
-    </a>
+<div>
+    {% for item in object_list %}
+    <div class="fitnessapp-exercise-card">
+        <a class="fitnessapp-profile-item" href="{% url 'exercise-detail' item.id %}">
+            <div class="fitnessapp-exercise-item-outer">
+                <div class="fitnessapp-exercise-image-grid">
+                    <img class="fitnessapp-exercise-image" src="https://img.youtube.com/vi/{{ item.video_id }}/maxresdefault.jpg">
+                </div>
+                <div class="fitnessapp-exercise-name-display">
+                    <h6 class="text single-line"><b>{{ item.name }}</b></h6>
+                </div>
+                <div class="fitnessapp-exercise-mode-display">
+                    <p><small>{{ item.get_mode_display }}</small></p>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% empty %}
+    No exercises yet.
+    {% endfor %}
 </div>
 
 {% endblock %}

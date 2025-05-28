@@ -162,4 +162,60 @@ body {
       transition: width 0.3s ease;
     }
 
+.fitnessapp-workout-card, .fitnessapp-exercise-card {
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem; 
+  background-color: white; 
+  height: 6rem;
+	position:relative;  
+}
+
+.fitnessapp-workout-item-outer, .fitnessapp-exercise-item-outer {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5rem;
+  grid-template-rows: 35% 65%;
+  grid-auto-columns: auto 2fr 1fr;
+}
+
+.fitnessapp-workout-image-grid, .fitnessapp-exercise-image-grid {
+    height: 100%;
+    grid-area: 1 / 1 / 3 / 2;
+}
+
+.fitnessapp-workout-image, .fitnessapp-exercise-image {
+  height: 100%;
+  border-radius: 0.5rem 0  0 0.5rem;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.fitnessapp-workout-name-display, .fitnessapp-exercise-name-display {
+  grid-area: 1 / 2 / 2 / 4;
+  padding-left: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.fitnessapp-workout-duration-display {
+  grid-area: 2 / 2 / 3 / 3;
+  padding-left: 0.75rem;
+}
+
+.fitnessapp-card-button-display {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.fitnessapp-exercise-mode-display {
+  grid-area: 2 / 2 / 3 / 3;
+  padding-left: 0.75rem;
+}
+
+.text.single-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
