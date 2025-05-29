@@ -36,9 +36,8 @@
     <p>Exercise: {{ object.exercise.name }}</p>
   </div>
   <div class="previous-button">
-    <form method="GET"
-      action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:-1 %}">
-      <button class="btn btn-outline-dark" {% if object.sequence_number==1 %}disabled{% endif %} type="submit">
+    <form method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:-1 %}">
+      <button class="btn btn-outline-dark" {% if object.sequence_number == 1 %}disabled{% endif %} type="submit">
         <img src="{% static 'images/previous.svg' %}">
       </button>
     </form>
@@ -46,9 +45,7 @@
   <div class="next-button">
     <form id="next-form" method="GET"
       action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:1 %}">
-      <button class="btn btn-outline-dark" {% if
-        object.sequence_number==object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %}
-        type="submit">
+      <button class="btn btn-outline-dark" {% if object.sequence_number == object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %} type="submit">
         <img src="{% static 'images/next.svg' %}">
       </button>
     </form>

@@ -14,5 +14,6 @@ class HomeView(TemplateView):
             context['activeSessions'] = WorkoutSession.objects.filter(user=self.request.user, scheduled_date=date.today())
             context['upcomingSessions'] = WorkoutSession.objects.filter(Q(user=self.request.user) & (Q(scheduled_date__gt=date.today()) | Q(scheduled_date__isnull=True))).order_by((F('scheduled_date').asc(nulls_last=True)))
             context['pastSessions'] = WorkoutSession.objects.filter(user=self.request.user, scheduled_date__lt=date.today()).order_by('-scheduled_date')
+            context['today'] = date.today()
 
         return context

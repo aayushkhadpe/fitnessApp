@@ -8,47 +8,37 @@
 {% if user.is_authenticated %}
 <h6>Hi <b>{{ user.first_name }}</b>!</h6></br></h6>
 
-<div class="workout-section-heading-today"><b class="text-muted font-monospace">TODAY'S PLAN</b></div>
+<div class="workout-section-heading-today"><small><b>TODAY'S PLAN</b></small></div>
+<div>
 {% for item in activeSessions %}
-    <p style="border-radius: 0.5rem; border: 2px solid white; background-color: white; padding: 10px;  width: 100%;">
-    <a href="{% url 'workout-detail' item.workout.id %}">
-        <img src="https://img.youtube.com/vi/{{ item.workout.video_id }}/maxresdefault.jpg" width="80px" style="border-radius: 5px"></a>
-    </a>
-    {{item.workout.name}}
-
-    <a href="{% url 'workoutsession-run' item.id %}">
-        <button class="btn btn-outline-dark" type="button">
-            <img src="{% static 'images/run.svg' %}">
-        </button>
-    </a>
-    </p>
+    {% include 'workoutsession_card.html' %}
 {% empty %}
-    <p>Nothing planned for today. Check out some <a href="{% url 'workouts' %}">Workouts</a>.</p>
+    <p><small>Nothing planned for today. Check out some <a href="{% url 'workouts' %}">Workouts</a>.</small></p>
 {% endfor %}
+</div>
 
-<div class = "workout-section-heading-upcoming"><b class="text-muted font-monospace">UPCOMING WORKOUTS</b></div>
+<div class="workout-section-heading-upcoming"><small><b>UPCOMING WORKOUTS</b></small></div>
 {% for item in upcomingSessions %}
-<p style="border-radius: 0.5rem; border: 2px solid white; background-color: white; padding: 10px;  width: 100%;">
-    <a href="{% url 'workout-detail' item.workout.id %}">
-        <img src="https://img.youtube.com/vi/{{ item.workout.video_id }}/maxresdefault.jpg" width="80px" style="border-radius: 5px"></a>
-        {{ item.workout.name }}: {{ item.scheduled_date  }}
-    </a>
-    
-</p>
+    {% include 'workoutsession_card.html' %}
 {% empty %}
-    <p>No upcoming workouts. Add some <a href="{% url 'workouts' %}">Workouts</a> to do later.</p>
+    <p><small>No upcoming workouts. Add some <a href="{% url 'workouts' %}">Workouts</a> to do later.</small></p>
 {% endfor %}
 
-<div class = "workout-section-heading-past"><b class="text-muted font-monospace">PAST WORKOUTS</b></div>
+<div class="workout-section-heading-past"><small><b>PAST WORKOUTS</b></small></div>
 {% for item in pastSessions %}
-<p style="border-radius: 0.5rem; border: 2px solid white; background-color: white; padding: 10px;  width: 100%;">
-    <a href="{% url 'workout-detail' item.workout.id %}">
-        <img src="https://img.youtube.com/vi/{{ item.workout.video_id }}/maxresdefault.jpg" width="80px" style="border-radius: 5px"></a>
-    </a>
-    {{ item.workout.name }}: {{ item.scheduled_date  }}
-</p>
+    {% include 'workoutsession_card.html' %}
+{% empty %}
+    <p><small>Workouts you have completed will appear here.</small></p>
 {% endfor %}
 {% else %}
 <p>Welcome to the Fitness App!</p>
 {% endif %}
 {% endblock %}
+
+<!-- <p style="border-radius: 0.5rem; border: 2px solid white; background-color: white; padding: 10px;  width: 100%;">
+    <a href="{% url 'workout-detail' item.workout.id %}">
+        <img src="https://img.youtube.com/vi/{{ item.workout.video_id }}/maxresdefault.jpg" width="80px" style="border-radius: 5px"></a>
+    </a>
+    {{ item.workout.name }}: {{ item.scheduled_date  }}
+</p> -->
+
