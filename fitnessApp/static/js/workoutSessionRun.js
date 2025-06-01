@@ -19,13 +19,17 @@ pauseButton.addEventListener("click", () =>
   isPaused = !isPaused;
   if (isPaused) 
   {
-    hideElement("pause-image")
-    showElement("play-image")
+    document.getElementById("pause-resume-button").classList.remove("bi-pause-circle")
+    document.getElementById("pause-resume-button").classList.add("bi-play-circle")
+    // hideElement("pause-image")
+    // showElement("play-image")
   }
   else 
   {
-    hideElement("play-image")
-    showElement("pause-image")
+    document.getElementById("pause-resume-button").classList.add("bi-pause-circle")
+    document.getElementById("pause-resume-button").classList.remove("bi-play-circle")
+    // hideElement("play-image")
+    // showElement("pause-image")
   }
 }
 );

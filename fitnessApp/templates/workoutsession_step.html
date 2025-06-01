@@ -61,30 +61,25 @@
 
     <div class="workout-session-controls-grid">
       <div class="workout-session-previous-button">
-        <form method="GET"
-            action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:-1 %}">
+        <form method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:-1 %}">
             <button class="btn btn-outline-dark" {% if object.sequence_number == 1 %}disabled{% endif %} type="submit">
-              <img src="{% static 'images/previous.svg' %}">
+              <i class="bi bi-caret-left-fill"></i>
             </button>
         </form>
       </div>
 
-      
+     
       <div class="workout-session-pause-resume-button">
-          <button id="pause-button" class="pause btn btn-outline-dark">
-            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; position: relative">
-              <img id="pause-image" src="{% static 'images/pause.svg' %}" style="position: absolute">
-              <img id="play-image" src="{% static 'images/play.svg' %}" style="visibility: hidden; position: absolute">
-            </div>
+          <button id="pause-button" class="btn btn-outline-dark">
+            <i id="pause-resume-button" class="bi bi-pause-circle"></i>
           </button>
       </div>
 
 
       <div class="workout-session-next-button">
-        <form id="next-form" method="GET"
-            action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:1 %}">
+        <form id="next-form" method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:1 %}">
             <button class="btn btn-outline-dark" {% if object.sequence_number == object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %} type="submit">
-              <img src="{% static 'images/next.svg' %}">
+              <i class="bi bi-caret-right-fill"></i>
             </button>
         </form>
       </div>
