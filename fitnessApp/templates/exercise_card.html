@@ -1,0 +1,25 @@
+<div class="fitnessapp-exercise-card">
+    <a class="fitnessapp-profile-item" href="{% url 'exercise-detail' item.id %}">
+        <div class="fitnessapp-exercise-item-outer">
+            <div class="fitnessapp-exercise-image-grid">
+                <img class="fitnessapp-exercise-image"
+                    src="https://img.youtube.com/vi/{{ item.video_id }}/maxresdefault.jpg">
+            </div>
+            <div class="fitnessapp-exercise-name-display">
+                <h6 class="text single-line"><b>{{ item.name }}</b></h6>
+            </div>
+            <div class="fitnessapp-exercise-mode-display">
+                {% if circuitexercise is None %}
+                    <p><small><small>{{ item.get_mode_display }}</small></small></p>
+                {% else %}
+                    <small><small>{{ circuitexercise.mode_quantity }}</small></small>
+                    {% if item.mode == "REPS" %}
+                        <small><small>reps</small></small>
+                    {% else %}
+                        <small><small>seconds</small></small>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </a>
+</div>

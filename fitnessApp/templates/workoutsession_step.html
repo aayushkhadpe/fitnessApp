@@ -17,54 +17,93 @@
 {% block title %}Workout: {{ object.workoutSession.workout.name }}{% endblock %}
 
 {% block content %}
+<div class="workout-session-run-outer">
 
-<div class="fitnessapp-progress-container">
-  <div class="fitnessapp-progress-bar" id="progressBar">
-  </div>
-</div>
+  <div class="workout-session-run-row-video">
+    <div class="workout-session-progress-bar-video-exercise-outer">
+      <div class="workout-session-topblock">
+        <div class="workout-session-topblock-circuit-set">
+          <span class="badge rounded-pill text-bg-light" style="margin-right: 0.2rem;">{{object.circuit.name}}</span><span class="badge rounded-pill text-bg-light">Set {{object.set}}</span>
+        </div>
+        <div class="workout-session-progress-bar">
+          <div class="fitnessapp-progress-container">
+            <div class="fitnessapp-progress-bar" id="progressBar">
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="workout-session-video">
+        {% include 'exercise_video.html' with video_id=object.exercise.video_id name=object.exercise.name %}
+      </div>
 
-<div class="video">
-  <div class="video-format">
-    {% include 'exercise_video.html' with video_id=object.exercise.video_id name=object.exercise.name %}
-  </div>
-</div>
-<div class="controls-grid">
-  <div class="rest-exercise-display" id="rest-div">
-    <p>Rest: {{ object.rest_before }} Seconds</p>
-  </div>
-  <div class="rest-exercise-display" id="exercise-div">
-    <p>Exercise: {{ object.exercise.name }}</p>
-  </div>
-  <div class="previous-button">
-    <form method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:-1 %}">
-      <button class="btn btn-outline-dark" {% if object.sequence_number == 1 %}disabled{% endif %} type="submit">
-        <img src="{% static 'images/previous.svg' %}">
-      </button>
-    </form>
-  </div>
-  <div class="next-button">
-    <form id="next-form" method="GET"
-      action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:1 %}">
-      <button class="btn btn-outline-dark" {% if object.sequence_number == object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %} type="submit">
-        <img src="{% static 'images/next.svg' %}">
-      </button>
-    </form>
-  </div>
-  <div class="pause-resume-button">
-    <button id="pause-button" class="pause">Pause</button>
-  </div>
-  <div class="timer" id="timer-div">
-    <div id="div-timer" class="timer-wrapper">
-      <svg class="timer-svg">
-        <circle class="circle-bg" cx="100" cy="100" r="90" />
-        <circle class="circle-progress" cx="100" cy="100" r="90" />
-      </svg>
-      <div class="time-text" id="time-text">--:--</div>
+      <div class="workout-session-exercise">
+
+        <div class="workout-session-exercise-circuit-set-outer">
+            <h5 style="padding-top: 0.4rem;">{{object.exercise.name}}</h5>
+
+        </div>
+
+      </div>
     </div>
   </div>
-  <div class="timer" id="reps-div">
-    <p>{{ object.circuit_exercise.mode_quantity }} Reps</p>
-  </div>
-</div>
 
+  <div class="workout-session-run-row-controls">
+    <div class="workout-session-rest-reps-outer">
+      <div class="workout-session-rest-display">
+        <span>Rest {{ object.rest_before }} seconds</span>
+        <!-- <h6>Rest <div class="workout-session-rest-box">{{ object.rest_before }}</div> Seconds</h6> -->
+      </div>
+      <div class="workout-session-reps-display">
+        <h6> <div class="workout-session-reps-time-box">{{ object.circuit_exercise.mode_quantity }}</div> Reps</h6>
+      </div>
+    </div>
+
+    <div class="workout-session-controls-grid">
+      <div class="workout-session-previous-button">
+        <form method="GET"
+            action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:-1 %}">
+            <button class="btn btn-outline-dark" {% if object.sequence_number == 1 %}disabled{% endif %} type="submit">
+              <img src="{% static 'images/previous.svg' %}">
+            </button>
+        </form>
+      </div>
+
+      
+      <div class="workout-session-pause-resume-button">
+          <button id="pause-button" class="pause btn btn-outline-dark">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; position: relative">
+              <img id="pause-image" src="{% static 'images/pause.svg' %}" style="position: absolute">
+              <img id="play-image" src="{% static 'images/play.svg' %}" style="visibility: hidden; position: absolute">
+            </div>
+          </button>
+      </div>
+
+
+      <div class="workout-session-next-button">
+        <form id="next-form" method="GET"
+            action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:1 %}">
+            <button class="btn btn-outline-dark" {% if object.sequence_number == object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %} type="submit">
+              <img src="{% static 'images/next.svg' %}">
+            </button>
+        </form>
+      </div>
+
+    </div>
+    
+      <div class="controls-grid">
+        <div class="timer" id="timer-div">
+          <div id="div-timer" class="timer-wrapper">
+            <svg class="timer-svg">
+              <circle class="circle-bg" cx="50" cy="50" r="45" />
+              <circle class="circle-progress" cx="50" cy="50" r="45" />
+            </svg>
+            <div class="time-text" id="time-text">--:--</div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 {% endblock %}

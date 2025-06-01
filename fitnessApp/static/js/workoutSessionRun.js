@@ -1,6 +1,6 @@
 let remaining = totalSeconds;
 
-const radius = 90;
+const radius = 45;
 const circumference = 2 * Math.PI * radius;
 const progressCircle = document.querySelector('.circle-progress');
 progressCircle.style.strokeDasharray = circumference;
@@ -17,7 +17,16 @@ const pauseButton = document.getElementById("pause-button");
 pauseButton.addEventListener("click", () =>
 {
   isPaused = !isPaused;
-  pauseButton.textContent = isPaused ? "Resume" : "Pause";
+  if (isPaused) 
+  {
+    hideElement("pause-image")
+    showElement("play-image")
+  }
+  else 
+  {
+    hideElement("play-image")
+    showElement("pause-image")
+  }
 }
 );
 
@@ -56,8 +65,8 @@ function startTimer()
 
   // when timer starts, gray out video and hide the exercise and reps div, show pause button
   showElement('grey');
-  hideElement('exercise-div');
-  hideElement('reps-div');
+  //hideElement('exercise-div');
+  //hideElement('reps-div');
   showElement("pause-button");
 
   const timeText = document.getElementById("time-text");
@@ -95,8 +104,8 @@ function startTimer()
           startTimer();
 
           // rest timer was done. hide the rest timer related divs (gray overlay on video, and rest message line) and display the exercise div
-          hideElement('rest-div');
-          showElement('exercise-div');
+          //hideElement('rest-div');
+          //showElement('exercise-div');
           hideElement('grey');
 
           break;
@@ -108,11 +117,11 @@ function startTimer()
 
         // rest timer was done for reps based exercise. switch the divs.
         case "REPS":
-          hideElement('rest-div');
+          //hideElement('rest-div');
           hideElement('timer-div');
 
-          showElement('exercise-div');
-          showElement('reps-div');
+          //showElement('exercise-div');
+          //showElement('reps-div');
 
           hideElement('grey');
           hideElement("pause-button");

@@ -5,31 +5,10 @@
 {% block content %}
     <p>
         {% for workoutcircuit in object.workoutcircuit_set.all %}
-        <p><b>{{ workoutcircuit.name }}:</b></p>
-            <table class="table">
-                <tbody>
+            <div class="workout-circuit-heading"><small><b>{{ workoutcircuit.name }} &nbsp;&nbsp;&nbsp;</b><small>{{ workoutcircuit.sets }} sets</small></small></div>
                     {% for circuitexercise in workoutcircuit.circuitexercise_set.all %}
-                        <tr>
-                            <td width="30%">
-                                <a href="{% url 'exercise-detail' circuitexercise.exercise.id %}">
-                                <img src="https://img.youtube.com/vi/{{ circuitexercise.exercise.video_id }}/maxresdefault.jpg" width="80px" style="border-radius: 10px">
-                                </a>
-                            </td>
-                            <td>
-                                <p><b>{{ circuitexercise.exercise.name }}</b></p>
-                                <p class="fw-light">
-                                    {{ circuitexercise.mode_quantity }}
-                                    {% if circuitexercise.exercise.mode == "REPS" %}
-                                        reps
-                                    {% else %}
-                                        seconds
-                                    {% endif %}
-                                </p>
-                            </td>
-                        </tr>
+                        {% include 'exercise_card.html' with item=circuitexercise.exercise %}
                     {% endfor %}
-                </tbody>
-            </table>
         {% endfor %}
     </p>
 {% endblock %}

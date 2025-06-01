@@ -72,13 +72,18 @@ body {
     color: black;
     text-decoration: none;
 }
-.workout-section-heading-today, .workout-section-heading-upcoming, .workout-section-heading-past {
+.workout-section-heading-today, .workout-section-heading-upcoming, .workout-section-heading-past, .workout-circuit-heading {
     border-left: 0.30rem solid;
     margin-top: 1.0rem;
     margin-bottom: 1.5rem;
     height: 1rem;
     padding-left: 0.25rem;
     line-height: 1rem;
+}
+
+.workout-circuit-heading {
+    border-left-color: maroon;
+    margin-bottom: 0.75rem;
 }
 
 .workout-section-heading-today {
@@ -94,32 +99,23 @@ body {
 }
 
 .pause {
+    height: 35px;
+    width: 60px;
     padding: 10px 20px;
     font-size: 16px;
-}
-
-.video {
-  display: grid;
-  grid-template-rows: 100%;
-  grid-template-columns: 100%;
-  height: 300px;
-  width: 100%;
-  justify-items: center;
-}
-
-.video-format {
-    grid-area: 1 / 1 / 2 / 2; 
 }
 
 /* Run page CSS */
 
 .controls-grid {
   display: grid;
-  height: 300px;
-  width: 100%;
-  grid-template-rows: 20% 25% 55%;
-  grid-template-columns: 20% 60% 20%;
+  grid-area: 3 / 1 / 4 / 2;
+  width: fit-content;
   justify-items: center;
+  margin: auto;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
 }
 
 .rest-exercise-display {
@@ -139,16 +135,16 @@ body {
 }
 
 .timer {
-  grid-area: 3 / 2 / 4 / 3;
+  grid-area: 1 / 1 / 2 / 2;
 }
 
 .fitnessapp-progress-container {
       width: 100%;
       background: #e0e0e0;
-      border-radius: 10px;
+      border-radius: 0.2rem;
       overflow: hidden;
-      height: 20px;
-      margin: 20px 0;
+      height: 0.4rem;
+      margin: 0 0;
     }
 
 .fitnessapp-progress-bar {
@@ -157,7 +153,6 @@ body {
       background: #4caf50;
       text-align: center;
       color: white;
-      line-height: 30px;
       transition: width 0.3s ease;
     }
 
@@ -203,8 +198,8 @@ body {
 
 .fitnessapp-card-button-display {
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: 0.5rem;
+  bottom: 0.5rem;
 }
 
 .fitnessapp-exercise-mode-display {
@@ -218,3 +213,164 @@ body {
   white-space: nowrap;
   font-size: 0.8em;
 }
+
+.workout-session-run-outer {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-rows: min-content auto;
+  grid-template-columns: 1fr;
+}
+
+/* .workout-session-progress-bar-outer {
+  grid-area: 1 / 1 / 3 / 2;
+  z-index: 2;
+} */
+
+.workout-session-run-row-video {
+  grid-area: 1 / 1 / 2 / 2;
+  z-index: 1;
+}
+
+.workout-session-progress-bar-video-exercise-outer {
+  display: grid;
+  grid-template-rows: 2fr 9fr 2fr;
+  grid-template-columns: 100%;
+}
+
+.workout-session-topblock {
+  display: grid;
+  grid-area: 1 / 1 / 2 / 2;
+  z-index: 2;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 100%;
+}
+
+.workout-session-topblock-circuit-set {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.workout-session-progress-bar {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+/* .workout-session-progress-bar {
+  grid-area: 1 / 1 / 2 / 2;
+  z-index: 2;
+  border: 1px solid red;
+} */
+
+.workout-session-video {
+  grid-area: 1 / 1 / 4 / 2;
+  z-index: 1;
+}
+
+.workout-session-exercise {
+  grid-area: 3 / 1 / 4 / 2;
+  z-index: 2;
+  border-radius: 0.5rem;
+  background-color: white;
+  margin-top: 0.4rem;
+  /* border: 0.15rem solid teal; */
+}
+
+.workout-session-exercise-circuit-set-outer {
+  display: grid;
+  height: 100%;
+  padding-left: 1rem;
+}
+
+.workout-session-run-row-controls {
+  display: grid;
+  grid-area: 2 / 1 / 3 / 2;
+  grid-template-rows: min-content min-content auto;
+  grid-template-columns: 1fr;
+  z-index: 1;
+  border: 1px solid red;
+}
+
+.workout-session-rest-reps-outer {
+  display: grid;
+  grid-area: 1 / 1 / 2 / 2;
+  grid-template-rows: 3rem;
+  grid-template-columns: 47% 6% 47%;
+  border: 1px solid blue;
+}
+
+.workout-session-rest-display {
+  grid-area: 1 / 1 / 2 / 2;
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  align-content: center;
+  border-radius: 0.5rem;
+  background-color: white;
+  /* border: 0.15rem solid teal; */
+}
+
+.workout-session-reps-display {
+  grid-area: 1 / 3 / 2 / 4;
+  opacity: 0.6;
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  align-content: center;
+  border-radius: 0.5rem;
+  background-color: white;
+  /* border: 0.15rem solid teal; */
+}
+
+.workout-session-rest-box {
+  display: inline-block;
+  border-radius: 0.3rem;
+  padding: 0.2rem;
+  width: fit-content;
+  background-color: teal;
+}
+
+.workout-session-reps-time-box{
+  display: inline-block;
+  border-radius: 0.3rem;
+  padding: 0.2rem;
+  width: fit-content;
+  background-color: teal;
+}
+
+.workout-session-controls-grid {
+  display: grid;
+  grid-area: 2 / 1 / 3 / 2;
+
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: white;
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+  /* border: 0.15rem solid teal; */
+}
+
+.workout-session-previous-button {
+  grid-area: 1 / 1 / 2 / 2;
+  height: 100%;
+  width: fit-content;
+  align-content: center;
+  justify-self: center;
+}
+
+.workout-session-pause-resume-button {
+  grid-area: 1 / 2 / 2 / 3;
+  height: 100%;
+  width: fit-content;
+  align-content: center;
+  justify-self: center;
+}
+
+.workout-session-next-button {
+  grid-area: 1 / 3 / 2 / 4;
+  height: 100%;
+  width: fit-content;
+  align-content: center;
+  justify-self: center;
+}
+
+
+
+
+
