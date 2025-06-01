@@ -51,11 +51,16 @@
   <div class="workout-session-run-row-controls">
     <div class="workout-session-rest-reps-outer">
       <div class="workout-session-rest-display">
-        <span>Rest {{ object.rest_before }} seconds</span>
+        <span>Rest <b>{{ object.rest_before }}</b> seconds</span>
         <!-- <h6>Rest <div class="workout-session-rest-box">{{ object.rest_before }}</div> Seconds</h6> -->
       </div>
       <div class="workout-session-reps-display">
-        <h6> <div class="workout-session-reps-time-box">{{ object.circuit_exercise.mode_quantity }}</div> Reps</h6>
+        <b>{{ object.circuit_exercise.mode_quantity }}</b> 
+          {% if object.exercise.mode == "TIME" %}
+            seconds
+          {% else %}
+            reps
+          {% endif %}
       </div>
     </div>
 

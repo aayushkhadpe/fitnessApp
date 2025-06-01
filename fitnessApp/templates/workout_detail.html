@@ -3,12 +3,12 @@
 {% block title %}Details: {{ object.name }}{% endblock %}
 
 {% block content %}
-    <p>
+    <div>
         {% for workoutcircuit in object.workoutcircuit_set.all %}
             <div class="workout-circuit-heading"><small><b>{{ workoutcircuit.name }} &nbsp;&nbsp;&nbsp;</b><small>{{ workoutcircuit.sets }} sets</small></small></div>
                     {% for circuitexercise in workoutcircuit.circuitexercise_set.all %}
                         {% include 'exercise_card.html' with item=circuitexercise.exercise %}
                     {% endfor %}
         {% endfor %}
-    </p>
+    </div>
 {% endblock %}
