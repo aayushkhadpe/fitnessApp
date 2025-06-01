@@ -109,11 +109,12 @@ body {
 
 .controls-grid {
   display: grid;
-  grid-area: 3 / 1 / 4 / 2;
-  width: fit-content;
+  grid-area: 4 / 1 / 5 / 2;
+  width: 100%;
   justify-items: center;
   margin: auto;
   padding: 1rem;
+  width: fit-content;
   border-radius: 0.5rem;
   background-color: white;
 }
@@ -254,12 +255,6 @@ body {
   grid-area: 2 / 1 / 3 / 2;
 }
 
-/* .workout-session-progress-bar {
-  grid-area: 1 / 1 / 2 / 2;
-  z-index: 2;
-  border: 1px solid red;
-} */
-
 .workout-session-video {
   grid-area: 1 / 1 / 4 / 2;
   z-index: 1;
@@ -277,16 +272,17 @@ body {
 .workout-session-exercise-circuit-set-outer {
   display: grid;
   height: 100%;
-  padding-left: 1rem;
+  padding-left: 0.5rem;
+  align-items: center;
 }
 
 .workout-session-run-row-controls {
   display: grid;
   grid-area: 2 / 1 / 3 / 2;
-  grid-template-rows: min-content min-content auto;
+  grid-template-rows: min-content min-content min-content auto;
   grid-template-columns: 1fr;
   z-index: 1;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .workout-session-rest-reps-outer {
@@ -294,7 +290,7 @@ body {
   grid-area: 1 / 1 / 2 / 2;
   grid-template-rows: 3rem;
   grid-template-columns: 47% 6% 47%;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 .workout-session-rest-display {
@@ -341,14 +337,13 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   background-color: white;
   margin-top: 0.5rem;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
   border-radius: 0.5rem;
   /* border: 0.15rem solid teal; */
 }
 
 .workout-session-previous-button {
   grid-area: 1 / 1 / 2 / 2;
-
   height: 100%;
   width: fit-content;
   align-content: center;
@@ -359,7 +354,7 @@ body {
   grid-area: 1 / 2 / 2 / 3;
   height: 100%;
   width: fit-content;
-  align-content: top;
+  align-content: center;
   justify-self: center;
 }
 
@@ -371,7 +366,13 @@ body {
   justify-self: center;
 }
 
-
-
-
-
+.workout-session-step-grid {
+  display: grid;
+  grid-area: 3 / 1 / 4 / 2;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-radius: 0.5rem;
+  border: 0.15rem solid teal;
+}

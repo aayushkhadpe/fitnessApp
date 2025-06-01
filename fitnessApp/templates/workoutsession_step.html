@@ -62,7 +62,7 @@
     <div class="workout-session-controls-grid">
       <div class="workout-session-previous-button">
         <form method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:-1 %}">
-            <button class="btn btn-outline-dark" {% if object.sequence_number == 1 %}disabled{% endif %} type="submit">
+            <button class="btn btn-outline-dark btn-lg" {% if object.sequence_number == 1 %}disabled{% endif %} type="submit">
               <i class="bi bi-caret-left-fill"></i>
             </button>
         </form>
@@ -70,22 +70,26 @@
 
      
       <div class="workout-session-pause-resume-button">
-          <button id="pause-button" class="btn btn-outline-dark">
+        <form onsubmit="return false;">
+          <button id="pause-button" class="btn btn-outline-dark btn-lg">
             <i id="pause-resume-button" class="bi bi-pause-circle"></i>
           </button>
+        </form>
       </div>
 
 
       <div class="workout-session-next-button">
         <form id="next-form" method="GET" action="{% url 'workoutsession-step'  workoutsession_id=object.workoutSession_id sequencenumber=object.sequence_number|add:1 %}">
-            <button class="btn btn-outline-dark" {% if object.sequence_number == object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %} type="submit">
+            <button class="btn btn-outline-dark btn-lg" {% if object.sequence_number == object.workoutSession.workoutsessionstep_set.all|length %}disabled{% endif %} type="submit">
               <i class="bi bi-caret-right-fill"></i>
             </button>
         </form>
       </div>
 
     </div>
-    
+<!-- <div class="workout-session-step-grid">
+
+</div>     -->
       <div class="controls-grid">
         <div class="timer" id="timer-div">
           <div id="div-timer" class="timer-wrapper">

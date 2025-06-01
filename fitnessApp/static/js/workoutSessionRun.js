@@ -37,6 +37,16 @@ pauseButton.addEventListener("click", () =>
 updateProgress();
 
 
+function disableElement(id)
+{
+  document.getElementById(id).disabled = true;
+}
+
+function enableElement(id)
+{
+  document.getElementById(id).disabled = false;
+}
+
 function hideElement(id)
 {
   document.getElementById(id).style.visibility = "hidden";
@@ -72,7 +82,7 @@ function startTimer()
   showElement('next-up-pill')
   //hideElement('exercise-div');
   //hideElement('reps-div');
-  showElement("pause-button");
+  enableElement("pause-button");
 
   const timeText = document.getElementById("time-text");
   timeText.textContent = formatTime(remaining);
@@ -131,7 +141,7 @@ function startTimer()
 
           hideElement('grey');
           hideElement('next-up-pill')
-          hideElement("pause-button");
+          disableElement("pause-button");
           break;
       }
     }
