@@ -65,6 +65,7 @@ function startTimer()
 
   // when timer starts, gray out video and hide the exercise and reps div, show pause button
   showElement('grey');
+  showElement('next-up-pill')
   //hideElement('exercise-div');
   //hideElement('reps-div');
   showElement("pause-button");
@@ -107,6 +108,7 @@ function startTimer()
           //hideElement('rest-div');
           //showElement('exercise-div');
           hideElement('grey');
+          hideElement('next-up-pill')
 
           break;
 
@@ -124,6 +126,7 @@ function startTimer()
           //showElement('reps-div');
 
           hideElement('grey');
+          hideElement('next-up-pill')
           hideElement("pause-button");
           break;
       }
