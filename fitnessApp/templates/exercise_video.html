@@ -7,9 +7,14 @@
     <div class="exercisevideo-up-next-pill">
       <span class="badge rounded-pill text-bg-light" id="next-up-pill">NEXT UP</span>
     </div>
-    <div class="exercisevideo-video">
-      <iframe class="exercisevideo-video" src="https://www.youtube.com/embed/?playlist={{ video_id }}&loop=1&mute=1&autoplay=1">
-      </iframe>
-    </div>
+    
+      {% if video_id is None %}
+        <div style="z-index: 5; grid-area: 2 / 1 / 3 / 2; margin: auto;"><p>Video Coming Soon</p></div>
+      {% else %}
+      <div class="exercisevideo-video">
+        <iframe class="exercisevideo-video" src="https://www.youtube.com/embed/?playlist={{ video_id }}&loop=1&mute=1&autoplay=1"></iframe>
+      </div>
+      {% endif %}
+    
 </div>
   

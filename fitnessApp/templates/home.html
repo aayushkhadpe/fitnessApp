@@ -4,6 +4,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<div>
 
 {% if user.is_authenticated %}
 <h6>Hi <b>{{ user.first_name }}</b>!</h6></br></h6>
@@ -33,6 +34,8 @@
 {% else %}
 <p>Welcome to the Fitness App!</p>
 {% endif %}
+
+</div>
 {% endblock %}
 
 <!-- <p style="border-radius: 0.5rem; border: 2px solid white; background-color: white; padding: 10px;  width: 100%;">
