@@ -4,6 +4,7 @@ body {
 
 .fitnessapp-page-title {
     text-transform: uppercase; 
+    padding-top: 0.25rem;
     font-size: 0.75rem; 
     font-weight: bolder;
 }
@@ -374,4 +375,19 @@ body {
   padding-top: 1rem;
   border-radius: 0.5rem;
   border: 0.15rem solid teal;
+}
+
+.workout-detail-attribute {
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+}
+
+.workout-detail-attribute-label {
+  grid-area: 1 / 1 / 1 / 2;
+}
+
+.workout-detail-attribute-value {
+  grid-area: 1 / 2 / 1 / 3;
 }

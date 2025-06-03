@@ -3,7 +3,8 @@
 {% block title %}Workout: {{ object.workout.name }}{% endblock %}
 
 {% block content %}
-<p> 
+<div>
+<p>
     <a href="{% url 'workoutsession-step'  workoutsession_id=object.id sequencenumber=object.current_step_sequence %}">
         <button class="btn btn-primary" type="button">
             {% if object.current_step_sequence == 1 %}
@@ -15,9 +16,6 @@
     </a>
 </p>
 
-{% for item in object.workoutsessionstep_set.all %}
-    <p><img src="https://img.youtube.com/vi/{{ item.exercise.video_id }}/maxresdefault.jpg" width="80px" style="border-radius: 10px"> {{ item.exercise.name }}</p>
-    <p>Rest: {{ item.rest_after }} Seconds</p>
-{% endfor %}
-
+    {% include 'workout_detail_card.html' with workoutObject=object.workout %}
+</div>
 {% endblock %}
