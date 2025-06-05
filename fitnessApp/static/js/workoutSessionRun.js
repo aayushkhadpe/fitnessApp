@@ -5,6 +5,7 @@ const circumference = 2 * Math.PI * radius;
 const progressCircle = document.querySelector('.circle-progress');
 progressCircle.style.strokeDasharray = circumference;
 progressCircle.style.strokeDashoffset = 0;
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
 let isPaused = false;
 let interval;
@@ -73,6 +74,22 @@ function setProgress(percent)
   }
   progressCircle.style.strokeDashoffset = offset;
 
+  if (remaining <= 6)
+  {
+    playBeep( remaining == 1 ? 800 : 200);
+  }
+
+}
+
+function playBeep(duration)
+{
+    const oscillator = audioContext.createOscillator();
+    oscillator.type = 'triangle';
+    oscillator.frequency.value = 500;
+    oscillator.connect(audioContext.destination);
+    oscillator.start();
+
+    setTimeout(() => { oscillator.stop(); }, duration);
 }
 
 function startTimer()
@@ -106,6 +123,8 @@ function startTimer()
       // a timer just got done. it could be rest timer or the timed exercise timer.
       clearInterval(interval);
       timeText.textContent = "00:00";
+
+      //playBeep(400);
 
       switch (check)
       {
