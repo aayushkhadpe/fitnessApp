@@ -95,16 +95,37 @@
 <!-- <div class="workout-session-step-grid">
 
 </div>     -->
-      <div class="controls-grid">
-        <div class="timer" id="timer-div">
-          <div id="div-timer" class="timer-wrapper">
-            <svg class="timer-svg">
-              <circle class="circle-bg" cx="50" cy="50" r="45" />
-              <circle class="circle-progress" cx="50" cy="50" r="45" />
-            </svg>
-            <div class="time-text" id="time-text">--:--</div>
+    <div id="timer" class="timer-grid">
+      <div class="timer-outside-grid">
+        <div class="timer-grid-inner">
+          <div class="timer" id="timer-div">
+            <div id="div-timer" class="timer-wrapper">
+              <svg class="timer-svg">
+                <circle class="circle-bg" cx="50" cy="50" r="45" />
+                <circle class="circle-progress" cx="50" cy="50" r="45" />
+              </svg>
+              <div class="time-text" id="time-text">--:--</div>
+            </div>
           </div>
+        </div>
+    
+        <div id="restart-timer-div" class="restart-timer">
+          <button onclick="restartTimer()" id="restart-timer-button" class="btn btn-outline-dark btn-lg timer-button">
+            <i class="bi bi-arrow-counterclockwise"></i>
+            <span class="menu_label text-muted"><small><small><small>RESTART</small></small></small></span>
+          </button>
+        </div>
+    
+        <div id="skip-rest-timer-div" class="skip-rest-timer">
+          <button onclick="skipTimer()" id="skip-rest-timer-button" class="btn btn-outline-dark btn-lg timer-button">
+            <i class="bi bi-skip-end"></i>
+            <span class="menu_label text-muted"><small><small><small>SKIP</small></small></small></span>
+          </button>
+        </div>
+    
       </div>
+
+
     </div>
 
   </div>

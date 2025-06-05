@@ -108,14 +108,14 @@ body {
 
 /* Run page CSS */
 
-.controls-grid {
+.timer-grid {
   display: grid;
   grid-area: 4 / 1 / 5 / 2;
   width: 100%;
   justify-items: center;
   margin: auto;
   padding: 1rem;
-  width: fit-content;
+  width: 100%;
   border-radius: 0.5rem;
   background-color: white;
 }
@@ -390,4 +390,40 @@ body {
 
 .workout-detail-attribute-value {
   grid-area: 1 / 2 / 1 / 3;
+}
+
+.timer-outside-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: min-content auto min-content;
+  grid-template-rows: min-content auto min-content;
+}
+
+.timer-grid-inner {
+  grid-area: 1 / 2 / 4 / 3;
+  margin: auto;
+}
+
+.add-seconds {
+  grid-area: 3 / 3 / 4 / 4;
+}
+
+.subtract-seconds {
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+.restart-timer {
+  grid-area: 1 / 1 / 4 / 2;
+  margin: auto;
+}
+
+.skip-rest-timer {
+  grid-area: 1 / 3 / 4 / 4;
+  margin: auto;
+}
+
+.timer-button {
+  width: 4rem;
+  margin: auto;
 }

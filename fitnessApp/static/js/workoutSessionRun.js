@@ -72,6 +72,7 @@ function setProgress(percent)
     progressCircle.style.transitionDuration = '1s';
   }
   progressCircle.style.strokeDashoffset = offset;
+
 }
 
 function startTimer()
@@ -134,6 +135,9 @@ function startTimer()
         // rest timer was done for reps based exercise. switch the divs.
         case "REPS":
           //hideElement('rest-div');
+          hideElement('timer');
+          hideElement('restart-timer-div');
+          hideElement('skip-rest-timer-div');
           hideElement('timer-div');
 
           //showElement('exercise-div');
@@ -142,6 +146,7 @@ function startTimer()
           hideElement('grey');
           hideElement('next-up-pill')
           disableElement("pause-button");
+
           break;
       }
     }
@@ -155,6 +160,19 @@ function updateProgress() {
       progressBar.style.background = 'green';
       progressBar.style.width = progress + '%';
     }
+
+function restartTimer() {
+  remaining = totalSeconds;
+  progressCircle.style.transitionDuration = '1ms';
+  const timeText = document.getElementById("time-text");
+  timeText.textContent = formatTime(remaining);
+  setProgress(1);
+}
+
+function skipTimer() {
+  remaining = 0;
+  setProgress(0);
+}
 
 
 
