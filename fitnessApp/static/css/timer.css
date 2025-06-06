@@ -1,7 +1,7 @@
 .timer-wrapper {
       position: relative;
-      width: 100px;
-      height: 100px;
+      height: 100%;
+      aspect-ratio: 1 / 1;
     }
 
  .circle-bg {
@@ -31,6 +31,6 @@
     }
 
 .timer-svg {
-    width: 100px;
-    height: 100px;
+    height: 100%;
+    aspect-ratio: 1 / 1;
   }

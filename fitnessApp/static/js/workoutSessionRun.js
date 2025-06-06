@@ -93,7 +93,7 @@ function playBeep(duration)
 }
 
 function startTimer()
-{
+{ 
 
   // when timer starts, gray out video and hide the exercise and reps div, show pause button
   showElement('grey');
@@ -101,6 +101,8 @@ function startTimer()
   //hideElement('exercise-div');
   //hideElement('reps-div');
   enableElement("pause-button");
+  hideElement('exercise-message');
+  showElement('rest-message')
 
   const timeText = document.getElementById("time-text");
   timeText.textContent = formatTime(remaining);
@@ -137,6 +139,8 @@ function startTimer()
           progressCircle.style.stroke = 'green';
           setProgress(1);
           startTimer();
+          hideElement('rest-message');
+          showElement('exercise-message');
 
           // rest timer was done. hide the rest timer related divs (gray overlay on video, and rest message line) and display the exercise div
           //hideElement('rest-div');
@@ -158,6 +162,8 @@ function startTimer()
           hideElement('restart-timer-div');
           hideElement('skip-rest-timer-div');
           hideElement('timer-div');
+          hideElement('rest-message');
+          showElement('exercise-message');
 
           //showElement('exercise-div');
           //showElement('reps-div');
