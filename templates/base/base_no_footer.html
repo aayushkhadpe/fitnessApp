@@ -4,13 +4,25 @@
 {% include 'base/head.html' %}
 
 <body>
-<div class="page">
-    <div class="header">
-        <div><h5 class="fitnessapp-page-title">{% block title %}{% endblock %}</h5></div>
+<div class="page-no-footer">
+    <div class="header-no-footer">
+        <div class="header-inner">
+            <div class="header-text">
+                <h5 class="fitnessapp-page-title">{% block title %}{% endblock %}</h5>
+            </div>
+            <div class="header-x-button">
+                <a class="menu_link" href="{% url 'home' %}">
+                    <i class="bi bi-x-lg"></i>
+                </a>
+            </div>
+        </div>
     </div>
     
     <div class="mainbody-no-footer">
         {% block content %}{% endblock %}
+    </div>
+
+    <div class="footer-no-footer">
     </div>
 </div>
 

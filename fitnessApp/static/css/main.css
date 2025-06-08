@@ -24,12 +24,50 @@ body {
     justify-content: center;
 }
 
+.page-no-footer {
+    display: grid;
+    height: 100%;
+    max-width: 500px;
+    margin: auto;
+    grid-template-rows: 3rem 1fr 5rem 0.5rem;
+    grid-template-columns: 100%;
+    justify-content: center;
+}
+
 .header {
     display: grid;
     grid-area: 1 / 1 / 2 / 2;
     background-color: rgb(243, 242, 248);
     justify-content: center;
     align-items: center;
+}
+
+.header-no-footer {
+  display: grid;
+  grid-area: 1 / 1 / 2 / 2;
+  background-color: rgb(243, 242, 248);
+}
+
+.header-inner {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  position: relative;
+}
+
+.header-text {
+  grid-area: 1 / 1 / 2 / 2;
+  z-index: 1;
+  margin: auto;
+}
+
+.header-x-button {
+  grid-area: 1 / 1 / 2 / 2;
+  position: absolute;
+  right: 0px;
+  z-index: 2;
+  align-self: center;
+  padding-right: 1rem;
 }
 
 .mainbody { 
@@ -44,10 +82,13 @@ body {
 .mainbody-no-footer { 
     display: grid;
     grid-area: 2 / 1 / 4 / 2;
-    overflow: scroll;
-    scrollbar-width: none;
     background-color: rgb(243, 242, 248);
     padding: 10px;
+}
+
+.footer-no-footer {
+  grid-area: 4 / 1 / 5 / 2;
+  background-color: rgb(243, 242, 248);
 }
 
 .footer {  
@@ -236,11 +277,6 @@ body {
   grid-template-columns: 1fr;
 }
 
-/* .workout-session-progress-bar-outer {
-  grid-area: 1 / 1 / 3 / 2;
-  z-index: 2;
-} */
-
 .workout-session-run-row-video {
   grid-area: 1 / 1 / 2 / 2;
   z-index: 1;
@@ -326,22 +362,6 @@ body {
   /* border: 0.15rem solid teal; */
 }
 
-/* .workout-session-rest-box {
-  display: inline-block;
-  border-radius: 0.3rem;
-  padding: 0.2rem;
-  width: fit-content;
-  background-color: teal;
-} */
-
-/* .workout-session-reps-time-box{
-  display: inline-block;
-  border-radius: 0.3rem;
-  padding: 0.2rem;
-  width: fit-content;
-  background-color: teal;
-} */
-
 .workout-session-controls-grid {
   display: grid;
   grid-area: 2 / 1 / 3 / 2;
@@ -419,13 +439,13 @@ body {
 }
 
 .restart-timer {
-  grid-area: 1 / 1 / 4 / 2;
+  grid-area: 3 / 1 / 4 / 2;
   margin: auto;
   z-index: 2;
 }
 
 .skip-rest-timer {
-  grid-area: 1 / 3 / 4 / 4;
+  grid-area: 3 / 3 / 4 / 4;
   margin: auto;
   z-index: 2;
 }
@@ -447,14 +467,15 @@ body {
 .message-rest-grid-inner, .message-exercise-grid-inner {
   grid-area: 1 / 1 / 2 / 2;
   padding-left: 0.5rem;
-  /* padding-top: 0.5rem; */
+  padding-top: 0.4rem;
   border-radius: 0.5rem;
   background-color: green;
   color: white;
   text-align: center;
+  vertical-align: middle;
 }
 
 .message-text {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bolder;
 }
