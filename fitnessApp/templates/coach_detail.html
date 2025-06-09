@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+
+{% block title %}My Trainer{% endblock %}
+
+{% block content %}
+    <div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="workout-detail-attribute">
+                    <div class="workout-detail-attribute-label"><span><b>First Name</b></span></div>
+                    <div class="workout-detail-attribute-valuee">{{ object.first_name }}</div>
+                </div>
+                </li>
+            <li class="list-group-item">
+                <div class="workout-detail-attribute">
+                    <div class="workout-detail-attribute-label"><span><b>Last Name</b></span></div>
+                    <div class="workout-detail-attribute-valuee">{{ object.last_name }}</div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="workout-detail-attribute">
+                    <div class="workout-detail-attribute-label"><span><b>Email</b></span></div>
+                    <div class="workout-detail-attribute-valuee">{{ object.email }}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
