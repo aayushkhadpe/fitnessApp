@@ -1,0 +1,23 @@
+{% extends "base/base.html" %}
+
+{% block title %}Clients{% endblock %}
+
+{% block content %}
+
+<div>
+    {% for item in object_list %}
+        <ul class="list-group">
+            <li class="list-group-item">  
+                <div>
+                    <h5 class="text single-line"><b>{{ item.first_name }} {{ item.last_name }}</b></h5>
+                    <h6 class="text single-line">{{ item.email }}</h6>
+
+                </div>
+            </li>   
+        </ul>    
+    {% empty %}
+    No clients yet.
+    {% endfor %}
+</div>
+
+{% endblock %}
