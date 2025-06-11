@@ -14,9 +14,9 @@
             </a>
         </li>
 
-        {% if user.coach %}
+        {% if user.person.coach %}
         <li class="list-group-item">
-            <a class="fitnessapp-profile-item" href="{% url 'coach-details' user.coach.id %}">
+            <a class="fitnessapp-profile-item" href="{% url 'coach-details' user.person.coach.id %}">
                 <div>
                     My Trainer
                 </div>

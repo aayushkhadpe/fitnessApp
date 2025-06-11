@@ -16,7 +16,7 @@ class WorkoutSessionCreateView(LoginRequiredMixin, CreateView):
         workout = Workout.objects.get(pk=workout_id)
 
         form.instance.workout = workout
-        form.instance.user = self.request.user
+        form.instance.person = self.request.user.person
 
         response = super().form_valid(form)
 

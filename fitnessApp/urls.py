@@ -19,8 +19,10 @@ urlpatterns = [
 
     path("profile", ProfileView.as_view(), name="profile"),
     path("profile/<int:pk>/details", AccountUpdateView.as_view(), name="account-details"),  
-    path("profile/<int:pk>/coachdetails", CoachDetailView.as_view(), name="coach-details"),
+    path("profile/coach/<int:pk>/details", CoachDetailView.as_view(), name="coach-details"),
     
     path("clients", ClientListView.as_view(), name="clients"),
+    path("clients/create", ClientCreateView.as_view(), name="client-create"),
+    path("clients/<int:pk>/details", ClientUpdateView.as_view(), name="client-details"),
 
 ]

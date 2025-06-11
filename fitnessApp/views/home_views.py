@@ -11,16 +11,15 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         
         if (self.request.user.is_authenticated):
-            if (self.request.user.coach_flag):
-                context['activeSessions'] = WorkoutSession.objects.filter(Q(user=self.request.user) | Q(user__coach=self.request.user), scheduled_date=date.today())
-                context['upcomingSessions'] = WorkoutSession.objects.filter((Q(user=self.request.user) | Q(user__coach=self.request.user)) & (Q(scheduled_date__gt=date.today()) | Q(scheduled_date__isnull=True))).order_by((F('scheduled_date').asc(nulls_last=True)))
-                context['pastSessions'] = WorkoutSession.objects.filter((Q(user=self.request.user) | Q(user__coach=self.request.user)), scheduled_date__lt=date.today()).order_by('-scheduled_date')
-                context['today'] = date.today()
+            context['today'] = date.today()
+            if (self.request.user.person.coach_flag):
+                context['activeSessions'] = WorkoutSession.objects.filter(Q(person=self.request.user.person) | Q(person__coach=self.request.user.person), scheduled_date=date.today())
+                context['upcomingSessions'] = WorkoutSession.objects.filter((Q(person=self.request.user.person) | Q(person__coach=self.request.user.person)) & (Q(scheduled_date__gt=date.today()) | Q(scheduled_date__isnull=True))).order_by((F('scheduled_date').asc(nulls_last=True)))
+                context['pastSessions'] = WorkoutSession.objects.filter((Q(person=self.request.user.person) | Q(person__coach=self.request.user.person)), scheduled_date__lt=date.today()).order_by('-scheduled_date')
 
             else: 
-                context['activeSessions'] = WorkoutSession.objects.filter(user=self.request.user, scheduled_date=date.today())
-                context['upcomingSessions'] = WorkoutSession.objects.filter(Q(user=self.request.user) & (Q(scheduled_date__gt=date.today()) | Q(scheduled_date__isnull=True))).order_by((F('scheduled_date').asc(nulls_last=True)))
-                context['pastSessions'] = WorkoutSession.objects.filter(user=self.request.user, scheduled_date__lt=date.today()).order_by('-scheduled_date')
-                context['today'] = date.today()
+                context['activeSessions'] = WorkoutSession.objects.filter(person=self.request.user.person, scheduled_date=date.today())
+                context['upcomingSessions'] = WorkoutSession.objects.filter(Q(person=self.request.user.person) & (Q(scheduled_date__gt=date.today()) | Q(scheduled_date__isnull=True))).order_by((F('scheduled_date').asc(nulls_last=True)))
+                context['pastSessions'] = WorkoutSession.objects.filter(person=self.request.user.person, scheduled_date__lt=date.today()).order_by('-scheduled_date')
 
         return context

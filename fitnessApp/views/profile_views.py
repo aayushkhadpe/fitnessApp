@@ -16,5 +16,5 @@ class AccountUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "account_details.html"
 
 class CoachDetailView(LoginRequiredMixin, DetailView):
-    model = FitnessAppUser
+    model = FitnessAppPerson
     template_name = "coach_detail.html"

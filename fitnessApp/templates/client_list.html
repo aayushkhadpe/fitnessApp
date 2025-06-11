@@ -5,13 +5,22 @@
 {% block content %}
 
 <div>
+    <a href="{% url 'client-create' %}">
+        <button class="btn btn-primary" type="button">Create Client</button>
+    </a>
+</div>
+
+<div>
     {% for item in object_list %}
         <ul class="list-group">
             <li class="list-group-item">  
                 <div>
                     <h5 class="text single-line"><b>{{ item.first_name }} {{ item.last_name }}</b></h5>
-                    <h6 class="text single-line">{{ item.email }}</h6>
-
+                </div>
+                <div>
+                    <a href="{% url 'client-details' item.id %}">
+                        <button class="btn btn-primary" type="button">Edit Client</button>
+                    </a> 
                 </div>
             </li>   
         </ul>    
@@ -19,5 +28,6 @@
     No clients yet.
     {% endfor %}
 </div>
+
 
 {% endblock %}

@@ -12,7 +12,7 @@
                 <span><small><small>{{ item.workout.duration }} minutes</small></small></span>
             </div>
             <div class="fitnessapp-workoutsession-username-display">
-                <h6 class="text single-line"><b>{% if item.user == user %} Me {% else %} {{ item.user.first_name }} {{ item.user.last_name }}{% endif %}</b></h6>
+                <h6 class="text single-line"><b>{% if item.person == user.person %} Me {% else %} {{ item.person.first_name }} {{ item.user.person.last_name }}{% endif %}</b></h6>
             </div>
             <div class="fitnessapp-workoutsession-time-display">
                 <span><small><small>{{ item.scheduled_time }}</small></small></span>
