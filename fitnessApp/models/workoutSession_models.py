@@ -10,6 +10,7 @@ class WorkoutSession(models.Model):
     workout =  models.ForeignKey(Workout, on_delete=models.CASCADE)
     user = models.ForeignKey(FitnessAppUser, on_delete=models.CASCADE)
     scheduled_date = models.DateField(null=True, blank=True)
+    scheduled_time = models.TimeField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=WORKOUT_SESSION_STATUS_CHOICES, default="CREATED")
     current_step_sequence = models.IntegerField(default = 1)
 

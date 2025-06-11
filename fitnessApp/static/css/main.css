@@ -210,8 +210,7 @@ body {
 }
 
 .fitnessapp-workout-item-outer,
-.fitnessapp-exercise-item-outer,
-.fitnessapp-workoutsession-item-outer {
+.fitnessapp-exercise-item-outer {
   display: grid;
   height: 100%;
   width: 100%;
@@ -221,8 +220,7 @@ body {
 }
 
 .fitnessapp-workout-image-grid,
-.fitnessapp-exercise-image-grid,
-.fitnessapp-workoutsession-image-grid {
+.fitnessapp-exercise-image-grid {
   height: 100%;
   grid-area: 1 / 1 / 3 / 2;
 }
@@ -237,20 +235,66 @@ body {
 }
 
 .fitnessapp-workout-name-display,
-.fitnessapp-exercise-name-display,
-.fitnessapp-workoutsession-name-display {
+.fitnessapp-exercise-name-display {
   grid-area: 1 / 2 / 2 / 4;
   padding-left: 0.75rem;
   padding-top: 0.5rem;
 }
 
-.fitnessapp-workout-duration-display,
-.fitnessapp-workoutsession-duration-display {
+.fitnessapp-workout-duration-display {
   grid-area: 2 / 2 / 3 / 3;
   padding-left: 0.75rem;
 }
 
+.fitnessapp-workoutsession-item-outer {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5rem;
+  grid-template-rows: 30% 40% 30%;
+  grid-auto-columns: auto 2fr 1fr;
+}
+
+.fitnessapp-workoutsession-image-grid {
+  height: 100%;
+  grid-area: 1 / 1 / 4 / 2;
+}
+
+.fitnessapp-workoutsession-name-display {
+  grid-area: 2 / 2 / 3 / 3;
+  padding-left: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.fitnessapp-workoutsession-duration-display {
+  grid-area: 3 / 2 / 4 / 3;
+  padding-left: 0.75rem;
+  padding-bottom: 0rem;
+}
+
+.fitnessapp-workoutsession-username-display {
+  grid-area: 1 / 2 / 2 / 3;
+  padding-left: 0.75rem;
+  padding-top: 0.5rem;
+  color: #555555;
+}
+
+.fitnessapp-workoutsession-time-display {
+  justify-items: right;
+  grid-area: 1 / 3 / 2 / 4;
+  padding-top: 0.5rem;
+  padding-right: 0.5rem;
+  text-align: right;
+}
+
+
 .fitnessapp-card-button-display {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.fitnessapp-date-display {
   position: absolute;
   right: 0.5rem;
   bottom: 0.5rem;
