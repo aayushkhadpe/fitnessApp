@@ -534,3 +534,41 @@ body {
   font-size: 1.5rem;
   font-weight: bolder;
 }
+
+
+.client-detail-item {
+  margin-top: 0.5rem;
+}
+.client-detail-outer {
+  display: grid;
+  grid-template-rows: 55% 45%;
+  grid-template-columns: auto max-content;
+}
+
+.client-detail-name {
+  grid-area: 1 / 1 / 2 / 2;
+  color: #555555;
+
+}
+
+.client-detail-phone-number {
+  grid-area: 2 / 1 / 3 / 2;
+  color: #555555;
+}
+
+.client-detail-edit {
+  grid-area: 1 / 2 / 3 / 3;
+  margin: auto;
+}
+
+.client-create-outer {
+  display: grid;
+  grid-template-rows: min-content;
+  grid-template-columns: 100%;
+}
+
+.client-create-inner {
+  grid-area: 1 / 1 / 2 / 2;
+  justify-self: end;
+  padding-right: 0.25rem;
+}

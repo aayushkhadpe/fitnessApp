@@ -18,7 +18,7 @@ class ClientCreateForm(forms.ModelForm):
 
     class Meta:
         model = FitnessAppPerson
-        fields = ("first_name", "last_name", "coach")
+        fields = ("first_name", "last_name", "coach", "phone_number", "email",)
 
 class WorkoutSessionCreateForm(forms.ModelForm):
     class Meta:
@@ -43,6 +43,6 @@ class FitnessAppUserUpdateForm(forms.ModelForm):
 class FitnessAppPersonUpdateForm(forms.ModelForm):
     class Meta:
         model = FitnessAppPerson
-        fields = ("first_name", "last_name")
+        fields = ("first_name", "last_name", "phone_number", "email")
         field_classes = {"first_name": CharField, "last_name": CharField}
         labels = {"first_name": "First Name", "last_name": "Last Name"}

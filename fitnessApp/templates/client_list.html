@@ -3,30 +3,44 @@
 {% block title %}Clients{% endblock %}
 
 {% block content %}
-
 <div>
-    <a href="{% url 'client-create' %}">
-        <button class="btn btn-primary" type="button">Create Client</button>
-    </a>
+<div class="client-create-outer">
+    <div class="client-create-inner mb-3">
+        <a class="fitnessapp-profile-item" href="{% url 'client-create' %}">
+            <!-- <button class="btn btn-primary" type="button">Create Client</button> -->
+             <i class="bi bi-plus-circle"></i><span><small>&nbsp;Add Client</small></span>
+        </a>
+    </div>
 </div>
 
 <div>
     {% for item in object_list %}
+   
         <ul class="list-group">
-            <li class="list-group-item">  
-                <div>
-                    <h5 class="text single-line"><b>{{ item.first_name }} {{ item.last_name }}</b></h5>
-                </div>
-                <div>
-                    <a href="{% url 'client-details' item.id %}">
-                        <button class="btn btn-primary" type="button">Edit Client</button>
-                    </a> 
-                </div>
-            </li>   
-        </ul>    
+             
+            <li class="list-group-item client-detail-item">
+                <a class="fitnessapp-profile-item" href="{% url 'client-details' item.id %}">
+                    <div class="client-detail-outer">
+                        <div class="client-detail-name">
+                            <h5 class="text single-line"><b>{{ item.first_name }} {{ item.last_name }}</b></h5>
+                        </div>
+                        <div class="client-detail-phone-number">
+                            <h6 class="text single-line">{{ item.phone_number }}</h6>
+                        </div>
+                        <div class="client-detail-edit">
+                            <i class="bi bi-chevron-right"></i>
+                        </div>
+                    </div>
+                </a> 
+            </li> 
+            
+        </ul>  
+        
     {% empty %}
     No clients yet.
     {% endfor %}
+    
+</div>  
 </div>
 
 
