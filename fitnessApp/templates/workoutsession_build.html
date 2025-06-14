@@ -5,55 +5,35 @@
 
 {% block content %}
 <div>
+
+  <div class="form-floating">
+    <select class="form-select" id="floatingclient" aria-label="Client">
+      <option value="">Select a client...</option>
+      <option value="4">Bhushan Khadpe</option>
+      <option value="1">Aayush Khadpe</option>
+      <option value="3">John Doe</option>
+    </select>
+    <label for="floatingclient">Client</label>
+  </div>
+  
+  <p></p>
+  
   <div class="row">
-    <div class="col-12">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Client</span>
-        <div ><select id="select-client" placeholder="Select a client..." autocomplete="on">
-          <option value="">Select a client...</option>
-          <option value="4">Bhushan Khadpe</option>
-          <option value="1">Aayush Khadpe</option>
-          <option value="3">John Doe</option>
-        </select></div>
-      </div>
+    <div class="col">
+        <div class="form-floating">
+          <input type="date" aria-label="Date" id="floatingdate" class="form-control text-left">
+          <label for="floatingdate">Date</label>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-floating">
+          <input type="time" aria-label="Time" id="floatingtime" class="form-control">
+          <label for="floatingtime">Time</label>
+        </div>
     </div>
   </div>
 
-  <div class="input-group">
-    <span class="input-group-text">Date and Time</span>
-    <input type="date" aria-label="Date" class="form-control">
-    <input type="time" aria-label="Time" class="form-control">
-  </div>
-  <p> </p>
-  <div class="row">
-    <div class="col">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Set Rest</span>
-        <input type="text" class="form-control" placeholder="Set default" value="120" aria-label="Set-Rest" aria-describedby="basic-addon1">
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Exercise Rest</span>
-        <input type="text" class="form-control" placeholder="Set default"  value="20" aria-label="Exercise-Rest" aria-describedby="basic-addon1">
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Reps</span>
-        <input type="text" class="form-control" placeholder="Set default" value="10" aria-label="Reps" aria-describedby="basic-addon1">
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Time</span>
-        <input type="text" class="form-control" placeholder="Set default"  value="60" aria-label="Time" aria-describedby="basic-addon1">
-      </div>
-    </div>
-  </div>
+  <p></p>
 
   <div class="row">
     <div class="col">
@@ -63,6 +43,40 @@
       </div>
     </div>
   </div>
+  
+  <div class="row">
+    <div class="col">
+        <div class="form-floating">
+          <input id="floatingsetrest" type="number" value="120" class="form-control">
+          <label for="floatingsetrest">Set Rest (secs.)</label>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-floating">
+          <input id="floatingexerciserest" type="number" value="20" class="form-control">
+          <label for="floatingexerciserest">Exercise Rest (secs.)</label>
+        </div>
+    </div>
+  </div>
+
+  <p></p>
+
+  <div class="row">
+    <div class="col">
+        <div class="form-floating">
+          <input id="floatingreps" type="number" value="10" class="form-control">
+          <label for="floatingreps">Reps</label>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-floating">
+        <input id="floatingtime" type="number" value="60" class="form-control">
+        <label for="floatingtime">Time (secs.)</label>
+        </div>
+    </div>
+  </div>
+
+  <p></p>
 
   <button class="btn btn-success" type="submit">Next</button>
 
