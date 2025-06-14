@@ -10,13 +10,11 @@
             </div>
             <div class="fitnessapp-exercise-mode-display">
                 {% if circuitexercise is None %}
-                    <p><small><small>{{ item.get_mode_display }}</small></small></p>
                 {% else %}
-                    <small><small>{{ circuitexercise.mode_quantity }}</small></small>
-                    {% if item.mode == "REPS" %}
-                        <small><small>reps</small></small>
+                    {% if circuitexercise.mode == "REPS" %}
+                        <small><small>{{ circuitexercise.reps }} reps</small></small>
                     {% else %}
-                        <small><small>seconds</small></small>
+                        <small><small>{{ circuitexercise.time }} seconds</small></small>
                     {% endif %}
                 {% endif %}
             </div>

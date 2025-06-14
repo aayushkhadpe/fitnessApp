@@ -31,7 +31,6 @@ class CircuitExercise(models.Model):
     circuit = models.ForeignKey(WorkoutCircuit, on_delete=models.CASCADE)
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
     # number of reps or number of seconds for the exercise based on the mode of the exercise
-    mode_quantity = models.IntegerField(default = 0)
     mode =  models.CharField(max_length=20, choices=MODE_CHOICES, default="REPS")
     reps = models.IntegerField(default = 0)
     time = models.IntegerField(default = 0)

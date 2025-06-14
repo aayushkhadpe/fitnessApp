@@ -5,9 +5,9 @@
 {{ block.super }}
 <script>
   var totalSeconds = "{{ object.rest_before }}";
-  var check = "{{ object.exercise.mode }}";
-  var exerciseTime = "{{ object.circuit_exercise.mode_quantity }}";
-  var modeQuantity = "{{ object.circuit_exercise.mode_quantity }}";
+  var check = "{{ object.circuitexercise.mode }}";
+  var exerciseTime = "{{ object.circuit_exercise.time }}";
+  var modeQuantity = "{{ object.circuit_exercise.reps }}";
   var current_initial = "{{ object.workoutSession.current_step_sequence }}";
   var current_final = "{{ object.workoutSession.workoutsessionstep_set.all|length }}";
 </script>
@@ -53,11 +53,10 @@
         <span>Rest <b>{{ object.rest_before }}</b> seconds</span>
       </div>
       <div class="workout-session-reps-display">
-        <b>{{ object.circuit_exercise.mode_quantity }}</b> 
-          {% if object.exercise.mode == "TIME" %}
-            seconds
+          {% if object.circuit_exercise.mode == "TIME" %}
+            <b>{{ object.circuit_exercise.time }}</b> seconds
           {% else %}
-            reps
+            <b>{{ object.circuit_exercise.reps }}</b> reps
           {% endif %}
       </div>
     </div>
