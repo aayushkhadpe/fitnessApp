@@ -9,6 +9,8 @@
 {% if user.is_authenticated %}
 <h6>Hi <b>{{ user.first_name }}</b>!</h6></br></h6>
 
+<a href="{% url 'workoutsession-build' %}">Create Session</a>
+
 <div class="workout-section-heading-today"><small><b>TODAY'S PLAN</b></small></div>
 <div>
 {% for item in activeSessions %}

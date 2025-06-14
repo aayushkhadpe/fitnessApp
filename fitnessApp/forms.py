@@ -46,3 +46,8 @@ class FitnessAppPersonUpdateForm(forms.ModelForm):
         fields = ("first_name", "last_name", "phone_number", "email")
         field_classes = {"first_name": CharField, "last_name": CharField}
         labels = {"first_name": "First Name", "last_name": "Last Name"}
+
+class WorkoutSessionBuildForm(forms.ModelForm):
+    class Meta:
+        model = WorkoutSession
+        fields = "__all__"

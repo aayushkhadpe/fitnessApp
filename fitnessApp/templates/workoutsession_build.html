@@ -1,0 +1,121 @@
+{% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Create Session{% endblock %}
+
+{% block content %}
+<div>
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Client</span>
+        <div ><select id="select-client" placeholder="Select a client..." autocomplete="on">
+          <option value="">Select a client...</option>
+          <option value="4">Bhushan Khadpe</option>
+          <option value="1">Aayush Khadpe</option>
+          <option value="3">John Doe</option>
+        </select></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-text">Date and Time</span>
+    <input type="date" aria-label="Date" class="form-control">
+    <input type="time" aria-label="Time" class="form-control">
+  </div>
+  <p> </p>
+  <div class="row">
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Set Rest</span>
+        <input type="text" class="form-control" placeholder="Set default" value="120" aria-label="Set-Rest" aria-describedby="basic-addon1">
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Exercise Rest</span>
+        <input type="text" class="form-control" placeholder="Set default"  value="20" aria-label="Exercise-Rest" aria-describedby="basic-addon1">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Reps</span>
+        <input type="text" class="form-control" placeholder="Set default" value="10" aria-label="Reps" aria-describedby="basic-addon1">
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Time</span>
+        <input type="text" class="form-control" placeholder="Set default"  value="60" aria-label="Time" aria-describedby="basic-addon1">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Exercises</span>
+        <input id="exercises" autocomplete="off" placeholder="Start typing your exercises...">
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-success" type="submit">Next</button>
+
+</div>
+
+{% block scripts %}
+<script>
+
+new TomSelect("#exercises",
+{
+  maxItems: 15,
+	persist: false,
+	createOnBlur: true,
+	create: true,
+  plugins: {
+		remove_button:{},
+    caret_position:{},
+    input_autogrow:{},
+    clear_button:{},
+	},
+
+    options: [
+	  { value: "opt1", text: "Elevated Heel Deadlift" },
+  	{ value: "opt2", text: "Quad Arm And Leg Lateral Swings" },
+    { value: "opt3", text: "Mountain Climbers" },
+    { value: "opt4", text: "Platform Lateral Lunge" },
+    { value: "opt5", text: "Platform Down Down Up Up" },
+    { value: "opt6", text: "Transverse Open Hand Lunge" },
+    { value: "opt7", text: "Dive Bomb Pushups" },
+    { value: "opt8", text: "Platform Pullovers" },
+    { value: "opt9", text: "Supine Alternating Flutter Kicks While Holding a Ball" },
+    { value: "opt10", text: "Supine Ball Leg Lifts" },
+    { value: "opt11", text: "Seated Single Led Up Rainbow Twist" },
+    { value: "opt12", text: "Dead Bug Hold" },
+
+  ],
+
+  onItemAdd: function()
+  {
+    this.setTextboxValue('');
+    this.refreshOptions();
+  },
+
+});
+
+new TomSelect("#select-client",{
+	sortField: {
+		field: "text",
+		direction: "asc"
+	}
+});
+
+</script>
+{% endblock %}
+
+{% endblock %}

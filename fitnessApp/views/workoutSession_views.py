@@ -73,3 +73,8 @@ class WorkoutSessionStepView(LoginRequiredMixin, DetailView):
         obj.workoutSession.save()
         
         return obj
+
+class WorkoutSessionBuildView(LoginRequiredMixin, CreateView):
+    model = WorkoutSession
+    template_name = "workoutsession_build.html"
+    form_class = WorkoutSessionBuildForm
