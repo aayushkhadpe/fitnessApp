@@ -54,6 +54,14 @@ CLIENTS = [
     ('3', 'John Doe'),
 ]
 
+SETS = [
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
+]
+
 class WorkoutSessionBuildForm(forms.Form):
 
     set_rest = forms.IntegerField()
@@ -64,4 +72,6 @@ class WorkoutSessionBuildForm(forms.Form):
     exercises = forms.CharField()
     exercise_reps = forms.IntegerField()
     exercise_time = forms.IntegerField()
-    
+    circuit_sets = forms.ChoiceField(choices=SETS,  widget=forms.RadioSelect(), initial=3)
+    number_of_circuits = forms.ChoiceField(choices=SETS,  widget=forms.RadioSelect(), initial=1)
+    # exercise_type = forms.IntegerField()

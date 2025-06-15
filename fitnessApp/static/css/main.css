@@ -572,3 +572,17 @@ body {
   justify-self: end;
   padding-right: 0.25rem;
 }
+
+.build-page-outer {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+}
+
+.build-page-1 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.build-page-2 {
+  grid-area: 1 / 1 / 2 / 2;
+}

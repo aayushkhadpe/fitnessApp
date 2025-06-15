@@ -5,90 +5,51 @@
 {% block title %}Create Session{% endblock %}
 
 {% block content %}
-
-<form method="post">
+<form id="build_form" method="post">
   {% csrf_token %}
 
-  <div class="form-floating">
-    {% render_field form.session_client class="form-control" %}
-    <label for="floatingclient">Client</label>
+  <div class="build-page-outer">
+
+    {% include 'workoutsession_build_page1.html' %}
+    {% include 'workoutsession_build_page2.html' %}
+
   </div>
 
-  <p></p>
-
-  <div class="row">
-    <div class="col">
-      <div class="form-floating">
-        <input name="session_date" type="date" aria-label="Date" class="form-control text-left">
-        <label for="floatingdate">Date</label>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-floating">
-        <input name="session_time" type="time" aria-label="Time" class="form-control">
-        <label for="floatingtime">Time</label>
-      </div>
-    </div>
-  </div>
-
-  <p></p>
-
-  <div class="row">
-    <div class="col">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Exercises</span>
-        <input name="exercises" id="exercises" autocomplete="off" placeholder="Start typing your exercises...">
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <div class="form-floating">
-        <input name="set_rest" type="number" value="120" class="form-control">
-        <label for="floatingsetrest">Set Rest (secs.)</label>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-floating">
-        <input name="exercise_rest" type="number" value="20" class="form-control">
-        <label for="floatingexerciserest">Exercise Rest (secs.)</label>
-      </div>
-    </div>
-  </div>
-  
-  <p></p>
-
-  <div class="row">
-    <div class="col">
-      <div class="form-floating">
-        <input name="exercise_reps" type="number" value="10" class="form-control">
-        <label for="floatingreps">Reps</label>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-floating">
-        <input name="exercise_time" type="number" value="60" class="form-control">
-        <label for="floatingtime">Time (secs.)</label>
-      </div>
-    </div>
-  </div>
-
-  <p></p>
-
-  <button class="btn btn-success" type="submit">Submit</button>
 </form>
-
-<button class="btn btn-success" type="submit">Next</button>
-
 
 
 {% block scripts %}
 <script>
 
+function page_1_next() {
+  var form = document.getElementById("build_form");
+  var is_valid = form.checkValidity();
+  if (is_valid) {
+    alert("form is valid");
+    hideElement("page_1");
+    showElement("page_2");
+
+    const formData = new FormData(form);
+    document.getElementById("test").innerText = formData.get("exercises");
+
+  }
+  else
+    form.reportValidity();
+}
+
+function hideElement(id)
+{
+  document.getElementById(id).style.visibility = "hidden";
+}
+
+function showElement(id)
+{
+  document.getElementById(id).style.visibility = "visible";
+}
+
 new TomSelect("#exercises",
 {
-  maxItems: 15,
+  maxItems: 50,
 	persist: false,
 	createOnBlur: true,
 	create: true,

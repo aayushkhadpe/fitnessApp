@@ -91,6 +91,9 @@ class WorkoutSessionBuildView(FormView):
            exercises = form.cleaned_data['exercises']
            exercise_reps = form.cleaned_data['exercise_reps']
            exercise_time = form.cleaned_data['exercise_time']
+           circuit_sets = form.cleaned_data['circuit_sets']
+           number_of_circuits = form.cleaned_data['number_of_circuits']
+        #    exercise_type = form.cleaned_data['exercise_type']
 
            # Redirect to the success URL
            return super().form_valid(form)

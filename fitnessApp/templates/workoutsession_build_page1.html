@@ -1,0 +1,127 @@
+{% load widget_tweaks %}
+
+<div id="page_1" class="build-page-1">
+  <div class="form-floating">
+    {% render_field form.session_client class="form-control" %}
+    <label for="floatingclient">Client</label>
+  </div>
+
+  <p></p>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-floating">
+        <input name="session_date" type="date" aria-label="Date" class="form-control text-left">
+        <label for="floatingdate">Date</label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        <input name="session_time" type="time" aria-label="Time" class="form-control">
+        <label for="floatingtime">Time</label>
+      </div>
+    </div>
+  </div>
+
+  <p></p>
+
+  <div class="row">
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Exercises</span>
+        <input name="exercises" id="exercises" autocomplete="off" placeholder="Start typing your exercises..." required>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-floating">
+        <input name="set_rest" type="number" value="120" class="form-control" required min=1>
+        <label for="floatingsetrest">Set Rest (secs.)</label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        <input name="exercise_rest" type="number" value="20" class="form-control" required min=1>
+        <label for="floatingexerciserest">Exercise Rest (secs.)</label>
+      </div>
+    </div>
+  </div>
+  
+  <p></p>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-floating">
+        <input name="exercise_reps" type="number" value="10" class="form-control" required min=0>
+        <label for="floatingreps">Reps</label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        <input name="exercise_time" type="number" value="60" class="form-control" required min=0>
+        <label for="floatingtime">Time (secs.)</label>
+      </div>
+    </div>
+  </div>
+
+  <p></p>
+
+     <div class="row">
+        <div class="col">
+            <div class="input-group mb-3">
+                <span class="input-group-text"><small># Sets</small></span>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" value="1" name="circuit_sets" id="set1" autocomplete="off">
+                    <label style="border-radius: 0px;" class="btn btn-outline-primary" for="set1">1</label>
+
+                    <input type="radio" class="btn-check" value="2" name="circuit_sets" id="set2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="set2">2</label>
+
+                    <input type="radio" class="btn-check" value="3" name="circuit_sets" id="set3" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="set3">3</label>
+
+                    <input type="radio" class="btn-check" value="4" name="circuit_sets" id="set4" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="set4">4</label>
+
+                </div>
+            </div>
+        </div>
+    <div class="col">
+            <div class="input-group mb-3">
+                <span class="input-group-text"><small># Circuits</small></span>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" value=1 name="number_of_circuits" id="circuit1" autocomplete="off" checked>
+                    <label style="border-radius: 0px;" class="btn btn-outline-primary" for="circuit1">1</label>
+
+                    <input type="radio" class="btn-check" value=2 name="number_of_circuits" id="circuit2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="circuit2">2</label>
+
+                    <input type="radio" class="btn-check" value=3 name="number_of_circuits" id="circuit3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="circuit3">3</label>
+
+                    <input type="radio" class="btn-check" value=4 name="number_of_circuits" id="circuit4" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="circuit3">4</label>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+  <p></p>
+
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+      <label class="btn btn-outline-primary" for="btnradio1"><i class="bi bi-stopwatch"></i>&nbsp;Time</label>
+
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btnradio2"><i class="bi bi-hash"></i>&nbsp;Reps</label>
+    </div>
+
+  <button class="btn btn-success" type="submit">Submit</button>
+  <button class="btn btn-success" type="button" onclick="page_1_next()">Next</button>
+  
+  <p></p>
+
+
+</div>
