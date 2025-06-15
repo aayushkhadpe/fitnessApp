@@ -61,7 +61,7 @@ class WorkoutSessionBuildForm(forms.Form):
     session_client = forms.ChoiceField(choices=CLIENTS)
     session_date = forms.DateField()
     session_time = forms.TimeField()
-    exercises = forms.TextInput()
+    exercises = forms.CharField()
     exercise_reps = forms.IntegerField()
     exercise_time = forms.IntegerField()
     

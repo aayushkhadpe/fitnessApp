@@ -88,7 +88,7 @@ class WorkoutSessionBuildView(FormView):
            session_client = form.cleaned_data['session_client']
            session_date = form.cleaned_data['session_date']
            session_time = form.cleaned_data['session_time']
-        #    exercises = form.cleaned_data['exercises']
+           exercises = form.cleaned_data['exercises']
            exercise_reps = form.cleaned_data['exercise_reps']
            exercise_time = form.cleaned_data['exercise_time']
 
