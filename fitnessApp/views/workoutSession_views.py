@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, FormView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from fitnessApp.models import *
@@ -74,7 +74,27 @@ class WorkoutSessionStepView(LoginRequiredMixin, DetailView):
         
         return obj
 
-class WorkoutSessionBuildView(LoginRequiredMixin, CreateView):
-    model = WorkoutSession
-    template_name = "workoutsession_build.html"
-    form_class = WorkoutSessionBuildForm
+
+class WorkoutSessionBuildView(FormView):
+       template_name = 'workoutsession_build.html'
+       form_class = WorkoutSessionBuildForm
+       success_url = reverse_lazy("home")
+       
+       def form_valid(self, form):
+           # Process the valid form data here
+
+           set_rest = form.cleaned_data['set_rest']
+           exercise_rest = form.cleaned_data['exercise_rest']
+           session_client = form.cleaned_data['session_client']
+           session_date = form.cleaned_data['session_date']
+           session_time = form.cleaned_data['session_time']
+        #    exercises = form.cleaned_data['exercises']
+           exercise_reps = form.cleaned_data['exercise_reps']
+           exercise_time = form.cleaned_data['exercise_time']
+
+           # Redirect to the success URL
+           return super().form_valid(form)
+        
+       def form_invalid(self, form):
+           # Handle invalid form data
+           return super().form_invalid(form)

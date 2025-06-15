@@ -47,7 +47,21 @@ class FitnessAppPersonUpdateForm(forms.ModelForm):
         field_classes = {"first_name": CharField, "last_name": CharField}
         labels = {"first_name": "First Name", "last_name": "Last Name"}
 
-class WorkoutSessionBuildForm(forms.ModelForm):
-    class Meta:
-        model = WorkoutSession
-        fields = "__all__"
+CLIENTS = [
+    ('', 'Select a client...'),
+    ('1', 'Bhushan Khadpe'),
+    ('2', 'Aayush Khadpe'),
+    ('3', 'John Doe'),
+]
+
+class WorkoutSessionBuildForm(forms.Form):
+
+    set_rest = forms.IntegerField()
+    exercise_rest = forms.IntegerField()
+    session_client = forms.ChoiceField(choices=CLIENTS)
+    session_date = forms.DateField()
+    session_time = forms.TimeField()
+    exercises = forms.TextInput()
+    exercise_reps = forms.IntegerField()
+    exercise_time = forms.IntegerField()
+    
