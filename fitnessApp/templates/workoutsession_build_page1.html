@@ -16,13 +16,13 @@
   <div class="row mb-3">
     <div class="col">
       <div class="form-floating">
-        <input name="session_date" type="date" aria-label="Date" class="form-control text-left">
+        <input name="session_date" type="date" value="2025-06-30" aria-label="Date" class="form-control text-left">
         <label for="floatingdate">Date</label>
       </div>
     </div>
     <div class="col">
       <div class="form-floating">
-        <input name="session_time" type="time" aria-label="Time" class="form-control">
+        <input name="session_time" type="time" value="23:58" aria-label="Time" class="form-control">
         <label for="floatingtime">Time</label>
       </div>
     </div>
@@ -33,8 +33,7 @@
     <div class="col-md-6">
       <label for="circuits" class="col-form-label-sm pb-0">Number of Circuits</label>
       <div name="circuits" class="btn-group form-control ps-0 pe-0" style="background-color: rgb(243, 242, 248); border: none;" role="group" aria-label="Basic radio toggle button group">
-        <input type="radio" class="btn-check" value=1 name="number_of_circuits" id="circuit1" autocomplete="off"
-          checked>
+        <input type="radio" class="btn-check" value=1 name="number_of_circuits" id="circuit1" autocomplete="off" checked>
         <label class="btn btn-outline-primary" for="circuit1">1</label>
 
         <input type="radio" class="btn-check" value=2 name="number_of_circuits" id="circuit2" autocomplete="off">
@@ -112,11 +111,11 @@
         <div class="input-group mb-3">
           <span class="input-group-text" >Mode</span>
           <div name="time-reps" class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+            <input type="radio" class="btn-check" value="TIME" name="exercise_mode" id="btnradio1" autocomplete="off" checked>
             <label class="btn btn-outline-primary" for="btnradio1" style="align-content: center; border-radius: 0px;"><i
                 class="bi bi-stopwatch"></i></label>
       
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <input type="radio" class="btn-check" value="REPS" name="exercise_mode" id="btnradio2" autocomplete="off">
             <label class="btn btn-outline-primary" for="btnradio2" style="align-content: center;"><i
                 class="bi bi-hash"></i></label>
           </div>
@@ -126,56 +125,13 @@
 
   </fieldset>
 
-  <button class="btn btn-success" type="submit">Submit</button>
-  <button class="btn btn-success" type="button" onclick="page_1_next()">Next</button>
-
-  
-  <p></p>  
-  <div class="row no-gutters align-items-center">
-    <div class="col pe-1">
-      <input type="text" class="form-control text single-line bg-secondary-subtle" placeholder="First name" value="Db Push up Plank Squat Db Push up Plank Squat Db Push up Plank Squat Db Push up Plank Squat " aria-label="First name" disabled>
-    </div>
-    <div class="col-auto ps-0 pe-1">
-      <div name="time-reps" class="btn-group" role="group" aria-label="Basic radio toggle button group">
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-        <label class="btn btn-outline-primary" for="btnradio1"><i class="bi bi-stopwatch"></i></label>
-
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-        <label class="btn btn-outline-primary" for="btnradio2"><i class="bi bi-hash"></i></label>
-      </div>
-    </div>
-    <div class="col-2 ps-0">
-      <input type="text" class="form-control" value="20" aria-label="Quantity">
-    </div>
-  </div>
-
-  <div class="row no-gutters align-items-center">
-    <div class="col pe-1">
-      <input type="text" class="form-control text single-line bg-success-subtle" placeholder="First name" value="Squat with underhand rows *" aria-label="First name" disabled>
-    </div>
-    <div class="col-auto ps-0 pe-1">
-      <div name="time-reps" class="btn-group" role="group" aria-label="Basic radio toggle button group">
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-        <label class="btn btn-outline-primary" for="btnradio1"><i class="bi bi-stopwatch"></i></label>
-
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-        <label class="btn btn-outline-primary" for="btnradio2"><i class="bi bi-hash"></i></label>
-      </div>
-    </div>
-    <div class="col-2 ps-0">
-      <input type="text" class="form-control" value="20" aria-label="Quantity">
-    </div>
-  </div>
-
-  <p></p>
-
+  <!-- Next button -->
   <div class="row">
-    <div class="col">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Exercises</span>
-        <input name="exercises" id="exercises" autocomplete="off" placeholder="Start typing your exercises..." required>
+      <div class="col">
       </div>
-    </div>
+      <div class="col-auto">
+          <button class="btn btn-success" type="button" onclick="page_1_next()">Next</button>
+      </div>
   </div>
 
-</div>
+ </div>

@@ -12,6 +12,7 @@
 
     {% include 'workoutsession_build_page1.html' %}
     {% include 'workoutsession_build_page2.html' %}
+    {% include 'workoutsession_build_page3.html' %}
 
   </div>
 
@@ -25,16 +26,43 @@ function page_1_next() {
   var form = document.getElementById("build_form");
   var is_valid = form.checkValidity();
   if (is_valid) {
-    alert("form is valid");
     hideElement("page_1");
     showElement("page_2");
-
-    const formData = new FormData(form);
-    document.getElementById("test").innerText = formData.get("exercises");
-
   }
   else
     form.reportValidity();
+}
+
+function page_2_previous() {
+    hideElement("page_2");
+    showElement("page_1");
+
+    // const formData = new FormData(form);
+    // document.getElementById("test").innerText = formData.get("exercises");
+}
+
+function page_2_next() {
+  // var form = document.getElementById("build_form");
+  // var is_valid = form.checkValidity();
+  // if (is_valid) {
+  //   alert("form is valid");
+    hideElement("page_2");
+    showElement("page_3");
+
+    // const formData = new FormData(form);
+    // document.getElementById("test").innerText = formData.get("exercises");
+
+  // }
+  // else
+  //   form.reportValidity();
+}
+
+function page_3_previous() {
+    hideElement("page_3");
+    showElement("page_2");
+
+    // const formData = new FormData(form);
+    // document.getElementById("test").innerText = formData.get("exercises");
 }
 
 function hideElement(id)
@@ -47,7 +75,10 @@ function showElement(id)
   document.getElementById(id).style.visibility = "visible";
 }
 
-new TomSelect("#exercises",
+var allExercises = document.querySelectorAll(".build-page-exercise");
+
+for (exercise of allExercises) {
+new TomSelect(exercise,
 {
   maxItems: 50,
 	persist: false,
@@ -84,6 +115,8 @@ new TomSelect("#exercises",
   },
 
 });
+
+}
 
 new TomSelect("#select-client",{
 	sortField: {

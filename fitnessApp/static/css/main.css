@@ -586,3 +586,10 @@ body {
 .build-page-2 {
   grid-area: 1 / 1 / 2 / 2;
 }
+
+.build-page-3 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.build-page-exercise {
+}

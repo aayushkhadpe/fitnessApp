@@ -2,6 +2,7 @@ from django import forms
 from datetime import date
 from django.forms import CharField, EmailField
 from django.contrib.auth.forms import UserCreationForm, UsernameField
+from fitnessApp.choices import MODE_CHOICES
 from fitnessApp.models import Exercise, Workout, WorkoutSession, FitnessAppUser, FitnessAppPerson
 
 class ExerciseCreateForm(forms.ModelForm):
@@ -66,7 +67,7 @@ class WorkoutSessionBuildForm(forms.Form):
 
     set_rest = forms.IntegerField()
     exercise_rest = forms.IntegerField()
-    session_client = forms.ChoiceField(choices=CLIENTS)
+    session_client = forms.ChoiceField(choices=CLIENTS, initial=1)
     session_date = forms.DateField()
     session_time = forms.TimeField()
     exercises = forms.CharField()
@@ -74,4 +75,4 @@ class WorkoutSessionBuildForm(forms.Form):
     exercise_time = forms.IntegerField()
     circuit_sets = forms.ChoiceField(choices=SETS,  widget=forms.RadioSelect(), initial=3)
     number_of_circuits = forms.ChoiceField(choices=SETS,  widget=forms.RadioSelect(), initial=1)
-    # exercise_type = forms.IntegerField()
+    exercise_mode = forms.ChoiceField(choices=MODE_CHOICES,  widget=forms.RadioSelect(), initial=1)

@@ -80,6 +80,13 @@ class WorkoutSessionBuildView(FormView):
        form_class = WorkoutSessionBuildForm
        success_url = reverse_lazy("home")
        
+       def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+
+            context['num_circuit_exercises'] = range(15)
+
+            return context
+       
        def form_valid(self, form):
            # Process the valid form data here
 
