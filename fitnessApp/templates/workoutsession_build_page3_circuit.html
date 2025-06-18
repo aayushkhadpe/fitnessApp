@@ -8,7 +8,7 @@
                     value="{{ forloop.counter }}. Db Push up Plank Squat Db Push up Plank Squat Db Push up Plank Squat Db Push up Plank Squat " disabled>
             </div>
             <div class="col-auto ps-0 pe-1">
-                <div name="exercise_mode_{{ circuit_num }}_{{ forloop.counter }}" id="exercise_mode_{{ circuit_num }}_{{ forloop.counter }}" class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <div name="exercise_mode_{{ circuit_num }}_{{ forloop.counter }}_div" class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" value="TIME" name="exercise_mode_{{ circuit_num }}_{{ forloop.counter }}" id="btnradio1_{{ circuit_num }}_{{ forloop.counter }}" autocomplete="off" checked>
                     <label class="btn btn-outline-primary" for="btnradio1_{{ circuit_num }}_{{ forloop.counter }}"><i class="bi bi-stopwatch"></i></label>
 
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="col-2 ps-0">
-                <input type="text" id="exercise_quantity_{{ circuit_num }}_{{ forloop.counter }}" class="form-control" value="20" aria-label="Quantity">
+                <input type="number" inputmode="numeric" name="exercise_quantity_{{ circuit_num }}_{{ forloop.counter }}" class="form-control" value="20" aria-label="Quantity" min="1">
             </div>
         </div>
     {% endfor %}
