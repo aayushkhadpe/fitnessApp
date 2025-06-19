@@ -22,29 +22,59 @@
 {% block scripts %}
 <script>
 
-function page_1_next() {
+function page_1_next()
+{
   var form = document.getElementById("build_form");
-  var is_valid = form.checkValidity();
-  if (is_valid) 
+  
+  if (form.checkValidity()) 
   {
-    hideElement("page_1");
-    showElement("page_2");
+    set_display_none("page_1");
+    set_display_block("page_2");
+
     document.getElementById("id-mainbody").scrollTop = 0;
+
+    const numberOfCircuits = new FormData(form).get("number_of_circuits");
+
+    for (i = 0; i < 5; i++)
+    {
+      var exercises_element = document.getElementById("exercises_" + (i + 1))
+      if (i < numberOfCircuits)
+      {
+        exercises_element.setAttribute('required', '');
+        set_display_block("div_exercises_" + (i + 1))
+      }
+      else
+      {
+        exercises_element.removeAttribute('required');
+        exercises_element.tomselect.clear();
+        set_display_none("div_exercises_" + (i + 1))
+        formData.set("exercises_" + (i + 1), null);
+      }
+    }
   }
   else
+  {
     form.reportValidity();
+    return;
+  }
 }
 
-function page_2_previous() {
-    hideElement("page_2");
-    showElement("page_1");
+function page_2_previous()
+{
+    set_display_none("page_2");
+    set_display_block("page_1");
+    
     document.getElementById("id-mainbody").scrollTop = 0;
 
-    // const formData = new FormData(form);
-    // document.getElementById("test").innerText = formData.get("exercises");
+    for (i = 0; i < 5; i++)
+    {
+      document.getElementById("exercises_" + (i + 1)).removeAttribute('required');
+    }
 }
 
-function page_2_next() {
+function page_2_next()
+{
+
   // var form = document.getElementById("build_form");
   // var is_valid = form.checkValidity();
   // if (is_valid) {
@@ -52,6 +82,7 @@ function page_2_next() {
     hideElement("page_2");
     showElement("page_3");
     document.getElementById("id-mainbody").scrollTop = 0;
+    var is_valid = form.checkValidity();
 
     // const formData = new FormData(form);
     // document.getElementById("test").innerText = formData.get("exercises");
@@ -68,6 +99,14 @@ function page_3_previous() {
 
     // const formData = new FormData(form);
     // document.getElementById("test").innerText = formData.get("exercises");
+}
+
+function set_display_block(id) {
+  document.getElementById(id).style.display = 'block';
+}
+
+function set_display_none(id) {
+  document.getElementById(id).style.display = 'none';
 }
 
 function hideElement(id)
