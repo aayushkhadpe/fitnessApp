@@ -5,10 +5,11 @@
 {% block title %}Create Session{% endblock %}
 
 {% block content %}
+
 <form id="build_form" method="post">
   {% csrf_token %}
 
-  <div class="build-page-outer">
+  <div id="id-build-page-outer" class="build-page-outer">
 
     {% include 'workoutsession_build_page1.html' %}
     {% include 'workoutsession_build_page2.html' %}
@@ -18,16 +19,17 @@
 
 </form>
 
-
 {% block scripts %}
 <script>
 
 function page_1_next() {
   var form = document.getElementById("build_form");
   var is_valid = form.checkValidity();
-  if (is_valid) {
+  if (is_valid) 
+  {
     hideElement("page_1");
     showElement("page_2");
+    document.getElementById("id-mainbody").scrollTop = 0;
   }
   else
     form.reportValidity();
@@ -36,6 +38,7 @@ function page_1_next() {
 function page_2_previous() {
     hideElement("page_2");
     showElement("page_1");
+    document.getElementById("id-mainbody").scrollTop = 0;
 
     // const formData = new FormData(form);
     // document.getElementById("test").innerText = formData.get("exercises");
@@ -48,6 +51,7 @@ function page_2_next() {
   //   alert("form is valid");
     hideElement("page_2");
     showElement("page_3");
+    document.getElementById("id-mainbody").scrollTop = 0;
 
     // const formData = new FormData(form);
     // document.getElementById("test").innerText = formData.get("exercises");
@@ -60,6 +64,7 @@ function page_2_next() {
 function page_3_previous() {
     hideElement("page_3");
     showElement("page_2");
+    document.getElementById("id-mainbody").scrollTop = 0;
 
     // const formData = new FormData(form);
     // document.getElementById("test").innerText = formData.get("exercises");
@@ -77,45 +82,43 @@ function showElement(id)
 
 var allExercises = document.querySelectorAll(".build-page-exercise");
 
-for (exercise of allExercises) {
-new TomSelect(exercise,
+for (exercise of allExercises)
 {
-  maxItems: 50,
-	persist: false,
-	createOnBlur: true,
-	create: true,
-  hidePlaceholder: true,
-  plugins: {
-		remove_button:{},
-    caret_position:{},
-    input_autogrow:{},
-    clear_button:{},
-	},
+  new TomSelect(exercise,
+  {
+    maxItems: 50,
+    persist: false,
+    createOnBlur: true,
+    create: true,
+    hidePlaceholder: true,
+    plugins: {
+      remove_button:{},
+      caret_position:{},
+      input_autogrow:{},
+      clear_button:{},
+    },
 
     options: [
-	  { value: "opt1", text: "Elevated Heel Deadlift" },
-  	{ value: "opt2", text: "Quad Arm And Leg Lateral Swings" },
-    { value: "opt3", text: "Mountain Climbers" },
-    { value: "opt4", text: "Platform Lateral Lunge" },
-    { value: "opt5", text: "Platform Down Down Up Up" },
-    { value: "opt6", text: "Transverse Open Hand Lunge" },
-    { value: "opt7", text: "Dive Bomb Pushups" },
-    { value: "opt8", text: "Platform Pullovers" },
-    { value: "opt9", text: "Supine Alternating Flutter Kicks While Holding a Ball" },
-    { value: "opt10", text: "Supine Ball Leg Lifts" },
-    { value: "opt11", text: "Seated Single Led Up Rainbow Twist" },
-    { value: "opt12", text: "Dead Bug Hold" },
+      { value: "opt1", text: "Elevated Heel Deadlift" },
+      { value: "opt2", text: "Quad Arm And Leg Lateral Swings" },
+      { value: "opt3", text: "Mountain Climbers" },
+      { value: "opt4", text: "Platform Lateral Lunge" },
+      { value: "opt5", text: "Platform Down Down Up Up" },
+      { value: "opt6", text: "Transverse Open Hand Lunge" },
+      { value: "opt7", text: "Dive Bomb Pushups" },
+      { value: "opt8", text: "Platform Pullovers" },
+      { value: "opt9", text: "Supine Alternating Flutter Kicks While Holding a Ball" },
+      { value: "opt10", text: "Supine Ball Leg Lifts" },
+      { value: "opt11", text: "Seated Single Led Up Rainbow Twist" },
+      { value: "opt12", text: "Dead Bug Hold" },
+    ],
 
-  ],
-
-  onItemAdd: function()
-  {
-    this.setTextboxValue('');
-    this.refreshOptions();
-  },
-
-});
-
+    onItemAdd: function()
+    {
+      this.setTextboxValue('');
+      this.refreshOptions();
+    },
+  });
 }
 
 new TomSelect("#select-client",{

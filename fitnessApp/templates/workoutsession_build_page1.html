@@ -74,13 +74,13 @@
   <div class="row mb-3">
     <div class="col">
       <div class="form-floating">
-        <input name="set_rest" type="number" inputmode="numeric" step="10" value="120" class="form-control" required min=10 >
+        <input name="set_rest" type="number" inputmode="numeric" step="10" value="120" class="form-control" required min=10 max="300">
         <label for="floatingsetrest">Set Rest (secs.)</label>
       </div>
     </div>
     <div class="col">
       <div class="form-floating">
-        <input name="exercise_rest" type="number" inputmode="numeric" step="5" value="20" class="form-control" required min=5>
+        <input name="exercise_rest" type="number" inputmode="numeric" step="5" value="20" class="form-control" required min=5 max="180">
         <label for="floatingexerciserest">Exercise Rest (secs.)</label>
       </div>
     </div>
@@ -93,13 +93,13 @@
     <div class="row">
       <div class="col">
         <div class="form-floating">
-          <input name="exercise_reps" type="number" inputmode="numeric" value="10" class="form-control" required min=1>
+          <input name="exercise_reps" type="number" inputmode="numeric" value="10" class="form-control" required min=1 max="200">
           <label for="floatingreps">Reps</label>
         </div>
       </div>
       <div class="col">
         <div class="form-floating">
-          <input name="exercise_time" type="number" inputmode="numeric" value="60" class="form-control" required min=5 step="5">
+          <input name="exercise_time" type="number" inputmode="numeric" value="60" class="form-control" required min=5 step="5" max="300">
           <label for="floatingtime">Time (secs.)</label>
         </div>
       </div>
