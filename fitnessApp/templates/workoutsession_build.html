@@ -33,7 +33,8 @@ function page_1_next()
 
     document.getElementById("id-mainbody").scrollTop = 0;
 
-    const numberOfCircuits = new FormData(form).get("number_of_circuits");
+    var formData = new FormData(form)
+    const numberOfCircuits = formData.get("number_of_circuits");
 
     for (i = 0; i < 5; i++)
     {
