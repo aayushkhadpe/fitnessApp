@@ -22,16 +22,20 @@
 {% block scripts %}
 <script>
 
+function switch_page(from, to) {
+  set_display_none("page_" + from);
+  set_display_block("page_" + to);
+  document.getElementById("id-mainbody").scrollTop = 0;
+
+}
+
 function page_1_next()
 {
   var form = document.getElementById("build_form");
   
   if (form.checkValidity()) 
   {
-    set_display_none("page_1");
-    set_display_block("page_2");
-
-    document.getElementById("id-mainbody").scrollTop = 0;
+    switch_page(1, 2);
 
     var formData = new FormData(form);
     const numberOfCircuits = formData.get("number_of_circuits");
@@ -52,6 +56,8 @@ function page_1_next()
         formData.set("exercises_" + (i + 1), null);
       }
     }
+
+    reset_page3_exercises(formData);
   }
   else
   {
@@ -60,12 +66,27 @@ function page_1_next()
   }
 }
 
+function reset_page3_exercises(formData)
+{
+  var defaultReps = formData.get('exercise_reps');
+  var defaultTime = formData.get('exercise_time');
+  var isReps = document.getElementById("id_mode_reps").checked;
+
+    for (i = 0; i < 5; i++)
+    { 
+      for (j = 0; j < 15; j++)
+      {
+          document.getElementById("id_exercise_quantity_" + (i + 1) + "_" + (j + 1)).value = isReps ? defaultReps : defaultTime;
+          document.getElementById("reps_" + (i + 1) + "_" + (j + 1)).checked = isReps ? "checked" : "";
+          document.getElementById("time_" + (i + 1) + "_" + (j + 1)).checked = isReps ? "" : "checked";
+      }
+    }
+  }
+
+
 function page_2_previous()
 {
-    set_display_none("page_2");
-    set_display_block("page_1");
-    
-    document.getElementById("id-mainbody").scrollTop = 0;
+    switch_page(2, 1);
 
     for (i = 0; i < 5; i++)
     {
@@ -79,9 +100,7 @@ function page_2_next()
   
   if (form.checkValidity()) 
   {
-    set_display_none("page_2");
-    set_display_block("page_3");
-    document.getElementById("id-mainbody").scrollTop = 0;
+    switch_page(2, 3);
 
     var formData = new FormData(form);
     const numCircuits = formData.get("number_of_circuits");
@@ -165,9 +184,7 @@ function reset_circuit(formData, i)
 }
 
 function page_3_previous() {
-    set_display_none("page_3");
-    set_display_block("page_2");
-    document.getElementById("id-mainbody").scrollTop = 0;
+    switch_page(3, 2);
 
     var form = document.getElementById("build_form");
     var formData = new FormData(form);
@@ -176,6 +193,21 @@ function page_3_previous() {
     { 
       reset_circuit(formData, i);
     }
+}
+
+function switchModeQuantity(mode, c, e) {
+
+  var form = document.getElementById("build_form");
+  var formData = new FormData(form);
+  var defaultReps = formData.get('exercise_reps');
+  var defaultTime = formData.get('exercise_time');
+
+  if (mode == "REPS") {
+    document.getElementById("id_exercise_quantity_" + (c) + "_" + (e)).value = defaultReps;
+  }
+  else {
+    document.getElementById("id_exercise_quantity_" + (c) + "_" + (e)).value = defaultTime;
+  }
 }
 
 function set_display_block(id) {
