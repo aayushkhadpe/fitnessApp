@@ -33,22 +33,22 @@ function page_1_next()
 
     document.getElementById("id-mainbody").scrollTop = 0;
 
-    var formData = new FormData(form)
+    var formData = new FormData(form);
     const numberOfCircuits = formData.get("number_of_circuits");
 
     for (i = 0; i < 5; i++)
     {
-      var exercises_element = document.getElementById("exercises_" + (i + 1))
+      var exercises_element = document.getElementById("exercises_" + (i + 1));
       if (i < numberOfCircuits)
       {
         exercises_element.setAttribute('required', '');
-        set_display_block("div_exercises_" + (i + 1))
+        set_display_block("div_exercises_" + (i + 1));
       }
       else
       {
         exercises_element.removeAttribute('required');
         exercises_element.tomselect.clear();
-        set_display_none("div_exercises_" + (i + 1))
+        set_display_none("div_exercises_" + (i + 1));
         formData.set("exercises_" + (i + 1), null);
       }
     }
@@ -75,35 +75,116 @@ function page_2_previous()
 
 function page_2_next()
 {
-
-  // var form = document.getElementById("build_form");
-  // var is_valid = form.checkValidity();
-  // if (is_valid) {
-  //   alert("form is valid");
-    hideElement("page_2");
-    showElement("page_3");
+  var form = document.getElementById("build_form");
+  
+  if (form.checkValidity()) 
+  {
+    set_display_none("page_2");
+    set_display_block("page_3");
     document.getElementById("id-mainbody").scrollTop = 0;
-    var is_valid = form.checkValidity();
 
-    // const formData = new FormData(form);
-    // document.getElementById("test").innerText = formData.get("exercises");
+    var formData = new FormData(form);
+    const numCircuits = formData.get("number_of_circuits");
+    var defaultReps = formData.get('exercise_reps');
+    var defaultTime = formData.get('exercise_time');
 
-  // }
-  // else
-  //   form.reportValidity();
+    for (i = 0; i < 5; i++)
+    { 
+      
+      if (i < numCircuits)
+      {
+        set_display_block("div_circuits_" + (i + 1));
+        
+        var numberOfExercises = document.getElementById("exercises_" + (i + 1)).tomselect.items.length;
+
+        for (j = 0; j < 15; j++)
+        {
+
+            var quantityId = "id_exercise_quantity_" + (i + 1) + "_" + (j + 1);
+            var quantityName = "exercise_quantity_" + (i + 1) + "_" + (j + 1);
+            var circuitExerciseId = "div_circuits_exercise_" + (i + 1) + "_" + (j + 1);
+            var quantityElement = document.getElementById(quantityId);
+
+            // in case the quantity is empty or invalid, set it to the default reps or time depending on the setting
+            // of the corresponding mode toggle
+            var isReps = document.getElementById("reps_" + (i + 1) + "_" + (j + 1)).checked
+
+            if (formData.get(quantityName) == '' || quantityElement.checkValidity() == false)
+              quantityElement.value = isReps ? defaultReps : defaultTime;
+
+            if (j < numberOfExercises)
+            {
+              set_display_null(circuitExerciseId);
+              quantityElement.setAttribute('required', '');
+            }
+            else
+            {
+              set_display_none(circuitExerciseId);
+              quantityElement.removeAttribute('required');
+            }
+        }
+      }
+      else
+      {
+        reset_circuit(formData, i);
+        set_display_none("div_circuits_" + (i + 1));
+      }
+    }
+  }
+  else
+  {
+    form.reportValidity();
+    return;
+  }
+}
+
+// resets a circuit so that all quantities that are empty or invalid are set to
+// exercise rest or time depending on the corresponding mode setting for that exercise.
+function reset_circuit(formData, i)
+{
+    var defaultReps = formData.get('exercise_reps');
+    var defaultTime = formData.get('exercise_time');
+
+    for (j = 0; j < 15; j++)
+    {
+        var quantityId = "id_exercise_quantity_" + (i + 1) + "_" + (j + 1);
+        var quantityName = "exercise_quantity_" + (i + 1) + "_" + (j + 1);
+        var circuitExerciseId = "div_circuits_exercise_" + (i + 1) + "_" + (j + 1);
+        var quantityElement = document.getElementById(quantityId);
+
+        // set the quantity to reps or time depending on the setting of the corresponding mode toggle in case it is empty
+        var isReps = document.getElementById("reps_" + (i + 1) + "_" + (j + 1)).checked
+
+        if (formData.get(quantityName) == '' || quantityElement.checkValidity() == false)
+          quantityElement.value = isReps ? defaultReps : defaultTime;;
+
+        quantityElement.removeAttribute('required');
+        set_display_null(circuitExerciseId);
+    }
+
 }
 
 function page_3_previous() {
-    hideElement("page_3");
-    showElement("page_2");
+    set_display_none("page_3");
+    set_display_block("page_2");
     document.getElementById("id-mainbody").scrollTop = 0;
 
-    // const formData = new FormData(form);
-    // document.getElementById("test").innerText = formData.get("exercises");
+    var form = document.getElementById("build_form");
+    var formData = new FormData(form);
+
+    for (i = 0; i < 5; i++)
+    { 
+      reset_circuit(formData, i);
+    }
 }
 
 function set_display_block(id) {
   document.getElementById(id).style.display = 'block';
+}
+
+// restoring a div to original display state requires it to be set to empty and not none.
+function set_display_null(id) {
+  document.getElementById(id).style.display = '';
 }
 
 function set_display_none(id) {

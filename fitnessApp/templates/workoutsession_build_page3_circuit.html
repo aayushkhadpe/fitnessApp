@@ -1,25 +1,27 @@
-<fieldset class="border p-2 pb-0 mb-3" style="background-color:ghostwhite; border-radius: var(--bs-border-radius);">
-    <legend class="w-auto fs-6 fw-medium"><small>Circuit {{ circuit_num }}</small></legend>
+<div id="div_circuits_{{ circuit_num }}">
+    <fieldset class="border p-2 pb-0 mb-3" style="background-color:ghostwhite; border-radius: var(--bs-border-radius);">
+        <legend class="w-auto fs-6 fw-medium"><small>Circuit {{ circuit_num }}</small></legend>
 
-    {% for _ in num_circuit_exercises %}
-        <div class="row no-gutters align-items-center mb-1">
-            <div class="col pe-1">
-                <input type="text" class="form-control text single-line bg-secondary-subtle"
-                    value="{{ forloop.counter }}. Db Push up Plank Squat Db Push up Plank Squat Db Push up Plank Squat Db Push up Plank Squat " disabled>
-            </div>
-            <div class="col-auto ps-0 pe-1">
-                <div name="exercise_mode_{{ circuit_num }}_{{ forloop.counter }}_div" class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" value="TIME" name="exercise_mode_{{ circuit_num }}_{{ forloop.counter }}" id="btnradio1_{{ circuit_num }}_{{ forloop.counter }}" autocomplete="off" checked>
-                    <label class="btn btn-outline-primary" for="btnradio1_{{ circuit_num }}_{{ forloop.counter }}"><i class="bi bi-stopwatch"></i></label>
+        {% for _ in num_circuit_exercises %}
+            <div id="div_circuits_exercise_{{ circuit_num }}_{{ forloop.counter }}" class="row no-gutters align-items-center mb-1">
+                <div class="col pe-1">
+                    <input id="id_exercise_name_{{ circuit_num }}_{{ forloop.counter }}" type="text" class="form-control text single-line bg-secondary-subtle"
+                        value="{{ forloop.counter }}. Db Push up Plank Squat Db Push up Plank Squat Db Push up Plank Squat Db Push up Plank Squat " disabled>
+                </div>
+                <div class="col-auto ps-0 pe-1">
+                    <div name="exercise_mode_{{ circuit_num }}_{{ forloop.counter }}_div" class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" value="TIME" name="exercise_mode_{{ circuit_num }}_{{ forloop.counter }}" id="time_{{ circuit_num }}_{{ forloop.counter }}" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="time_{{ circuit_num }}_{{ forloop.counter }}"><i class="bi bi-stopwatch"></i></label>
 
-                    <input type="radio" class="btn-check" value="REPS" name="exercise_mode_{{ circuit_num }}_{{ forloop.counter }}" id="btnradio2_{{ circuit_num }}_{{ forloop.counter }}" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btnradio2_{{ circuit_num }}_{{ forloop.counter }}"><i class="bi bi-hash"></i></label>
+                        <input type="radio" class="btn-check" value="REPS" name="exercise_mode_{{ circuit_num }}_{{ forloop.counter }}" id="reps_{{ circuit_num }}_{{ forloop.counter }}" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="reps_{{ circuit_num }}_{{ forloop.counter }}"><i class="bi bi-hash"></i></label>
+                    </div>
+                </div>
+                <div class="col-2 ps-0">
+                    <input id="id_exercise_quantity_{{ circuit_num }}_{{ forloop.counter }}" type="number" inputmode="numeric" name="exercise_quantity_{{ circuit_num }}_{{ forloop.counter }}" class="form-control" value="20" aria-label="Quantity" min="1">
                 </div>
             </div>
-            <div class="col-2 ps-0">
-                <input type="number" inputmode="numeric" name="exercise_quantity_{{ circuit_num }}_{{ forloop.counter }}" class="form-control" value="20" aria-label="Quantity" min="1">
-            </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
 
-</fieldset>
+    </fieldset>
+</div>

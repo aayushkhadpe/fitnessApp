@@ -63,13 +63,21 @@ SETS = [
     ('5', '5'),
 ]
 
+CIRCUITS = [
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
+]
+
 class WorkoutSessionBuildForm(forms.Form):
 
     session_client = forms.ChoiceField(choices=CLIENTS, initial=1)
     session_date = forms.DateField()
     session_time = forms.TimeField()
 
-    number_of_circuits = forms.ChoiceField(choices=SETS,  widget=forms.RadioSelect(), initial=1)
+    number_of_circuits = forms.ChoiceField(choices=CIRCUITS,  widget=forms.RadioSelect(), initial=1)
     circuit_sets = forms.ChoiceField(choices=SETS,  widget=forms.RadioSelect(), initial=3)
 
     set_rest = forms.IntegerField()
@@ -79,11 +87,11 @@ class WorkoutSessionBuildForm(forms.Form):
     exercise_reps = forms.IntegerField()
     exercise_time = forms.IntegerField()
 
-    exercises_1 = forms.CharField()
-    exercises_2 = forms.CharField()
-    exercises_3 = forms.CharField()
-    exercises_4 = forms.CharField()
-    exercises_5 = forms.CharField()
+    exercises_1 = forms.CharField(required = False)
+    exercises_2 = forms.CharField(required = False)
+    exercises_3 = forms.CharField(required = False)
+    exercises_4 = forms.CharField(required = False)
+    exercises_5 = forms.CharField(required = False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
