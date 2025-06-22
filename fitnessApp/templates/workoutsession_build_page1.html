@@ -90,7 +90,7 @@
   <fieldset class="border p-2 pb-0 mb-3" style="background-color:ghostwhite; border-radius: var(--bs-border-radius);">
     <legend class="w-auto fs-6 fw-medium"><small>&nbsp;Exercise Defaults&nbsp;</small></legend>
 
-    <div class="row">
+    <div class="row mb-3">
       <div class="col">
         <div class="form-floating">
           <input name="exercise_reps" type="number" inputmode="numeric" value="10" class="form-control" required min=1 max="200">
@@ -105,19 +105,20 @@
       </div>
     </div>
       
-    <div class="row">
-      <div class="col-md-6">
-        <p></p>
-        <div class="input-group mb-3">
+    <div class="row mb-3">
+      <div class="col-12">
+        <div class="input-group">
           <span class="input-group-text" >Mode</span>
           <div name="time-reps" class="btn-group" role="group" aria-label="Basic radio toggle button group">
             <input type="radio" class="btn-check" value="TIME" name="exercise_mode" id="id_mode_time" autocomplete="off" checked>
-            <label class="btn btn-outline-primary" for="id_mode_time" style="align-content: center; border-radius: 0px;"><i
-                class="bi bi-stopwatch"></i></label>
+            <label class="btn btn-outline-primary" for="id_mode_time" style="align-content: center; border-radius: 0px;">
+              <i class="bi bi-stopwatch"></i>
+            </label>
       
             <input type="radio" class="btn-check" value="REPS" name="exercise_mode" id="id_mode_reps" autocomplete="off">
-            <label class="btn btn-outline-primary" for="id_mode_reps" style="align-content: center;"><i
-                class="bi bi-hash"></i></label>
+            <label class="btn btn-outline-primary" for="id_mode_reps" style="align-content: center;">
+              <i class="bi bi-hash"></i>
+            </label>
           </div>
         </div>
       </div>
