@@ -48,13 +48,6 @@ class FitnessAppPersonUpdateForm(forms.ModelForm):
         field_classes = {"first_name": CharField, "last_name": CharField}
         labels = {"first_name": "First Name", "last_name": "Last Name"}
 
-CLIENTS = [
-    ('', 'Select a client...'),
-    ('1', 'Bhushan Khadpe'),
-    ('2', 'Aayush Khadpe'),
-    ('3', 'John Doe'),
-]
-
 SETS = [
     ('1', '1'),
     ('2', '2'),
@@ -73,7 +66,7 @@ CIRCUITS = [
 
 class WorkoutSessionBuildForm(forms.Form):
 
-    session_client = forms.ChoiceField(choices=CLIENTS, initial=1)
+    session_client = forms.ChoiceField()
     session_date = forms.DateField()
     session_time = forms.TimeField()
 
@@ -94,9 +87,14 @@ class WorkoutSessionBuildForm(forms.Form):
     exercises_5 = forms.CharField(required = False)
 
     def __init__(self, *args, **kwargs):
+        
+        user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
 
         for circuitIndex in range (0, 5):
             for exerciseIndex in range (0, 15):
                 self.fields[f'exercise_quantity_{circuitIndex + 1}_{exerciseIndex + 1}'] = forms.IntegerField()
                 self.fields[f'exercise_mode_{circuitIndex + 1}_{exerciseIndex + 1}'] = forms.ChoiceField(choices=MODE_CHOICES,  widget=forms.RadioSelect(), initial=1)
+
+        clients = FitnessAppPerson.objects.filter(coach=user.person).order_by('first_name')
+        self.fields['session_client'].choices = [("", "Select a client...")] + [(client.id, (client.first_name + " " + client.last_name)) for client in clients]

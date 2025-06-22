@@ -7,7 +7,7 @@ from .fitnessAppUser_models import *
 from .exercise_models import *
 
 class WorkoutSession(models.Model):
-    workout =  models.ForeignKey(Workout, on_delete=models.CASCADE)
+    workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
     person = models.ForeignKey(FitnessAppPerson, on_delete=models.CASCADE, default="")
     scheduled_date = models.DateField(null=True, blank=True)
     scheduled_time = models.TimeField(null=True, blank=True)

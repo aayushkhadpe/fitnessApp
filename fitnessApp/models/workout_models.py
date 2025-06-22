@@ -8,8 +8,8 @@ class Workout(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=500, blank=True)
     duration = models.IntegerField(default = 60)
-    difficulty_level = models.CharField(max_length=20, choices=DIFFICULTY_LEVEL_CHOICES)
-    target = models.CharField(max_length=20, choices=TARGET_CHOICES)
+    difficulty_level = models.CharField(max_length=20, choices=DIFFICULTY_LEVEL_CHOICES, default="INTERMEDIATE")
+    target = models.CharField(max_length=20, choices=TARGET_CHOICES, default="WHOLEBODY")
     public_flag = models.BooleanField(default=False)
     video_id = models.CharField(max_length=50, blank=True)
     #TBD target multiple, user_id
