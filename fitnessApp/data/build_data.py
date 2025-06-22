@@ -12,7 +12,6 @@ class SessionInfo:
 @dataclass
 class ExerciseInfo:
     exercise_id: int
-    exercise_name: str
     exercise_mode: str
     exercise_quantity: int
 

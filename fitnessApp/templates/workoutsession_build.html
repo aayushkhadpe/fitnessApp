@@ -252,6 +252,7 @@ for (exercise of allExercises)
     persist: false,
     createOnBlur: true,
     create: true,
+    createFilter: function(input) { return isNaN(input); },
     hidePlaceholder: true,
     plugins: {
       remove_button:{},

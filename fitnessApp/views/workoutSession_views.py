@@ -111,14 +111,24 @@ class WorkoutSessionBuildView(FormView):
 
             # for each exercise in the exercise list create exercise info
             exercise_list = (form.cleaned_data["exercises_" + str(circuitIndex + 1)]).split(',')
-            for exerciseIndex in range (0, len(exercise_list)):
-                exercise_info = ExerciseInfo(exercise_id = int(exercise_list[exerciseIndex]),
-                                                exercise_name = exercise_list[exerciseIndex],
-                                                exercise_mode = form.cleaned_data['exercise_mode_' + str(circuitIndex + 1) + "_" + str(exerciseIndex + 1)],
-                                                exercise_quantity = form.cleaned_data['exercise_quantity_' + str(circuitIndex + 1) + "_" + str(exerciseIndex + 1)]
-                                                )
-                circuit_info.exercises.append(exercise_info)
+            for exerciseIndex, exerciseValue in enumerate(exercise_list):
+                
+                # if the exerciseValue is digit, it is id, otherwise it is a name of new exercise
+                exercise_id = None
+                if exerciseValue.isdigit():
+                    exercise_id = int(exerciseValue)
+                else:
+                    new_exercise = Exercise.objects.create(name = exerciseValue)
+                    new_exercise.save()
+                    exercise_id = new_exercise.id
 
+                exercise_info = ExerciseInfo(exercise_id = exercise_id,
+                                            exercise_mode = form.cleaned_data['exercise_mode_' + str(circuitIndex + 1) + "_" + str(exerciseIndex + 1)],
+                                            exercise_quantity = form.cleaned_data['exercise_quantity_' + str(circuitIndex + 1) + "_" + str(exerciseIndex + 1)]
+                                            )
+                    
+                circuit_info.exercises.append(exercise_info)
+                    
         return workout_info
 
     def form_check_fields(self, form):
