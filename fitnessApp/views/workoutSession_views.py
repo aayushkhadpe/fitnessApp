@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView, DetailView, FormView
 from django.urls import reverse_lazy
@@ -52,6 +53,7 @@ class WorkoutSessionBuildView(FormView):
     template_name = 'workoutsession_build.html'
     form_class = WorkoutSessionBuildForm
     success_url = reverse_lazy("home")
+    
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -61,7 +63,10 @@ class WorkoutSessionBuildView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        exercises = Exercise.objects.all().values('id', 'name')
+        exercises_json = json.dumps(list(exercises))
         context['num_circuit_exercises'] = range(15)
+        context['exercises_json'] = exercises_json
 
         return context
 

@@ -6,6 +6,9 @@
 
 {% block content %}
 
+<!-- Create the javascript element with the exercises from the context -->
+{{ exercises_json|json_script:"id_exercises_json" }}
+
 <form id="build_form" method="post">
   {% csrf_token %}
 
@@ -233,12 +236,18 @@ function showElement(id)
   document.getElementById(id).style.visibility = "visible";
 }
 
+// parse the json for all exercises. had to parse twice as the string was enclosed in another string
+var options = JSON.parse(JSON.parse(document.getElementById('id_exercises_json').textContent));
+
 var allExercises = document.querySelectorAll(".build-page-exercise");
 
 for (exercise of allExercises)
 {
   new TomSelect(exercise,
-  {
+  { 
+    options: options, 
+    valueField: 'id',
+    labelField: 'name',
     maxItems: 50,
     persist: false,
     createOnBlur: true,
@@ -250,21 +259,6 @@ for (exercise of allExercises)
       input_autogrow:{},
       clear_button:{},
     },
-
-    options: [
-      { value: "26", text: "Elevated Heel Deadlift" },
-      { value: "27", text: "Quad Arm And Leg Lateral Swings" },
-      { value: "28", text: "Mountain Climbers" },
-      { value: "29", text: "Platform Lateral Lunge" },
-      { value: "30", text: "Platform Down Down Up Up" },
-      { value: "31", text: "Transverse Open Hand Lunge" },
-      { value: "32", text: "Dive Bomb Pushups" },
-      { value: "33", text: "Platform Pullovers" },
-      { value: "34", text: "Supine Alternating Flutter Kicks While Holding a Ball" },
-      { value: "35", text: "Supine Ball Leg Lifts" },
-      { value: "36", text: "Seated Single Led Up Rainbow Twist" },
-      { value: "37", text: "Dead Bug Hold" },
-    ],
 
     onItemAdd: function()
     {
