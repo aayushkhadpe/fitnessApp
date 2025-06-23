@@ -116,16 +116,20 @@ function page_2_next()
       if (i < numCircuits)
       {
         set_display_block("div_circuits_" + (i + 1));
-        
-        var numberOfExercises = document.getElementById("exercises_" + (i + 1)).tomselect.items.length;
+
+        var exerciseItems = document.getElementById("exercises_" + (i + 1)).tomselect.items;
+        var exerciseOptions = document.getElementById("exercises_" + (i + 1)).tomselect.options;
+        var numberOfExercises = exerciseItems.length;
 
         for (j = 0; j < 15; j++)
-        {
+        {   
 
             var quantityId = "id_exercise_quantity_" + (i + 1) + "_" + (j + 1);
+            var exerciseNameId = "id_exercise_name_" + (i + 1) + "_" + (j + 1);
             var quantityName = "exercise_quantity_" + (i + 1) + "_" + (j + 1);
             var circuitExerciseId = "div_circuits_exercise_" + (i + 1) + "_" + (j + 1);
             var quantityElement = document.getElementById(quantityId);
+            var exerciseNameElement = document.getElementById(exerciseNameId);
 
             // in case the quantity is empty or invalid, set it to the default reps or time depending on the setting
             // of the corresponding mode toggle
@@ -138,11 +142,20 @@ function page_2_next()
             {
               set_display_null(circuitExerciseId);
               quantityElement.setAttribute('required', '');
+              if (!isNaN(exerciseItems[j]))
+              {
+                exerciseNameElement.value = exerciseOptions[exerciseItems[j]].name;
+              }
+              else
+              {
+                exerciseNameElement.value = exerciseItems[j] + " (New)";
+              }
             }
             else
             {
               set_display_none(circuitExerciseId);
               quantityElement.removeAttribute('required');
+              exerciseNameElement.value = null;
             }
         }
       }
@@ -170,9 +183,11 @@ function reset_circuit(formData, i)
     for (j = 0; j < 15; j++)
     {
         var quantityId = "id_exercise_quantity_" + (i + 1) + "_" + (j + 1);
+        var exerciseNameId = "id_exercise_name_" + (i + 1) + "_" + (j + 1);
         var quantityName = "exercise_quantity_" + (i + 1) + "_" + (j + 1);
         var circuitExerciseId = "div_circuits_exercise_" + (i + 1) + "_" + (j + 1);
         var quantityElement = document.getElementById(quantityId);
+        var exerciseNameElement = document.getElementById(exerciseNameId);
 
         // set the quantity to reps or time depending on the setting of the corresponding mode toggle in case it is empty
         var isReps = document.getElementById("reps_" + (i + 1) + "_" + (j + 1)).checked
@@ -181,6 +196,8 @@ function reset_circuit(formData, i)
           quantityElement.value = isReps ? defaultReps : defaultTime;;
 
         quantityElement.removeAttribute('required');
+        exerciseNameElement.value = null;
+
         set_display_null(circuitExerciseId);
     }
 
@@ -248,9 +265,10 @@ for (exercise of allExercises)
     options: options, 
     valueField: 'id',
     labelField: 'name',
-    maxItems: 50,
+    maxItems: 15,
     persist: false,
     createOnBlur: true,
+    searchField: ['name'],
     create: true,
     createFilter: function(input) { return isNaN(input); },
     hidePlaceholder: true,
