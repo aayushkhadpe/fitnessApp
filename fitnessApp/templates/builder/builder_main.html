@@ -1,0 +1,299 @@
+{% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}Create Session{% endblock %}
+
+{% block content %}
+
+<!-- Create the javascript element with the exercises from the context -->
+{{ exercises|json_script:"id_exercises_json" }}
+
+<form id="build_form" method="post">
+  {% csrf_token %}
+
+  <div id="id-build-page-outer" class="build-page-outer">
+
+    {% include 'builder/builder_page1.html' %}
+    {% include 'builder/builder_page2.html' %}
+    {% include 'builder/builder_page3.html' %}
+
+  </div>
+</form>
+
+{% block scripts %}
+<script>
+
+function switch_page(from, to) {
+  set_display_none("page_" + from);
+  set_display_block("page_" + to);
+  document.getElementById("id-mainbody").scrollTop = 0;
+
+}
+
+function page_1_next()
+{
+  var form = document.getElementById("build_form");
+  
+  if (form.checkValidity()) 
+  {
+    switch_page(1, 2);
+
+    var formData = new FormData(form);
+    const numberOfCircuits = formData.get("number_of_circuits");
+
+    for (i = 0; i < 5; i++)
+    {
+      var exercises_element = document.getElementById("exercises_" + (i + 1));
+      if (i < numberOfCircuits)
+      {
+        exercises_element.setAttribute('required', '');
+        set_display_block("div_exercises_" + (i + 1));
+      }
+      else
+      {
+        exercises_element.removeAttribute('required');
+        exercises_element.tomselect.clear();
+        set_display_none("div_exercises_" + (i + 1));
+        formData.set("exercises_" + (i + 1), null);
+      }
+    }
+
+    reset_page3_exercises(formData);
+  }
+  else
+  {
+    form.reportValidity();
+    return;
+  }
+}
+
+function reset_page3_exercises(formData)
+{
+  var defaultReps = formData.get('exercise_reps');
+  var defaultTime = formData.get('exercise_time');
+  var isReps = document.getElementById("id_mode_reps").checked;
+
+    for (i = 0; i < 5; i++)
+    { 
+      for (j = 0; j < 15; j++)
+      {
+          document.getElementById("id_exercise_quantity_" + (i + 1) + "_" + (j + 1)).value = isReps ? defaultReps : defaultTime;
+          document.getElementById("reps_" + (i + 1) + "_" + (j + 1)).checked = isReps ? "checked" : "";
+          document.getElementById("time_" + (i + 1) + "_" + (j + 1)).checked = isReps ? "" : "checked";
+      }
+    }
+  }
+
+
+function page_2_previous()
+{
+    switch_page(2, 1);
+
+    for (i = 0; i < 5; i++)
+    {
+      document.getElementById("exercises_" + (i + 1)).removeAttribute('required');
+    }
+}
+
+function page_2_next()
+{
+  var form = document.getElementById("build_form");
+  
+  if (form.checkValidity()) 
+  {
+    switch_page(2, 3);
+
+    var formData = new FormData(form);
+    const numCircuits = formData.get("number_of_circuits");
+    var defaultReps = formData.get('exercise_reps');
+    var defaultTime = formData.get('exercise_time');
+
+    for (i = 0; i < 5; i++)
+    { 
+      
+      if (i < numCircuits)
+      {
+        set_display_block("div_circuits_" + (i + 1));
+
+        var exerciseItems = document.getElementById("exercises_" + (i + 1)).tomselect.items;
+        var exerciseOptions = document.getElementById("exercises_" + (i + 1)).tomselect.options;
+        var numberOfExercises = exerciseItems.length;
+
+        for (j = 0; j < 15; j++)
+        {   
+
+            var quantityId = "id_exercise_quantity_" + (i + 1) + "_" + (j + 1);
+            var exerciseNameId = "id_exercise_name_" + (i + 1) + "_" + (j + 1);
+            var quantityName = "exercise_quantity_" + (i + 1) + "_" + (j + 1);
+            var circuitExerciseId = "div_circuits_exercise_" + (i + 1) + "_" + (j + 1);
+            var quantityElement = document.getElementById(quantityId);
+            var exerciseNameElement = document.getElementById(exerciseNameId);
+
+            // in case the quantity is empty or invalid, set it to the default reps or time depending on the setting
+            // of the corresponding mode toggle
+            var isReps = document.getElementById("reps_" + (i + 1) + "_" + (j + 1)).checked
+
+            if (formData.get(quantityName) == '' || quantityElement.checkValidity() == false)
+              quantityElement.value = isReps ? defaultReps : defaultTime;
+
+            if (j < numberOfExercises)
+            {
+              set_display_null(circuitExerciseId);
+              quantityElement.setAttribute('required', '');
+              if (!isNaN(exerciseItems[j]))
+              {
+                exerciseNameElement.value = exerciseOptions[exerciseItems[j]].name;
+              }
+              else
+              {
+                exerciseNameElement.value = exerciseItems[j] + " (New)";
+              }
+            }
+            else
+            {
+              set_display_none(circuitExerciseId);
+              quantityElement.removeAttribute('required');
+              exerciseNameElement.value = null;
+            }
+        }
+      }
+      else
+      {
+        reset_circuit(formData, i);
+        set_display_none("div_circuits_" + (i + 1));
+      }
+    }
+  }
+  else
+  {
+    form.reportValidity();
+    return;
+  }
+}
+
+// resets a circuit so that all quantities that are empty or invalid are set to
+// exercise rest or time depending on the corresponding mode setting for that exercise.
+function reset_circuit(formData, i)
+{
+    var defaultReps = formData.get('exercise_reps');
+    var defaultTime = formData.get('exercise_time');
+
+    for (j = 0; j < 15; j++)
+    {
+        var quantityId = "id_exercise_quantity_" + (i + 1) + "_" + (j + 1);
+        var exerciseNameId = "id_exercise_name_" + (i + 1) + "_" + (j + 1);
+        var quantityName = "exercise_quantity_" + (i + 1) + "_" + (j + 1);
+        var circuitExerciseId = "div_circuits_exercise_" + (i + 1) + "_" + (j + 1);
+        var quantityElement = document.getElementById(quantityId);
+        var exerciseNameElement = document.getElementById(exerciseNameId);
+
+        // set the quantity to reps or time depending on the setting of the corresponding mode toggle in case it is empty
+        var isReps = document.getElementById("reps_" + (i + 1) + "_" + (j + 1)).checked
+
+        if (formData.get(quantityName) == '' || quantityElement.checkValidity() == false)
+          quantityElement.value = isReps ? defaultReps : defaultTime;;
+
+        quantityElement.removeAttribute('required');
+        exerciseNameElement.value = null;
+
+        set_display_null(circuitExerciseId);
+    }
+
+}
+
+function page_3_previous() {
+    switch_page(3, 2);
+
+    var form = document.getElementById("build_form");
+    var formData = new FormData(form);
+
+    for (i = 0; i < 5; i++)
+    { 
+      reset_circuit(formData, i);
+    }
+}
+
+function switchModeQuantity(mode, c, e) {
+
+  var form = document.getElementById("build_form");
+  var formData = new FormData(form);
+  var defaultReps = formData.get('exercise_reps');
+  var defaultTime = formData.get('exercise_time');
+
+  if (mode == "REPS") {
+    document.getElementById("id_exercise_quantity_" + (c) + "_" + (e)).value = defaultReps;
+  }
+  else {
+    document.getElementById("id_exercise_quantity_" + (c) + "_" + (e)).value = defaultTime;
+  }
+}
+
+function set_display_block(id) {
+  document.getElementById(id).style.display = 'block';
+}
+
+// restoring a div to original display state requires it to be set to empty and not none.
+function set_display_null(id) {
+  document.getElementById(id).style.display = '';
+}
+
+function set_display_none(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+function hideElement(id)
+{
+  document.getElementById(id).style.visibility = "hidden";
+}
+
+function showElement(id)
+{
+  document.getElementById(id).style.visibility = "visible";
+}
+
+// parse the json for all exercises. had to parse twice as the string was enclosed in another string
+var options = JSON.parse(document.getElementById('id_exercises_json').textContent);
+
+var allExercises = document.querySelectorAll(".build-page-exercise");
+
+for (exercise of allExercises)
+{
+  new TomSelect(exercise,
+  { 
+    options: options, 
+    valueField: 'id',
+    labelField: 'name',
+    maxItems: 15,
+    persist: false,
+    createOnBlur: true,
+    searchField: ['name'],
+    create: true,
+    createFilter: function(input) { return isNaN(input); },
+    hidePlaceholder: true,
+    plugins: {
+      remove_button:{},
+      caret_position:{},
+      input_autogrow:{},
+      clear_button:{},
+    },
+
+    onItemAdd: function()
+    {
+      this.setTextboxValue('');
+      this.refreshOptions();
+    },
+  });
+}
+
+new TomSelect("#select-client",{
+	sortField: {
+		field: "text",
+		direction: "asc"
+	}
+});
+
+</script>
+{% endblock %}
+
+{% endblock %}

@@ -49,7 +49,7 @@ class WorkoutSessionStepView(LoginRequiredMixin, DetailView):
         return obj
 
 class WorkoutSessionBuildView(FormView):
-    template_name = 'build/workoutsession_build.html'
+    template_name = 'builder/builder_main.html'
     form_class = WorkoutSessionBuildForm
     success_url = reverse_lazy("home")
     
