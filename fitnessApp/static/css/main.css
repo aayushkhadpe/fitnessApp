@@ -493,7 +493,7 @@ body {
   z-index: 2;
   position: absolute;
   bottom: 0.5rem;
-  left: 0.5rem;
+  /* left: 0.5rem; */
 }
 
 .skip-rest-timer {
@@ -501,11 +501,11 @@ body {
   z-index: 2;
   position: absolute;
   bottom: 0.5rem;
-  right: 0.5rem;
+  /* right: 0.5rem; */
 }
 
 .timer-button {
-  width: 4rem;
+  width: 100%;
   margin: auto;
 }
 

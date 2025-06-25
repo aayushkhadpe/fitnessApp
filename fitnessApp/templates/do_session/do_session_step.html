@@ -10,7 +10,7 @@
                 </div>
             </div>
 
-            <div class="row mb-2">
+            <div class="row mb-3">
                 <div class="col ps-0 pe-0">
                     <div class="fitnessapp-progress-container">
                     <div class="fitnessapp-progress-bar" id="progressBar">
@@ -19,41 +19,40 @@
                 </div>
             </div>
 
-            <div class="row mb-2">
+            <div class="row mb-3">
                 <div class="col rounded" style="height: 8rem; background-color: white;">
                     <span>EXERCISE_NAME_VAL</span>
                 </div>
             </div>
 
-            <div class="row mb-2">
+            <div class="row mb-3">
                 <div class="col rounded me-1">
-                    <div class="row rounded-top" style="height: 3rem; background-color: darkgray;">
-                        <div class="col">
-                            <span>Rest</span>
+                    <div class="row rounded-top align-items-center" style="height: 3rem; background-color: darkgray;">
+                        <div class="col text-center">
+                            <span><b>REST</b></span>
                         </div>
                     </div>
                     <div class="row rounded-bottom" style="height: 6rem; background-color: white;">
-                        <div class="col">
+                        <div class="col text-center">
                             <span>REST_TIME</span>
                         </div>
                     </div>
                 </div>
                 <div class="col rounded ms-1">
-                    <div class="row">
-                        <div class="col rounded-top" style="height: 3rem; background-color: darkgray;">
-                            <span>MODE_VAL</span>
+                    <div class="row rounded-top align-items-center" style="height: 3rem; background-color: darkgray;">
+                        <div class="col text-center">
+                            <span><b>MODE_VAL</b></span>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col rounded-bottom" style="height: 6rem; background-color: white;">
+                    <div class="row rounded-bottom" style="height: 6rem; background-color: white;">
+                        <div class="col text-center">
                             <span>TIME_VAL</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row mb-2" style="height: 6rem">
-
+            <div class="row mb-3" style="height: 6rem">
                 <div class="col me-1 rounded bg-white p-0">
                     <button class="btn btn-outline-dark btn-lg w-100 h-100" type="submit">
                         <i class="bi bi-caret-left-fill fa-lg"></i>
@@ -71,7 +70,36 @@
                         <i class="bi bi-caret-right-fill fa-lg"></i>
                     </button>
                 </div>
+            </div>
 
+            <div class="row mb-3 bg-white rounded p-2">
+                <div class="col-2 align-self-end ps-0 pe-0">
+                    <!-- <div id="restart-timer-div" class="restart-timer"> -->
+                    <button onclick="restartTimer()" id="restart-timer-button" class="btn btn-outline-dark btn-lg w-100">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                    <!-- <span class="menu_label text-muted"><small><small><small>RESTART</small></small></small></span> -->
+                    </button>
+                    <!-- </div> -->
+                </div>
+
+                <div class="col-8 position-relative">
+                    <!-- <div class="timer-grid-inner"> -->
+                    <svg preserveAspectRatio="xMidYMid meet" height="stretch" viewBox="0 0 100 100">
+                    <circle class="circle-bg" cx="50" cy="50" r="45" />
+                    <circle class="circle-progress" cx="50" cy="50" r="45" />
+                    </svg>
+                    <div class="time-text" id="time-text">--:--</div>
+                    <!-- </div> -->
+                </div>
+
+                <div class="col-2 align-self-end ps-0 pe-0">
+                    <!-- <div id="skip-rest-timer-div" class="skip-rest-timer"> -->
+                    <button onclick="skipTimer()" id="skip-rest-timer-button" class="btn btn-outline-dark btn-lg w-100">
+                    <i class="bi bi-skip-end"></i>
+                    <!-- <span class="menu_label text-muted"><small><small><small>SKIP</small></small></small></span> -->
+                    </button>
+                    <!-- </div> -->
+                </div>
             </div>
             
         </div>
