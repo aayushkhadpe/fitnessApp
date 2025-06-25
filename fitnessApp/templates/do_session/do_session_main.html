@@ -1,0 +1,17 @@
+{% extends "base/base_no_footer.html" %}
+
+{% block title %}{{ object.workout.name }}{% endblock %}
+
+{% block content %}
+
+  {% csrf_token %}
+
+  <div id="id-do-session-page-outer" class="do-session-page-outer">
+
+    {% include 'do_session/do_session_start.html' %}
+    {% include 'do_session/do_session_finish.html' %}
+    {% include 'do_session/do_session_step.html' %}
+
+  </div>
+
+{% endblock %}

@@ -27,4 +27,6 @@ urlpatterns = [
     path("clients/create", ClientCreateView.as_view(), name="client-create"),
     path("clients/<int:pk>/details", ClientUpdateView.as_view(), name="client-details"),
 
+    path("workoutsessions/<int:pk>/do", WorkoutSessionDoView.as_view(), name="workoutsession-do"),  
+
 ]

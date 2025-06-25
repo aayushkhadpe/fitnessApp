@@ -573,7 +573,7 @@ body {
   padding-right: 0.25rem;
 }
 
-.build-page-outer {
+.build-page-outer, .do-session-page-outer {
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 100%;
@@ -583,7 +583,7 @@ body {
   grid-area: 1 / 1 / 2 / 2;
 }
 
-.build-page-2 {
+.build-page-2, .do-session-step {
   grid-area: 1 / 1 / 2 / 2;
 }
 

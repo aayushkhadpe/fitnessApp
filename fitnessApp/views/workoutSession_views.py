@@ -30,6 +30,10 @@ class WorkoutSessionRunView(LoginRequiredMixin, DetailView):
     model = WorkoutSession
     template_name = "workoutsession_run.html"
 
+class WorkoutSessionDoView(LoginRequiredMixin, DetailView):
+    model = WorkoutSession
+    template_name = "do_session/do_session_main.html"
+
 class WorkoutSessionStepView(LoginRequiredMixin, DetailView):
     model = WorkoutSessionStep
     template_name = "workoutsession_step.html"
