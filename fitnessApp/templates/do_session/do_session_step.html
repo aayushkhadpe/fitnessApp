@@ -6,7 +6,7 @@
             <div class="row mb-2">
                 <div class="col ps-0 pe-0">
                     <span class="badge rounded-pill text-bg-light" style="margin-right: 0.2rem;">CIRCUIT_VAL</span>
-                    <span class="badge rounded-pill text-bg-light">Set SAT_VAL</span>
+                    <span class="badge rounded-pill text-bg-light"><span>SET&nbsp;</span><span>SET_VAL</span>
                 </div>
             </div>
 
@@ -19,9 +19,11 @@
                 </div>
             </div>
 
-            <div class="row mb-3">
-                <div class="col rounded" style="height: 8rem; background-color: white;">
-                    <span>EXERCISE_NAME_VAL</span>
+            <div class="row mb-3 rounded align-items-center bg-white" style="height: 8rem;">
+                <div class="col text-center">
+                    <span style="max-width: 90%; max-height: 90%;" class="text-secondary d-inline-block text-wrap text-truncate fs-1 fw-bolder">
+                        EXERCISE_NAME_VAL Dumbell Overhead Press with plank hold and lateral raise Dumbell Overhead Press with plank hold and lateral raise
+                    </span>
                 </div>
             </div>
 
@@ -29,12 +31,12 @@
                 <div class="col rounded me-1">
                     <div class="row rounded-top align-items-center" style="height: 3rem; background-color: darkgray;">
                         <div class="col text-center">
-                            <span><b>REST</b></span>
+                            <span class="fs-4 fw-medium text-white"><b>REST</b></span>
                         </div>
                     </div>
                     <div class="row rounded-bottom" style="height: 6rem; background-color: white;">
                         <div class="col text-center">
-                            <span>REST_TIME</span>
+                            <span>REST_TIME_VAL</span>
                         </div>
                     </div>
                 </div>
@@ -46,7 +48,7 @@
                     </div>
                     <div class="row rounded-bottom" style="height: 6rem; background-color: white;">
                         <div class="col text-center">
-                            <span>TIME_VAL</span>
+                            <span>MODE_QUANTITY_VAL</span>
                         </div>
                     </div>
                 </div>
@@ -73,33 +75,37 @@
             </div>
 
             <div class="row mb-3 bg-white rounded p-2">
-                <div class="col-2 align-self-end ps-0 pe-0">
-                    <!-- <div id="restart-timer-div" class="restart-timer"> -->
-                    <button onclick="restartTimer()" id="restart-timer-button" class="btn btn-outline-dark btn-lg w-100">
-                    <i class="bi bi-arrow-counterclockwise"></i>
-                    <!-- <span class="menu_label text-muted"><small><small><small>RESTART</small></small></small></span> -->
-                    </button>
-                    <!-- </div> -->
+
+                <div class="col-2 align-self-end">
+                    <div class="row" style="height: 3rem">
+                        <div class="col rounded bg-white p-0">
+                            <button class="btn btn-outline-secondary btn-light btn-lg w-100 h-100" onclick="restartTimer()" id="restart-timer-button" type="submit">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-8 position-relative">
                     <!-- <div class="timer-grid-inner"> -->
-                    <svg preserveAspectRatio="xMidYMid meet" height="stretch" viewBox="0 0 100 100">
-                    <circle class="circle-bg" cx="50" cy="50" r="45" />
-                    <circle class="circle-progress" cx="50" cy="50" r="45" />
+                    <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100">
+                        <circle class="circle-bg" cx="50" cy="50" r="45" />
+                        <circle class="circle-progress" cx="50" cy="50" r="45" />
                     </svg>
                     <div class="time-text" id="time-text">--:--</div>
                     <!-- </div> -->
                 </div>
 
-                <div class="col-2 align-self-end ps-0 pe-0">
-                    <!-- <div id="skip-rest-timer-div" class="skip-rest-timer"> -->
-                    <button onclick="skipTimer()" id="skip-rest-timer-button" class="btn btn-outline-dark btn-lg w-100">
-                    <i class="bi bi-skip-end"></i>
-                    <!-- <span class="menu_label text-muted"><small><small><small>SKIP</small></small></small></span> -->
-                    </button>
-                    <!-- </div> -->
-                </div>
+                <div class="col-2 align-self-end">
+                    <div class="row" style="height: 3rem">
+                        <div class="col rounded bg-white p-0">
+                            <button class="btn btn-outline-secondary btn-light btn-lg w-100 h-100" onclick="skipTimer()" id="skip-timer-button" type="submit">
+                                <i class="bi bi-skip-end"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>                
+
             </div>
             
         </div>

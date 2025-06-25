@@ -34,6 +34,14 @@ class WorkoutSessionDoView(LoginRequiredMixin, DetailView):
     model = WorkoutSession
     template_name = "do_session/do_session_main.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        steps = context['object'].workoutsessionstep_set.all().values('id', 'set', 'circuit__name', 'exercise__name', 'workoutSession__id', 'sequence_number', 'rest_before', 'circuit_exercise__mode', 'circuit_exercise__time', 'circuit_exercise__reps')
+        context['steps'] = list(steps)
+
+        return context
+    
 class WorkoutSessionStepView(LoginRequiredMixin, DetailView):
     model = WorkoutSessionStep
     template_name = "workoutsession_step.html"

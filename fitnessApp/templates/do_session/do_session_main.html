@@ -4,7 +4,7 @@
 
 {% block content %}
 
-  {% csrf_token %}
+  {{ steps|json_script:"id_steps_json" }}
 
   <div id="id-do-session-page-outer" class="do-session-page-outer">
 
