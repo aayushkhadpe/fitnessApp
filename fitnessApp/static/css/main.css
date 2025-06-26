@@ -183,7 +183,7 @@ body {
 
 .fitnessapp-progress-container {
   width: 100%;
-  background: #e0e0e0;
+  background: orange;
   border-radius: 0.2rem;
   overflow: hidden;
   height: 0.4rem;
@@ -192,7 +192,7 @@ body {
 
 .fitnessapp-progress-bar {
   height: 100%;
-  width: 0%;
+  width: 30%;
   background: #4caf50;
   text-align: center;
   color: white;

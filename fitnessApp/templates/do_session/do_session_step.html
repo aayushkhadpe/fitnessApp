@@ -3,6 +3,7 @@
     <div class="row">
         <div class="col ms-3 me-3">
 
+            <!-- Circuit and Set -->
             <div class="row mb-2">
                 <div class="col ps-0 pe-0">
                     <span class="badge rounded-pill text-bg-light" style="margin-right: 0.2rem;">CIRCUIT_VAL</span>
@@ -10,6 +11,7 @@
                 </div>
             </div>
 
+            <!-- Progress bar -->
             <div class="row mb-3">
                 <div class="col ps-0 pe-0">
                     <div class="fitnessapp-progress-container">
@@ -18,7 +20,8 @@
                     </div>
                 </div>
             </div>
-
+            
+            <!-- Exercise name -->
             <div class="row mb-3 rounded align-items-center bg-white" style="height: 8rem;">
                 <div class="col text-center">
                     <span style="max-width: 90%; max-height: 90%;" class="text-secondary d-inline-block text-wrap text-truncate fs-1 fw-bolder">
@@ -27,6 +30,7 @@
                 </div>
             </div>
 
+            <!-- Rest and Work -->
             <div class="row mb-3">
                 <div class="col rounded me-1">
                     <div class="row rounded-top align-items-center" style="height: 3rem; background-color: darkgray;">
@@ -36,7 +40,7 @@
                     </div>
                     <div class="row rounded-bottom" style="height: 6rem; background-color: white;">
                         <div class="col text-center">
-                            <span>REST_TIME_VAL</span>
+                            <span>REST_VAL</span>
                         </div>
                     </div>
                 </div>
@@ -48,12 +52,13 @@
                     </div>
                     <div class="row rounded-bottom" style="height: 6rem; background-color: white;">
                         <div class="col text-center">
-                            <span>MODE_QUANTITY_VAL</span>
+                            <span>QTY_VAL</span>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Previous / Play-pause / Next buttons -->
             <div class="row mb-3" style="height: 6rem">
                 <div class="col me-1 rounded bg-white p-0">
                     <button class="btn btn-outline-dark btn-lg w-100 h-100" type="submit">
@@ -74,39 +79,10 @@
                 </div>
             </div>
 
-            <div class="row mb-3 bg-white rounded p-2">
-
-                <div class="col-2 align-self-end">
-                    <div class="row" style="height: 3rem">
-                        <div class="col rounded bg-white p-0">
-                            <button class="btn btn-outline-secondary btn-light btn-lg w-100 h-100" onclick="restartTimer()" id="restart-timer-button" type="submit">
-                                <i class="bi bi-arrow-counterclockwise"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-8 position-relative">
-                    <!-- <div class="timer-grid-inner"> -->
-                    <svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100">
-                        <circle class="circle-bg" cx="50" cy="50" r="45" />
-                        <circle class="circle-progress" cx="50" cy="50" r="45" />
-                    </svg>
-                    <div class="time-text" id="time-text">--:--</div>
-                    <!-- </div> -->
-                </div>
-
-                <div class="col-2 align-self-end">
-                    <div class="row" style="height: 3rem">
-                        <div class="col rounded bg-white p-0">
-                            <button class="btn btn-outline-secondary btn-light btn-lg w-100 h-100" onclick="skipTimer()" id="skip-timer-button" type="submit">
-                                <i class="bi bi-skip-end"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>                
-
-            </div>
+            <!-- Timer and stopwatch -->
+            {% include 'do_session/timer_stopwatch_page.html' with page='rest' display='' %}
+            {% include 'do_session/timer_stopwatch_page.html' with page='time' display='none' %}
+            {% include 'do_session/timer_stopwatch_page.html' with page='reps' display='none' %}
             
         </div>
     </div>

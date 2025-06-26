@@ -4,15 +4,24 @@
   stroke-width: 8px;
  }
 
-.circle-progress {
-  stroke: #e63946;
+.circle-progress-rest, .circle-progress-time, .circle-progress-reps {
+  stroke: orange;
   fill: none;
-  stroke-width: 8px;
+  stroke-width: 4px;
   stroke-linecap: round;
   transform: rotate(-90deg);
   transform-origin: center;
   transition: stroke-dashoffset 1s linear;
  }
+
+.circle-progress-time {
+  stroke: green;
+}
+
+.circle-progress-reps {
+  stroke: gray;
+}
+
 
 .time-text {
   position: absolute;
