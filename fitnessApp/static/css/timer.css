@@ -4,6 +4,16 @@
   stroke-width: 8px;
  }
 
+ .circle-progress {
+  stroke: #e63946;
+  fill: none;
+  stroke-width: 8px;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 1s linear;
+ }
+ 
 .circle-progress-rest, .circle-progress-time, .circle-progress-reps {
   stroke: orange;
   fill: none;

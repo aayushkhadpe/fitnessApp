@@ -1,3 +1,18 @@
+:root {
+  /*
+  --fitnessapp-primary-color: #FF5733; // Main brand color
+  --fitnessapp-secondary-color: #33FF57; // Accent color
+  --fitnessapp-bg-color: #141414; // Background color
+  --fitnessapp-card-bg-color: #1f1f1f; // Card background
+  --fitnessapp-text-color: #ffffff; // Primary text color
+  */
+
+  --fitnessapp-session-bg-content: #718C9E;
+  --fitnessapp-session-bg-header: #495D6A;
+  --fitnessapp-session-bg-content-light: #C3CED6;
+  --fitnessapp-session-bg-content-lighter: #e6e6e6;
+}
+
 body {
   background: white
 }
@@ -183,17 +198,18 @@ body {
 
 .fitnessapp-progress-container {
   width: 100%;
-  background: orange;
+  background: var(--fitnessapp-session-bg-content-light);
   border-radius: 0.2rem;
   overflow: hidden;
-  height: 0.4rem;
+  border: 1px solid darkgray;
+  height: 0.6rem;
   margin: 0 0;
 }
 
 .fitnessapp-progress-bar {
   height: 100%;
   width: 30%;
-  background: #4caf50;
+  background: var(--fitnessapp-session-bg-content-header);
   text-align: center;
   color: white;
   transition: width 0.3s ease;
@@ -592,4 +608,16 @@ body {
 }
 
 .build-page-exercise {
+}
+
+.do-session-bg-content {
+  background-color: var(--fitnessapp-session-bg-content);
+}
+
+.do-session-bg-header {
+  background-color: var(--fitnessapp-session-bg-header);
+}
+
+.do-session-bg-content-light {
+  background-color: var(--fitnessapp-session-bg-content-light);
 }
