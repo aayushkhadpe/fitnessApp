@@ -1,14 +1,14 @@
-<div id="id-do-session-step" class="do-session-step">
+<div id="id-do-session-step" class="do-session-step" style="display: none;">
 
     <div class="row">
         <div class="col ms-3 me-3">
 
             <!-- Circuit and Set -->
-            <div class="row mb-2">
+            <div class="row">
                 <div class="col ps-0 pe-0">
-                    <span class="badge do-session-bg-content-light text-secondary-emphasis rounded-pill" style="margin-right: 0.2rem;">CIRCUIT 1</span>
-                    <span class="badge do-session-bg-content-light text-secondary-emphasis rounded-pill"><span>SET&nbsp;</span><span>1</span></span>
-                    <span class="badge do-session-bg-content-light text-secondary-emphasis rounded-pill"><span>EXERCISE&nbsp;</span><span>1</span></span>
+                    <span class="badge do-session-bg-content-light text-secondary-emphasis rounded-pill"><span id="id-progress-bar-circuit">1</span></span>
+                    <span class="badge do-session-bg-content-light text-secondary-emphasis rounded-pill"><span>SET&nbsp;</span><span id="id-progress-bar-set">1</span></span>
+                    <span class="badge do-session-bg-content-light text-secondary-emphasis rounded-pill"><span>EXERCISE&nbsp;</span><span id="id-progress-bar-exercise">1</span></span>
                 </div>
             </div>
 
@@ -16,12 +16,14 @@
             <div class="row mb-2">
                 <div class="col ps-0 pe-0 align-self-center">
                     <div class="fitnessapp-progress-container do-session-bg-content-light">
-                        <div class="fitnessapp-progress-bar do-session-bg-header" id="progressBar">
+                        <div class="fitnessapp-progress-bar do-session-bg-header" id="id-progress-bar">
                         </div>
                     </div>
                 </div>
                 <div class="col-auto pt-0 pb-1 ps-0 pe-0 align-self-top text-end">
-                    <span class="fs-6 ps-2 lh-1 fw-bold text-secondary"><small><small><small>29/39</small></small></small></span>
+                    <span class="fs-6 ps-2 lh-1 fw-bold text-secondary"><small><small><small id="id-fraction-numerator">67</small></small></small></span>
+                    <span class="fs-6 lh-1 fw-bold text-secondary"><small><small><small>/</small></small></small></span>
+                    <span class="fs-6 lh-1 fw-bold text-secondary"><small><small><small id="id-fraction-denominator">12</small></small></small></span>
                 </div>
 
             </div>
@@ -29,8 +31,8 @@
             <!-- Exercise name -->
             <div class="row mb-3 rounded align-items-center border border-secondary do-session-bg-content" style="height: 8rem;">
                 <div class="col text-center align-self-center">
-                    <span style="max-width: 90%; max-height: 90%;" class="lh-sm text-white d-inline-block text-wrap text-truncate fs-1 fw-bolder">
-                        Dumbell overhead press with squat
+                    <span id="id-exercise-name-field" style="max-width: 90%; max-height: 90%;" class="lh-sm text-white d-inline-block text-wrap text-truncate fs-1 fw-bolder">
+                        
                     </span>
                 </div>
             </div>
@@ -45,19 +47,20 @@
                     </div>
                     <div class="row rounded-bottom do-session-bg-content" style="height: 6rem;">
                         <div class="col text-center align-self-center pb-1">
-                            <span class="display-2 fw-bolder text-white">30</span><span class="fs-6 fw-light text-white">&nbsp;secs</span>
+                            <span id="id-rest-time-field" class="display-2 fw-bolder text-white">30</span><span class="fs-6 fw-light text-white">&nbsp;secs</span>
                         </div>
                     </div>
                 </div>
                 <div class="col opacity-50 rounded ms-1 border border-secondary">
                     <div class="row rounded-top align-items-center do-session-bg-header" style="height: 3rem;">
                         <div class="col text-center">
-                            <span class="fs-4 fw-medium text-white"><b>REPS</b></span>
+                            <span id="id-mode-type-display" class="fs-4 fw-medium text-white"><b>REPS</b></span>
                         </div>
                     </div>
                     <div class="row rounded-bottom do-session-bg-content" style="height: 6rem;">
                         <div class="col text-center align-self-center pb-1">
-                            <span class="display-2 fw-bolder text-white">12</span><span class="fs-6 fw-light text-white">&nbsp;reps</span>
+                            <span id="id-mode-quantity-display" class="display-2 fw-bolder text-white">12</span>
+                            <span id="id-mode-quantity-units" class="fs-6 fw-light text-white">&nbsp;reps</span>
                         </div>
                     </div>
                 </div>
@@ -66,20 +69,20 @@
             <!-- Previous / Play-pause / Next buttons -->
             <div class="row mb-3" style="height: 6rem">
                 <div class="col me-1 rounded bg-white p-0">
-                    <button class="btn btn-outline-dark btn-lg w-100 h-100" type="submit">
-                        <i class="bi bi-caret-left-fill fa-lg"></i>
+                    <button id="id-previous-button" class="btn btn-outline-dark btn-lg w-100 h-100" type="submit" onclick="previousStep()">
+                        <i class="bi bi-caret-left-fill fa-2x"></i>
                     </button>
                 </div>
 
                 <div class="col ms-1 me-1 rounded bg-white p-0">
-                    <button id="pause-button" class="btn btn-outline-dark btn-lg w-100 h-100">
-                        <i id="pause-resume-button fa-lg" class="bi bi-pause-circle"></i>
+                    <button id="id-pause-button" class="btn btn-outline-dark btn-lg w-100 h-100">
+                        <i class="bi bi-pause-circle fa-2x"></i>
                     </button>
                 </div>
 
                 <div class="col ms-1 rounded bg-white p-0">
-                    <button class="btn btn-outline-dark btn-lg w-100 h-100" type="submit">
-                        <i class="bi bi-caret-right-fill fa-lg"></i>
+                    <button id="id-next-button" class="btn btn-outline-dark btn-lg w-100 h-100" type="submit" onclick="nextStep()">
+                        <i class="bi bi-caret-right-fill fa-2x"></i>
                     </button>
                 </div>
             </div>

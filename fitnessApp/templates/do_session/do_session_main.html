@@ -4,7 +4,7 @@
 
 {% block content %}
 
-  {{ steps|json_script:"id_steps_json" }}
+  {{ steps|json_script:"id-steps-json" }}
 
   <div id="id-do-session-page-outer" class="do-session-page-outer">
 
@@ -13,5 +13,146 @@
     {% include 'do_session/do_session_step.html' %}
 
   </div>
+
+{% block scripts %}
+
+<script>
+
+  var steps  = JSON.parse(document.getElementById('id-steps-json').textContent);
+
+  var numSteps = steps.length;
+  var currentStep = "{{ object.workoutSession.current_step_sequence }}";
+  
+  if (currentStep == '')
+  {
+    currentStep = 1;
+  }
+
+  var audioContext = null;
+
+  function startWorkout()
+  {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    audioContext.resume();
+
+    set_display_none("id-do-session-start");
+    set_display_block("id-do-session-step");
+
+    updateStep();
+  }
+
+  function updateStep() 
+  {
+    var index = currentStep - 1;
+
+    if (currentStep == 1)
+    {
+      disableElement("id-previous-button");
+    }
+    else
+    {
+      enableElement("id-previous-button");
+    }
+
+    document.getElementById("id-progress-bar-circuit").innerText = steps[index].circuit__name;
+    document.getElementById("id-progress-bar-set").innerText = steps[index].set;
+    document.getElementById("id-progress-bar-exercise").innerText = currentStep;
+
+    document.getElementById("id-fraction-numerator").innerText = currentStep;
+    document.getElementById("id-fraction-denominator").innerText = steps.length;
+
+    document.getElementById("id-exercise-name-field").innerText = steps[index].exercise__name;
+    document.getElementById("id-rest-time-field").innerText = steps[index].rest_before;
+
+    if (steps[index].circuit_exercise__mode == "REPS")
+    {
+      document.getElementById("id-mode-type-display").innerText = "REPS";
+      document.getElementById("id-mode-quantity-display").innerText = steps[index].circuit_exercise__reps;
+      document.getElementById("id-mode-quantity-units").innerText = " reps"
+    }
+    else
+    {
+      document.getElementById("id-mode-type-display").innerText = "TIME";
+      document.getElementById("id-mode-quantity-display").innerText = steps[index].circuit_exercise__time;
+      document.getElementById("id-mode-quantity-units").innerText = " seconds"
+    }
+
+    updateProgress();
+
+    // document.getElementById("field-rest").innerText = steps[index].rest_time;
+    // document.getElementById("field-quantity").innerText = steps[index].mode == "TIME" ? steps[index].time : steps[index].reps;
+    // document.getElementById("field-mode").innerText = steps[index].mode == "TIME" ? "secs" : "reps";
+
+    // totalSeconds = steps[index].rest_time;
+    // check = steps[index].mode;
+    // exerciseTime = steps[index].time;
+    // modeQuantity = steps[index].reps;
+
+    // remaining = totalSeconds;
+    // //setProgress(1.0 - (1.0 / totalSeconds));
+    // startTimer();
+    // updateProgress();
+
+  }
+
+  function previousStep() 
+  {
+    if (currentStep != 1)
+    {
+      currentStep--;
+      updateStep();
+    }
+  }
+
+  function nextStep() 
+  {
+    if (currentStep == steps.length)
+    {
+      set_display_none("id-do-session-step");
+      set_display_block("id-do-session-finish");
+    }        
+    else
+    {
+      currentStep++;
+      updateStep();
+    }
+  }
+
+  function set_display_block(id) 
+  {
+  document.getElementById(id).style.display = 'block';
+  }
+
+  // restoring a div to original display state requires it to be set to empty and not none.
+  function set_display_null(id)
+  {
+    document.getElementById(id).style.display = '';
+  }
+
+  function set_display_none(id) 
+  {
+    document.getElementById(id).style.display = 'none';
+  }
+
+  function disableElement(id)
+  {
+    document.getElementById(id).disabled = true;
+  }
+
+  function enableElement(id)
+  {
+    document.getElementById(id).disabled = false;
+  }
+
+  function updateProgress()
+  {
+    const progress = (currentStep / steps.length) * 100;
+    document.getElementById('id-progress-bar').style.width = progress + '%';
+  }
+
+</script>
+
+{% endblock %}
+
 
 {% endblock %}

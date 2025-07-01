@@ -208,7 +208,7 @@ body {
 
 .fitnessapp-progress-bar {
   height: 100%;
-  width: 30%;
+  width: 0%;
   background: var(--fitnessapp-session-bg-content-header);
   text-align: center;
   color: white;
@@ -595,9 +595,10 @@ body {
   grid-template-rows: 100%;
 }
 
-.build-page-1 {
+.build-page-1, .do-session-start {
   grid-area: 1 / 1 / 2 / 2;
 }
+
 
 .build-page-2, .do-session-step {
   grid-area: 1 / 1 / 2 / 2;
