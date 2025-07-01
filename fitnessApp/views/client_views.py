@@ -19,6 +19,11 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
     model = FitnessAppPerson
     template_name = "client_create.html"
     form_class = ClientCreateForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
     
 
 class ClientUpdateView(LoginRequiredMixin, UpdateView):

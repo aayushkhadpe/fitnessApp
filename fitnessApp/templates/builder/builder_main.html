@@ -143,11 +143,11 @@ function page_2_next()
               quantityElement.setAttribute('required', '');
               if (!isNaN(exerciseItems[j]))
               {
-                exerciseNameElement.value = exerciseOptions[exerciseItems[j]].name;
+                exerciseNameElement.value = (j+1) + ". " + exerciseOptions[exerciseItems[j]].name;
               }
               else
               {
-                exerciseNameElement.value = exerciseItems[j] + " (New)";
+                exerciseNameElement.value = (j+1) + ". " + exerciseItems[j] + " (New)";
               }
             }
             else
@@ -282,6 +282,12 @@ for (exercise of allExercises)
     {
       this.setTextboxValue('');
       this.refreshOptions();
+      document.getElementById("count_" + this.inputId).textContent = this.items.length;
+    },
+
+    onItemRemove: function()
+    {
+      document.getElementById("count_" + this.inputId).textContent = this.items.length;
     },
   });
 }

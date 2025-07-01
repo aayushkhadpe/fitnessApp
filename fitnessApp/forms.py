@@ -19,14 +19,31 @@ class ClientCreateForm(forms.ModelForm):
 
     class Meta:
         model = FitnessAppPerson
-        fields = ("first_name", "last_name", "coach", "phone_number", "email",)
+        fields = ("first_name", "last_name", "phone_number", "email",)
+
+    first_name = forms.CharField(label='First Name', max_length=100, required=True)
+    last_name = forms.CharField(label='Last Name', max_length=100, required=False)
+    phone_number = forms.CharField(label='Phone Number', max_length=50, required=True)
+    email = forms.EmailField(label='Email', max_length=100, required=False)
+
+    def save(self, commit=True):
+        client = super().save(commit=commit)
+
+        client.coach = self.user.person
+        client.save()
+
+        return client
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
 
 class WorkoutSessionCreateForm(forms.ModelForm):
     class Meta:
         model = WorkoutSession
         fields = ["scheduled_date"]
         widgets = {
-            'scheduled_date': forms.DateInput(attrs={'type': 'date', 'min': str(date.today())}, ),
+            'scheduled_date': forms.DateInput(attrs={'type': 'date', 'min': str(date.today())} ),
         }
 
     def __init__(self, *args, **kwargs):
@@ -42,12 +59,16 @@ class FitnessAppUserUpdateForm(forms.ModelForm):
         labels = {"first_name": "First Name", "last_name": "Last Name"}
 
 class FitnessAppPersonUpdateForm(forms.ModelForm):
+
     class Meta:
         model = FitnessAppPerson
         fields = ("first_name", "last_name", "phone_number", "email")
-        field_classes = {"first_name": CharField, "last_name": CharField}
-        labels = {"first_name": "First Name", "last_name": "Last Name"}
 
+    first_name = forms.CharField(label='First Name', max_length=100, required=True)
+    last_name = forms.CharField(label='Last Name', max_length=100, required=False)
+    phone_number = forms.CharField(label='Phone Number', max_length=50, required=True)
+    email = forms.EmailField(label='Email', max_length=100, required=False)
+    
 SETS = [
     ('1', '1'),
     ('2', '2'),
