@@ -18,17 +18,165 @@
 
 <script>
 
-  var steps  = JSON.parse(document.getElementById('id-steps-json').textContent);
+  class DoTimer
+  {
+    #isTimer = true;
+    #time = 0;
+    #textElementId = null;
+    #circleSvgId = null;
+    #doneCallback = null;
+    #easyTimer = null;
 
+    startTimer(isTimer, time, textElementId, circleSvgId, doneCallback)
+    { 
+      this.stopTimer();
+
+      this.#isTimer = isTimer;
+      this.#time = time;
+      this.#textElementId = textElementId;
+      this.#circleSvgId = circleSvgId;
+      this.#doneCallback = doneCallback;
+
+      this.#createTimer();
+    }
+
+    #createTimer()
+    {
+      this.#easyTimer = new Timer();
+      this.#easyTimer.start({countdown: this.#isTimer, startValues: {seconds: this.#time}});
+
+      document.getElementById(this.#textElementId).textContent = formatTime(this.#easyTimer.getTotalTimeValues().seconds);
+
+      var textElementId = this.#textElementId;
+      var easyTimer = this.#easyTimer;
+
+      this.#easyTimer.addEventListener('secondsUpdated', function (e) {
+        document.getElementById(textElementId).textContent = formatTime(easyTimer.getTotalTimeValues().seconds);
+      });
+
+      this.#easyTimer.addEventListener('targetAchieved', function (e) {
+        document.getElementById(textElementId).textContent = "Done";
+      });
+    }
+
+    skipTimer()
+    {
+
+    }
+
+    restartTimer() 
+    {
+      if (this.#easyTimer != null)
+        this.#easyTimer.stop();
+      this.#createTimer();
+    }
+
+    playPauseTimer()
+    {
+      if (this.#easyTimer == null)
+        return;
+
+      if (this.#easyTimer.isPaused())
+        this.#easyTimer.start();
+      else
+        this.#easyTimer.pause();
+    }
+
+    isPaused()
+    {
+      return this.#easyTimer.isPaused();
+    }
+
+    stopTimer()
+    {
+      if (this.#easyTimer != null)
+      {
+        this.#easyTimer.stop();
+        this.#easyTimer = null;
+      }
+    }
+  }
+
+  var audioContext = null;
+  var doTimer = new DoTimer();
+
+  var steps  = JSON.parse(document.getElementById('id-steps-json').textContent);
   var numSteps = steps.length;
   var currentStep = "{{ object.workoutSession.current_step_sequence }}";
-  
+
   if (currentStep == '')
   {
     currentStep = 1;
   }
 
-  var audioContext = null;
+  setupWakeLock();
+
+  const pauseButton = document.getElementById("id-pause-button");
+
+  pauseButton.addEventListener("click", () =>
+  {
+    
+    if (doTimer.isPaused()) 
+    {
+      document.getElementById("id-pause-resume-button-icon").classList.remove("bi-pause-circle");
+      document.getElementById("id-pause-resume-button-icon").classList.add("bi-play-circle");
+    }
+    else 
+    {
+      document.getElementById("id-pause-resume-button-icon").classList.add("bi-pause-circle");
+      document.getElementById("id-pause-resume-button-icon").classList.remove("bi-play-circle");
+    }
+  }
+  );
+
+  // FUNCTIONS
+
+  function setupWakeLock()
+  {
+    if ("wakeLock" in navigator)
+    {
+      isSupported = true;
+      console.log("Screen Wake Lock API supported!");
+    } 
+    else
+    {
+      wakeButton.disabled = true;
+      console.log("Wake lock is not supported by this browser.");
+    }
+
+    // Create a reference for the Wake Lock.
+    var wakeLock = null;
+
+    // create an async function to request a wake lock
+    
+    document.addEventListener("visibilitychange", async () =>
+    {
+      if (wakeLock !== null && document.visibilityState === "visible")
+      {
+        wakeLock = await navigator.wakeLock.request("screen");
+        console.log("Wake Lock is active after visibility change!");
+      }
+    });
+  }
+
+  async function requestWakeLock()
+  {
+    try
+    {
+      wakeLock = await navigator.wakeLock.request("screen");
+      console.log("Wake Lock is active!");
+    } 
+    catch (err)
+    {
+      // The Wake Lock request has failed - usually system related, such as battery.
+      console.log(`${err.name}, ${err.message}`);
+    }
+
+    wakeLock.addEventListener("release", () => {
+    // the wake lock has been released
+    console.log("Wake Lock has been released");
+    });
+  }
 
   function startWorkout()
   {
@@ -39,6 +187,8 @@
     set_display_block("id-do-session-step");
 
     updateStep();
+
+    requestWakeLock();
   }
 
   function updateStep() 
@@ -78,6 +228,10 @@
     }
 
     updateProgress();
+    startRest();
+    
+    document.getElementById("id-pause-resume-button-icon").classList.add("bi-pause-circle");
+    document.getElementById("id-pause-resume-button-icon").classList.remove("bi-play-circle");
 
     // document.getElementById("field-rest").innerText = steps[index].rest_time;
     // document.getElementById("field-quantity").innerText = steps[index].mode == "TIME" ? steps[index].time : steps[index].reps;
@@ -93,6 +247,33 @@
     // startTimer();
     // updateProgress();
 
+  }
+
+  function startRest()
+  {
+    set_display_none("id-div-timer-time");
+    set_display_none("id-div-timer-reps");
+    set_display_null("id-div-timer-rest");
+
+    doTimer.startTimer(true, steps[currentStep - 1].rest_before, "id-time-text-rest", "circle-progress-rest", null);
+
+  }
+
+  function formatTime(seconds)
+  {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }
+
+  function restartTimer() 
+  {
+    doTimer.restartTimer();
+  }
+
+  function playPauseTimer() 
+  {
+    doTimer.playPauseTimer();
   }
 
   function previousStep() 
