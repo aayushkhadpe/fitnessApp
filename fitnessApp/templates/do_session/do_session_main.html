@@ -52,9 +52,15 @@
       var textElementId = this.#textElementId;
       var easyTimer = this.#easyTimer;
       var doneCallback = this.#doneCallback;
+      var isTimer = this.#isTimer;
 
       this.#easyTimer.addEventListener('secondsUpdated', function (e) {
         document.getElementById(textElementId).textContent = formatTime(easyTimer.getTotalTimeValues().seconds);
+       
+        if (isTimer && easyTimer.getTotalTimeValues().seconds <= 6 && easyTimer.getTotalTimeValues().seconds != 0)
+        {
+          playBeep( easyTimer.getTotalTimeValues().seconds == 1 ? 800 : 200);
+        }
       });
 
       this.#easyTimer.addEventListener('targetAchieved', function (e) {
@@ -123,6 +129,17 @@
   }
 
   /************ Functions ************/
+
+  function playBeep(duration)
+  {
+    const oscillator = audioContext.createOscillator();
+    oscillator.type = 'triangle';
+    oscillator.frequency.value = 500;
+    oscillator.connect(audioContext.destination);
+    oscillator.start();
+
+    setTimeout(() => { oscillator.stop(); }, duration);
+  } 
 
   function setupWakeLock()
   {
