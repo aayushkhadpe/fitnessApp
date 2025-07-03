@@ -56,11 +56,13 @@ def create_workout_session_steps(workout_session: WorkoutSession) -> WorkoutSess
     before = 10
 
     for circuit in workout_session.workout.workoutcircuit_set.all():
+
         for setnumber in range(1, circuit.sets + 1):
 
             circuitexercises = circuit.circuitexercise_set.all()
             lastelement = circuitexercises.last()
             firstelement = circuitexercises.first()
+            exercisenumber = 1
             
             for circuitexercise in circuitexercises:
 
@@ -77,9 +79,11 @@ def create_workout_session_steps(workout_session: WorkoutSession) -> WorkoutSess
                     sequence_number = seq,
                     first_flag = (circuitexercise == firstelement),
                     last_flag = (circuitexercise == lastelement),
+                    exercise_number = exercisenumber,
                 )
 
                 seq += 1
                 before = after
+                exercisenumber += 1
     
     return workout_session

@@ -37,7 +37,7 @@ class WorkoutSessionDoView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        steps = context['object'].workoutsessionstep_set.all().values('id', 'set', 'circuit__name', 'exercise__name', 'workoutSession__id', 'sequence_number', 'rest_before', 'circuit_exercise__mode', 'circuit_exercise__time', 'circuit_exercise__reps')
+        steps = context['object'].workoutsessionstep_set.all().values('id', 'set', 'circuit__name', 'exercise__name', 'workoutSession__id', 'sequence_number', 'rest_before', 'circuit_exercise__mode', 'circuit_exercise__time', 'circuit_exercise__reps', 'exercise_number')
         context['steps'] = list(steps)
 
         return context

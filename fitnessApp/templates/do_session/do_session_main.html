@@ -215,7 +215,7 @@
 
     document.getElementById("id-progress-bar-circuit").innerText = steps[index].circuit__name;
     document.getElementById("id-progress-bar-set").innerText = steps[index].set;
-    document.getElementById("id-progress-bar-exercise").innerText = currentStep;
+    document.getElementById("id-progress-bar-exercise").innerText = steps[index].exercise_number;
 
     document.getElementById("id-fraction-numerator").innerText = currentStep;
     document.getElementById("id-fraction-denominator").innerText = steps.length;
@@ -335,6 +335,7 @@
     {
       set_display_none("id-do-session-step");
       set_display_block("id-do-session-finish");
+      doTimer.stopTimer();
     }        
     else
     {

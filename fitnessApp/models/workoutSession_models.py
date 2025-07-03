@@ -25,6 +25,7 @@ class WorkoutSessionStep(models.Model):
     sequence_number = models.IntegerField(default = 0)
     first_flag = models.BooleanField(default=False)
     last_flag = models.BooleanField(default=False)
+    exercise_number = models.IntegerField(default = 0)
 
     class Meta:
         ordering = ['sequence_number']
