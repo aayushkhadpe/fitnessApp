@@ -18,6 +18,8 @@
 
 <script>
 
+  /************ Classes ************/
+
   class DoTimer
   {
     #isTimer = true;
@@ -49,25 +51,32 @@
 
       var textElementId = this.#textElementId;
       var easyTimer = this.#easyTimer;
+      var doneCallback = this.#doneCallback;
 
       this.#easyTimer.addEventListener('secondsUpdated', function (e) {
         document.getElementById(textElementId).textContent = formatTime(easyTimer.getTotalTimeValues().seconds);
       });
 
       this.#easyTimer.addEventListener('targetAchieved', function (e) {
-        document.getElementById(textElementId).textContent = "Done";
+        console.log("start work will be called");
+//        document.getElementById(textElementId).textContent = "Done";
+        doneCallback();
       });
     }
 
     skipTimer()
-    {
+    { 
+      if (this.#easyTimer == null)
+        return;
 
+      this.stopTimer();
+      this.#doneCallback();
     }
 
     restartTimer() 
     {
       if (this.#easyTimer != null)
-        this.#easyTimer.stop();
+        this.stopTimer();
       this.#createTimer();
     }
 
@@ -97,8 +106,12 @@
     }
   }
 
+  /************ Global variables ************/
+
   var audioContext = null;
   var doTimer = new DoTimer();
+
+  var wakeLock = null;
 
   var steps  = JSON.parse(document.getElementById('id-steps-json').textContent);
   var numSteps = steps.length;
@@ -109,27 +122,7 @@
     currentStep = 1;
   }
 
-  setupWakeLock();
-
-  const pauseButton = document.getElementById("id-pause-button");
-
-  pauseButton.addEventListener("click", () =>
-  {
-    
-    if (doTimer.isPaused()) 
-    {
-      document.getElementById("id-pause-resume-button-icon").classList.remove("bi-pause-circle");
-      document.getElementById("id-pause-resume-button-icon").classList.add("bi-play-circle");
-    }
-    else 
-    {
-      document.getElementById("id-pause-resume-button-icon").classList.add("bi-pause-circle");
-      document.getElementById("id-pause-resume-button-icon").classList.remove("bi-play-circle");
-    }
-  }
-  );
-
-  // FUNCTIONS
+  /************ Functions ************/
 
   function setupWakeLock()
   {
@@ -144,10 +137,7 @@
       console.log("Wake lock is not supported by this browser.");
     }
 
-    // Create a reference for the Wake Lock.
-    var wakeLock = null;
-
-    // create an async function to request a wake lock
+    // create an async function to request a wake lock on visibility change
     
     document.addEventListener("visibilitychange", async () =>
     {
@@ -188,6 +178,8 @@
 
     updateStep();
 
+    setupWakeLock();
+    
     requestWakeLock();
   }
 
@@ -224,28 +216,15 @@
     {
       document.getElementById("id-mode-type-display").innerText = "TIME";
       document.getElementById("id-mode-quantity-display").innerText = steps[index].circuit_exercise__time;
-      document.getElementById("id-mode-quantity-units").innerText = " seconds"
+      document.getElementById("id-mode-quantity-units").innerText = " secs"
     }
 
     updateProgress();
+    
     startRest();
     
     document.getElementById("id-pause-resume-button-icon").classList.add("bi-pause-circle");
     document.getElementById("id-pause-resume-button-icon").classList.remove("bi-play-circle");
-
-    // document.getElementById("field-rest").innerText = steps[index].rest_time;
-    // document.getElementById("field-quantity").innerText = steps[index].mode == "TIME" ? steps[index].time : steps[index].reps;
-    // document.getElementById("field-mode").innerText = steps[index].mode == "TIME" ? "secs" : "reps";
-
-    // totalSeconds = steps[index].rest_time;
-    // check = steps[index].mode;
-    // exerciseTime = steps[index].time;
-    // modeQuantity = steps[index].reps;
-
-    // remaining = totalSeconds;
-    // //setProgress(1.0 - (1.0 / totalSeconds));
-    // startTimer();
-    // updateProgress();
 
   }
 
@@ -255,8 +234,40 @@
     set_display_none("id-div-timer-reps");
     set_display_null("id-div-timer-rest");
 
-    doTimer.startTimer(true, steps[currentStep - 1].rest_before, "id-time-text-rest", "circle-progress-rest", null);
+    document.getElementById("id-rest-div").classList.remove("opacity-50");
+    document.getElementById("id-work-div").classList.add("opacity-50");
 
+    doTimer.startTimer(true, steps[currentStep - 1].rest_before, "id-time-text-rest", "circle-progress-rest", startWork);
+  }
+
+  function startWork() 
+  { 
+    console.log("start work called");
+    set_display_none("id-div-timer-rest");
+    if (steps[currentStep - 1].circuit_exercise__mode == "REPS")
+      startRepsExercise();
+    else
+      startTimedExercise();
+
+    document.getElementById("id-rest-div").classList.add("opacity-50");
+    document.getElementById("id-work-div").classList.remove("opacity-50");
+  }
+
+  function startRepsExercise()
+  {
+    set_display_none("id-div-timer-time");
+    set_display_null("id-div-timer-reps");
+    doTimer.startTimer(false, 0, "id-time-text-reps", "circle-progress-reps", null);
+  }
+
+  function startTimedExercise() {
+    set_display_none("id-div-timer-reps");
+    set_display_null("id-div-timer-time");
+    doTimer.startTimer(true, steps[currentStep - 1].circuit_exercise__time, "id-time-text-time", "circle-progress-time", doneWork);
+  }
+
+  function doneWork() {
+    nextStep();
   }
 
   function formatTime(seconds)
@@ -274,6 +285,22 @@
   function playPauseTimer() 
   {
     doTimer.playPauseTimer();
+
+    if (doTimer.isPaused()) 
+    {
+      document.getElementById("id-pause-resume-button-icon").classList.remove("bi-pause-circle");
+      document.getElementById("id-pause-resume-button-icon").classList.add("bi-play-circle");
+    }
+    else 
+    {
+      document.getElementById("id-pause-resume-button-icon").classList.add("bi-pause-circle");
+      document.getElementById("id-pause-resume-button-icon").classList.remove("bi-play-circle");
+    }    
+  }
+
+  function skipTimer() 
+  {
+    doTimer.skipTimer();
   }
 
   function previousStep() 
