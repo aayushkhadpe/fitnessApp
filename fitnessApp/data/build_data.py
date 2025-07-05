@@ -14,6 +14,7 @@ class ExerciseInfo:
     exercise_id: int
     exercise_mode: str
     exercise_quantity: int
+    exercise_rest: int
 
 @dataclass
 class CircuitInfo:

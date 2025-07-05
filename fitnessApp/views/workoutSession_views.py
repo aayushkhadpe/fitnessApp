@@ -134,7 +134,8 @@ class WorkoutSessionBuildView(FormView):
 
                 exercise_info = ExerciseInfo(exercise_id = exercise_id,
                                             exercise_mode = form.cleaned_data['exercise_mode_' + str(circuitIndex + 1) + "_" + str(exerciseIndex + 1)],
-                                            exercise_quantity = form.cleaned_data['exercise_quantity_' + str(circuitIndex + 1) + "_" + str(exerciseIndex + 1)]
+                                            exercise_quantity = form.cleaned_data['exercise_quantity_' + str(circuitIndex + 1) + "_" + str(exerciseIndex + 1)],
+                                            exercise_rest = form.cleaned_data['exercise_rest_' + str(circuitIndex + 1) + "_" + str(exerciseIndex + 1)],
                                             )
                     
                 circuit_info.exercises.append(exercise_info)

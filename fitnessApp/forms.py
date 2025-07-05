@@ -115,6 +115,7 @@ class WorkoutSessionBuildForm(forms.Form):
         for circuitIndex in range (0, 5):
             for exerciseIndex in range (0, 15):
                 self.fields[f'exercise_quantity_{circuitIndex + 1}_{exerciseIndex + 1}'] = forms.IntegerField()
+                self.fields[f'exercise_rest_{circuitIndex + 1}_{exerciseIndex + 1}'] = forms.IntegerField()
                 self.fields[f'exercise_mode_{circuitIndex + 1}_{exerciseIndex + 1}'] = forms.ChoiceField(choices=MODE_CHOICES,  widget=forms.RadioSelect(), initial=1)
 
         clients = FitnessAppPerson.objects.filter(coach=user.person).order_by('first_name')

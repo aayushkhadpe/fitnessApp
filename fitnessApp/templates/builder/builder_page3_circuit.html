@@ -8,6 +8,9 @@
                     <input id="id_exercise_name_{{ circuit_num }}_{{ forloop.counter }}" type="text" class="form-control text single-line bg-secondary-subtle"
                         value="{{ forloop.counter }}. Db Push up Plank Squat Db Push up Plank Squat Db Push up Plank Squat Db Push up Plank Squat " disabled>
                 </div>
+                <div class="col-2 ps-0">
+                    <input id="id_exercise_rest_{{ circuit_num }}_{{ forloop.counter }}" type="number" inputmode="numeric" name="exercise_rest_{{ circuit_num }}_{{ forloop.counter }}" class="form-control" value="60" aria-label="Rest" min="1">
+                </div>
                 <div class="col-auto ps-0 pe-1">
                     <div name="exercise_mode_{{ circuit_num }}_{{ forloop.counter }}_div" class="btn-group" role="group" aria-label="Basic radio toggle button group">     
                         <input type="radio" class="btn-check" value="REPS" name="exercise_mode_{{ circuit_num }}_{{ forloop.counter }}" id="reps_{{ circuit_num }}_{{ forloop.counter }}" autocomplete="off" onclick="switchModeQuantity('REPS', '{{ circuit_num }}' , '{{ forloop.counter }}')">

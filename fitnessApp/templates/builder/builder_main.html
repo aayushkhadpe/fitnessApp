@@ -108,6 +108,8 @@ function page_2_next()
     const numCircuits = formData.get("number_of_circuits");
     var defaultReps = formData.get('exercise_reps');
     var defaultTime = formData.get('exercise_time');
+    var defaultExerciseRest = formData.get('exercise_rest');
+    var defaultSetRest = formData.get('set_rest');
 
     for (i = 0; i < 5; i++)
     { 
@@ -125,14 +127,21 @@ function page_2_next()
 
             var quantityId = "id_exercise_quantity_" + (i + 1) + "_" + (j + 1);
             var exerciseNameId = "id_exercise_name_" + (i + 1) + "_" + (j + 1);
+            var exerciseRestId = "id_exercise_rest_" + (i + 1) + "_" + (j + 1);
             var quantityName = "exercise_quantity_" + (i + 1) + "_" + (j + 1);
             var circuitExerciseId = "div_circuits_exercise_" + (i + 1) + "_" + (j + 1);
             var quantityElement = document.getElementById(quantityId);
             var exerciseNameElement = document.getElementById(exerciseNameId);
+            var exerciseRestElement = document.getElementById(exerciseRestId);
 
             // in case the quantity is empty or invalid, set it to the default reps or time depending on the setting
             // of the corresponding mode toggle
             var isReps = document.getElementById("reps_" + (i + 1) + "_" + (j + 1)).checked
+
+            if (j + 1 < numberOfExercises)
+              exerciseRestElement.value = defaultExerciseRest;
+            else
+              exerciseRestElement.value = defaultSetRest;
 
             if (formData.get(quantityName) == '' || quantityElement.checkValidity() == false)
               quantityElement.value = isReps ? defaultReps : defaultTime;
@@ -141,6 +150,7 @@ function page_2_next()
             {
               set_display_null(circuitExerciseId);
               quantityElement.setAttribute('required', '');
+              exerciseRestElement.setAttribute('required', '');
               if (!isNaN(exerciseItems[j]))
               {
                 exerciseNameElement.value = (j+1) + ". " + exerciseOptions[exerciseItems[j]].name;
@@ -154,6 +164,7 @@ function page_2_next()
             {
               set_display_none(circuitExerciseId);
               quantityElement.removeAttribute('required');
+              exerciseRestElement.removeAttribute('required');
               exerciseNameElement.value = null;
             }
         }
@@ -178,6 +189,8 @@ function reset_circuit(formData, i)
 {
     var defaultReps = formData.get('exercise_reps');
     var defaultTime = formData.get('exercise_time');
+    var defaultExerciseRest = formData.get('exercise_rest');
+    var defaultSetRest = formData.get('set_rest');
 
     for (j = 0; j < 15; j++)
     {
@@ -187,6 +200,12 @@ function reset_circuit(formData, i)
         var circuitExerciseId = "div_circuits_exercise_" + (i + 1) + "_" + (j + 1);
         var quantityElement = document.getElementById(quantityId);
         var exerciseNameElement = document.getElementById(exerciseNameId);
+        var exerciseRestElement = document.getElementById(exerciseRestId);
+
+        if (j + 1 < numberOfExercises)
+          exerciseRestElement.value = defaultExerciseRest;
+        else
+          exerciseRestElement.value = defaultSetRest;
 
         // set the quantity to reps or time depending on the setting of the corresponding mode toggle in case it is empty
         var isReps = document.getElementById("reps_" + (i + 1) + "_" + (j + 1)).checked
@@ -195,6 +214,7 @@ function reset_circuit(formData, i)
           quantityElement.value = isReps ? defaultReps : defaultTime;;
 
         quantityElement.removeAttribute('required');
+        exerciseRestElement.removeAttribute('required');
         exerciseNameElement.value = null;
 
         set_display_null(circuitExerciseId);
