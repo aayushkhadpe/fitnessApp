@@ -9,7 +9,7 @@
 <!-- Create the javascript element with the exercises from the context -->
 {{ exercises|json_script:"id_exercises_json" }}
 
-<form id="build_form" method="post">
+<form id="build_form" method="post" onsubmit="disableSubmitButton()">
   {% csrf_token %}
 
   <div id="id-build-page-outer" class="build-page-outer">
@@ -250,6 +250,13 @@ function hideElement(id)
 function showElement(id)
 {
   document.getElementById(id).style.visibility = "visible";
+}
+
+function disableSubmitButton()
+{
+    var btn = document.getElementById('id-builder-submit-button');
+    btn.disabled = true;
+    btn.innerText = 'Creating...';
 }
 
 var currentDate = new Date();

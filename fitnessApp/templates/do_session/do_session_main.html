@@ -253,6 +253,8 @@
 
     document.getElementById("id-rest-div").classList.remove("opacity-50");
     document.getElementById("id-work-div").classList.add("opacity-50");
+    document.getElementById("id-exercise-div").classList.add("opacity-50");
+    set_display_null("id-nextup-div");
 
     doTimer.startTimer(true, steps[currentStep - 1].rest_before, "id-time-text-rest", "circle-progress-rest", startWork);
   }
@@ -268,6 +270,9 @@
 
     document.getElementById("id-rest-div").classList.add("opacity-50");
     document.getElementById("id-work-div").classList.remove("opacity-50");
+    document.getElementById("id-exercise-div").classList.remove("opacity-50");
+    set_display_none("id-nextup-div");
+
   }
 
   function startRepsExercise()

@@ -1,6 +1,8 @@
+from django.db import transaction
 from fitnessApp.data import *
 from fitnessApp.models import *
 
+@transaction.atomic
 def create_workout(workout_info: WorkoutInfo) -> Workout:
 
     # create workout
@@ -33,6 +35,7 @@ def create_workout(workout_info: WorkoutInfo) -> Workout:
 
     return workout
 
+@transaction.atomic
 def create_workout_session(session_info: SessionInfo, workout_info: WorkoutInfo) -> WorkoutSession:
 
     # create the workout
@@ -51,6 +54,7 @@ def create_workout_session(session_info: SessionInfo, workout_info: WorkoutInfo)
 
     return workout_session
 
+@transaction.atomic
 def create_workout_session_steps(workout_session: WorkoutSession) -> WorkoutSession:
     seq = 1
     before = 10
