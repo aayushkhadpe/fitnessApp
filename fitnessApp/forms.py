@@ -1,8 +1,7 @@
 from django import forms
 from datetime import date
-from django.forms import CharField, EmailField
-from django.contrib.auth.forms import UserCreationForm, UsernameField
-from fitnessApp.choices import MODE_CHOICES
+from django.forms import CharField
+from fitnessApp.choices import *
 from fitnessApp.models import Exercise, Workout, WorkoutSession, FitnessAppUser, FitnessAppPerson
 
 class ExerciseCreateForm(forms.ModelForm):
@@ -85,11 +84,7 @@ CIRCUITS = [
     ('5', '5'),
 ]
 
-class WorkoutSessionBuildForm(forms.Form):
-
-    session_client = forms.ChoiceField()
-    session_date = forms.DateField()
-    session_time = forms.TimeField()
+class BaseBuildForm(forms.Form):
 
     number_of_circuits = forms.ChoiceField(choices=CIRCUITS,  widget=forms.RadioSelect(), initial=1)
     circuit_sets = forms.ChoiceField(choices=SETS,  widget=forms.RadioSelect(), initial=3)
@@ -118,5 +113,29 @@ class WorkoutSessionBuildForm(forms.Form):
                 self.fields[f'exercise_rest_{circuitIndex + 1}_{exerciseIndex + 1}'] = forms.IntegerField()
                 self.fields[f'exercise_mode_{circuitIndex + 1}_{exerciseIndex + 1}'] = forms.ChoiceField(choices=MODE_CHOICES,  widget=forms.RadioSelect(), initial=1)
 
+class WorkoutSessionBuildForm(BaseBuildForm):
+
+    session_client = forms.ChoiceField()
+    session_date = forms.DateField()
+    session_time = forms.TimeField()
+
+    def __init__(self, *args, **kwargs):
+        
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
         clients = FitnessAppPerson.objects.filter(coach=user.person).order_by('first_name')
         self.fields['session_client'].choices = [("", "Select a client...")] + [(client.id, (client.first_name + " " + client.last_name)) for client in clients]
+
+
+class WorkoutBuildForm(BaseBuildForm):
+
+    workout_name = forms.CharField(required = True, max_length=200)
+    workout_duration = forms.IntegerField(required = True, min_value=5, max_value=240, initial=60)
+    workout_target = forms.ChoiceField(required = True, choices=TARGET_CHOICES)
+    workout_difficulty_level = forms.ChoiceField(required = True, choices=DIFFICULTY_LEVEL_CHOICES)
+
+    def __init__(self, *args, **kwargs):
+        
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)

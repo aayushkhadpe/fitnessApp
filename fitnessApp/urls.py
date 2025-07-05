@@ -14,10 +14,8 @@ urlpatterns = [
 
     path("workouts/<int:workout_id>/workoutsession/create", WorkoutSessionCreateView.as_view(), name="workoutsession-create"),
 
-    path("workoutsessions/<int:pk>/run", WorkoutSessionRunView.as_view(), name="workoutsession-run"),  
-    path("workoutsessions/<int:workoutsession_id>/run/<int:sequencenumber>", WorkoutSessionStepView.as_view(), name="workoutsession-step"),  
-
-    path("builder", WorkoutSessionBuildView.as_view(), name="builder"),
+    path("build/session", WorkoutSessionBuildView.as_view(), name="build-session"),
+    path("build/workout", WorkoutBuildView.as_view(), name="build-workout"),
 
     path("profile", ProfileView.as_view(), name="profile"),
     path("profile/<int:pk>/details", AccountUpdateView.as_view(), name="account-details"),  

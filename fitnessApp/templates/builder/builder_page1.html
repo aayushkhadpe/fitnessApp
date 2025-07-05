@@ -2,31 +2,65 @@
 
 <div id="page_1" class="build-page-1">
 
-  <!-- Client row -->
-  <div class="row mb-3">
-    <div class="col">
-      <div class="form-floating">
-        {% render_field form.session_client class="form-control" %}
-        <label for="floatingclient">Client</label>
+  {% if buildMode == "SESSION" %}
+    <!-- Client row -->
+    <div class="row mb-3">
+      <div class="col">
+        <div class="form-floating">
+          {% render_field form.session_client class="form-control" %}
+          <label for="floatingclient">Client</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Date/time row -->
-  <div class="row mb-3">
-    <div class="col">
-      <div class="form-floating">
-        <input name="session_date" id="id-session-date" type="date" aria-label="Date" class="form-control text-left">
-        <label for="floatingdate">Date</label>
+    <!-- Date/time row -->
+    <div class="row mb-3">
+      <div class="col">
+        <div class="form-floating">
+          <input name="session_date" id="id-session-date" type="date" aria-label="Date" class="form-control text-left">
+          <label for="floatingdate">Date</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating">
+          <input name="session_time" id="id-session-time" type="time" value="08:00" aria-label="Time" class="form-control">
+          <label for="floatingtime">Time</label>
+        </div>
       </div>
     </div>
-    <div class="col">
-      <div class="form-floating">
-        <input name="session_time" id="id-session-time" type="time" value="08:00" aria-label="Time" class="form-control">
-        <label for="floatingtime">Time</label>
+  {% else %}
+    <!-- Name/Duration row -->
+    <div class="row mb-3">
+      <div class="col-9">
+        <div class="form-floating">
+          <input name="workout_name" class="form-control" required>
+          <label for="floatingworkoutname">Name</label>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-floating">
+          <input name="workout_duration" type="number" inputmode="numeric" step="5" value="60" class="form-control" required min=5 max=300>
+          <label for="floatingworkoutduration">Duration</label>
+        </div>
       </div>
     </div>
-  </div>
+
+    <!-- Difficulty/Target row -->
+    <div class="row mb-3">
+      <div class="col">
+        <div class="form-floating">
+          {% render_field form.workout_difficulty_level class="form-control" %}
+          <label for="floatingdifficultylevel">Difficulty Level</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating">
+          {% render_field form.workout_target class="form-control" %}
+          <label for="floatingtarget">Target</label>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 
   <!-- Number of circuits and number of sets row -->
   <div class="row mb-3">

@@ -3,6 +3,7 @@ DIFFICULTY_LEVEL_CHOICES = {
     "BEGINNER": "Beginner",
     "INTERMEDIATE": "Intermediate",
     "ADVANCED": "Advanced",
+    "UNSPECIFIED": "Unspecified",
 }
 
 TARGET_CHOICES = {
@@ -17,6 +18,7 @@ TARGET_CHOICES = {
     "SPEEDAGILITY": "Speed Agility",
     "UPPERBODY": "Upper Body",
     "WHOLEBODY": "Whole Body",
+    "UNSPECIFIED": "Unspecified",
 }
 
 GENDER_CHOICES = {

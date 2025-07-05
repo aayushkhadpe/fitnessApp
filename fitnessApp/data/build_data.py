@@ -24,6 +24,9 @@ class CircuitInfo:
 @dataclass
 class WorkoutInfo:
     name: str
+    duration: int
+    target: str
+    difficulty_level: str
     num_circuits: int
     num_sets: int
     set_rest: int

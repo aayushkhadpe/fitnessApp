@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% load widget_tweaks %}
 
-{% block title %}Create Session{% endblock %}
+{% block title %}{% if buildMode == "SESSION" %}Create Session{% else %}Create Workout{% endif %}{% endblock %}
 
 {% block content %}
 
@@ -277,9 +277,13 @@ function disableSubmitButton()
     btn.innerText = 'Creating...';
 }
 
-var currentDate = new Date();
-document.getElementById('id-session-date').value = currentDate.getFullYear() + "-" + String(currentDate.getMonth()+1).padStart(2, "0") + "-" + String(currentDate.getDate()).padStart(2, "0");
-document.getElementById('id-session-time').value = String((currentDate.getHours()+1) % 24).padStart(2, "0") + ":00";
+var buildMode = "{{ buildMode }}";
+if (buildMode == "SESSION")
+{
+  var currentDate = new Date();
+  document.getElementById('id-session-date').value = currentDate.getFullYear() + "-" + String(currentDate.getMonth()+1).padStart(2, "0") + "-" + String(currentDate.getDate()).padStart(2, "0");
+  document.getElementById('id-session-time').value = String((currentDate.getHours()+1) % 24).padStart(2, "0") + ":00";
+}
 
 // parse the json for all exercises. had to parse twice as the string was enclosed in another string
 var options = JSON.parse(document.getElementById('id_exercises_json').textContent);
