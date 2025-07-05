@@ -35,3 +35,5 @@ class CircuitExercise(models.Model):
     reps = models.IntegerField(default = 0)
     time = models.IntegerField(default = 0)
     recommended_weight = models.IntegerField(default = 0, null=True)
+    exercise_rest = models.IntegerField(default = 30)
+

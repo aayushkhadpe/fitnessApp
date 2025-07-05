@@ -16,6 +16,7 @@ def create_workout(workout_info: WorkoutInfo) -> Workout:
                                                         sets=workout_info.num_sets,
                                                         set_rest=workout_info.set_rest,
                                                         exercise_rest=workout_info.exercise_rest
+
                                                         )
         workout_circuit.save()
 
@@ -23,7 +24,8 @@ def create_workout(workout_info: WorkoutInfo) -> Workout:
         for exercise_info in circuit_info.exercises:
             circuit_exercise = CircuitExercise.objects.create(circuit=workout_circuit,
                                                               exercise_id=exercise_info.exercise_id,
-                                                              mode=exercise_info.exercise_mode
+                                                              mode=exercise_info.exercise_mode,
+                                                              exercise_rest=exercise_info.exercise_rest
                                                               )
             # set the reps or time based on mode
             if exercise_info.exercise_mode == "REPS":
@@ -70,7 +72,7 @@ def create_workout_session_steps(workout_session: WorkoutSession) -> WorkoutSess
             
             for circuitexercise in circuitexercises:
 
-                after = circuit.set_rest if circuitexercise == lastelement else circuit.exercise_rest
+                after = circuitexercise.exercise_rest
 
                 WorkoutSessionStep.objects.create(
                     workoutSession = workout_session,

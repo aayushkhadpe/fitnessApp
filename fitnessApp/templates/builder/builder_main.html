@@ -190,22 +190,20 @@ function reset_circuit(formData, i)
     var defaultReps = formData.get('exercise_reps');
     var defaultTime = formData.get('exercise_time');
     var defaultExerciseRest = formData.get('exercise_rest');
-    var defaultSetRest = formData.get('set_rest');
 
     for (j = 0; j < 15; j++)
     {
         var quantityId = "id_exercise_quantity_" + (i + 1) + "_" + (j + 1);
         var exerciseNameId = "id_exercise_name_" + (i + 1) + "_" + (j + 1);
+        var exerciseRestId = "id_exercise_rest_" + (i + 1) + "_" + (j + 1);
         var quantityName = "exercise_quantity_" + (i + 1) + "_" + (j + 1);
         var circuitExerciseId = "div_circuits_exercise_" + (i + 1) + "_" + (j + 1);
         var quantityElement = document.getElementById(quantityId);
         var exerciseNameElement = document.getElementById(exerciseNameId);
         var exerciseRestElement = document.getElementById(exerciseRestId);
 
-        if (j + 1 < numberOfExercises)
-          exerciseRestElement.value = defaultExerciseRest;
-        else
-          exerciseRestElement.value = defaultSetRest;
+        exerciseRestElement.value = defaultExerciseRest;
+        
 
         // set the quantity to reps or time depending on the setting of the corresponding mode toggle in case it is empty
         var isReps = document.getElementById("reps_" + (i + 1) + "_" + (j + 1)).checked
