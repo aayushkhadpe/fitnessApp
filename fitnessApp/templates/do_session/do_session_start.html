@@ -1,6 +1,6 @@
 <div id="id-do-session-start" class="do-session-start">
     <p>Turn off silent mode on your phone, and turn up the volume to hear timer beeps.</p>
     <p>
-        <button class="btn btn-primary" onClick="startWorkout()" type="submit">Start Workout!</button>
+        <button class="btn btn-primary" onClick="startWorkout()" type="submit">{% if object.current_step_sequence == 1 %}Start Workout! {% else %}Resume Workout{% endif %}</button>
     </p>
 </div>

@@ -1,18 +1,24 @@
 <div id="page_3" class="build-page-3" style="display: none">
 
-{% include 'builder/builder_page3_circuit.html' with circuit_num=1 %}
-{% include 'builder/builder_page3_circuit.html' with circuit_num=2 %}
-{% include 'builder/builder_page3_circuit.html' with circuit_num=3 %}
-{% include 'builder/builder_page3_circuit.html' with circuit_num=4 %}
-{% include 'builder/builder_page3_circuit.html' with circuit_num=5 %}
+    <div class="row mb-3">
+    <div class="col ps-3">
+      <span class="text-secondary"><small>Configure rest time, mode, and duration/reps for each exercise.</small></span>
+    </div>
+  </div>
 
-<div class="row" style="position: sticky; bottom: 0rem;">
-    <div class="col">
-      <button class="btn btn-success" type="button" onclick="page_3_previous()">Back</button>
-    </div>
-    <div class="col-auto">
-        <button id="id-builder-submit-button" class="btn btn-success" type="submit">Create</button>
-    </div>
-</div>
+  {% include 'builder/builder_page3_circuit.html' with circuit_num=1 %}
+  {% include 'builder/builder_page3_circuit.html' with circuit_num=2 %}
+  {% include 'builder/builder_page3_circuit.html' with circuit_num=3 %}
+  {% include 'builder/builder_page3_circuit.html' with circuit_num=4 %}
+  {% include 'builder/builder_page3_circuit.html' with circuit_num=5 %}
+
+  <div class="row" style="position: sticky; bottom: 0rem;">
+      <div class="col">
+        <button class="btn btn-success" type="button" onclick="page_3_previous()">Back</button>
+      </div>
+      <div class="col-auto">
+          <button id="id-builder-submit-button" class="btn btn-success" type="submit">Create</button>
+      </div>
+  </div>
 
 </div>

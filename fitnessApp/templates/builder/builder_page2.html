@@ -1,7 +1,11 @@
 {% load widget_tweaks %}
 
 <div id="page_2" class="build-page-2" style="display: none">
-  
+  <div class="row mb-3">
+    <div class="col ps-3">
+      <span class="text-secondary"><small>Enter exercises for each circuit. You can configure each exercise in the next step.</small></span>
+    </div>
+  </div>
   {% include 'builder/builder_page2_circuit.html' with ckt_num=1 %}
   {% include 'builder/builder_page2_circuit.html' with ckt_num=2 %}
   {% include 'builder/builder_page2_circuit.html' with ckt_num=3 %}
