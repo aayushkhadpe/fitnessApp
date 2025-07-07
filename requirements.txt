@@ -4,3 +4,4 @@ crispy-bootstrap5
 python-dotenv
 django-widget-tweaks
 mysqlclient
+djangorestframework

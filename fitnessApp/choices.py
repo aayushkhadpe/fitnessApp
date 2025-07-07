@@ -34,6 +34,7 @@ MODE_CHOICES = {
 
 WORKOUT_SESSION_STATUS_CHOICES = {
     "CREATED": "Created",
+    "INPROGRESS": "In Progress",
     "COMPLETED": "Completed",
 }
 

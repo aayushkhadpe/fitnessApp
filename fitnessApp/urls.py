@@ -1,4 +1,5 @@
 from django.urls import path
+from fitnessApp.api import APIWorkoutSessionDetail
 from fitnessApp.views import *
 
 urlpatterns = [
@@ -26,5 +27,8 @@ urlpatterns = [
     path("clients/<int:pk>/details", ClientUpdateView.as_view(), name="client-details"),
 
     path("workoutsessions/<int:pk>/do", WorkoutSessionDoView.as_view(), name="workoutsession-do"),  
+
+    # api
+    path("api/workoutsessions/<int:pk>", APIWorkoutSessionDetail.as_view()),  
 
 ]

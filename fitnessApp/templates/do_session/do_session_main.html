@@ -121,7 +121,11 @@
 
   var steps  = JSON.parse(document.getElementById('id-steps-json').textContent);
   var numSteps = steps.length;
-  var currentStep = "{{ object.workoutSession.current_step_sequence }}";
+
+  var workoutSessionId = "{{ object.id }}";
+  var currentStep = "{{ object.current_step_sequence }}";
+
+  var csrfToken = getCookie('csrftoken');
 
   if (currentStep == '')
   {
@@ -198,6 +202,8 @@
     setupWakeLock();
     
     requestWakeLock();
+    
+    updateWorkoutSession(workoutSessionId, {status: "INPROGRESS"});
   }
 
   function updateStep() 
@@ -330,6 +336,7 @@
     if (currentStep != 1)
     {
       currentStep--;
+      updateWorkoutSession(workoutSessionId, {current_step_sequence: currentStep});
       updateStep();
     }
   }
@@ -337,14 +344,16 @@
   function nextStep() 
   {
     if (currentStep == steps.length)
-    {
+    { 
       set_display_none("id-do-session-step");
       set_display_block("id-do-session-finish");
       doTimer.stopTimer();
+      updateWorkoutSession(workoutSessionId, {status: "COMPLETED"});
     }        
     else
     {
       currentStep++;
+      updateWorkoutSession(workoutSessionId, {current_step_sequence: currentStep});
       updateStep();
     }
   }
@@ -381,6 +390,46 @@
     document.getElementById('id-progress-bar').style.width = progress + '%';
   }
 
+  async function updateWorkoutSession(id, data)
+  {
+    try {
+      const response = await fetch(`/fitnessApp/api/workoutsessions/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken, 
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`HTTP error! status: ${response.status}, details: ${JSON.stringify(errorData)}`);
+      }
+
+      const updatedResource = await response.json();
+      return updatedResource;
+    } catch (error) {
+      console.error('Error updating resource:', error);
+      throw error;
+    }
+  }
+
+  function getCookie(name)
+  {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
 </script>
 
 {% endblock %}

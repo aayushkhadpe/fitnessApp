@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'widget_tweaks',
     'dotenv',
+    'rest_framework',
     'accounts',
     'fitnessApp',
 ]
