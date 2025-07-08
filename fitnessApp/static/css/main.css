@@ -7,10 +7,42 @@
   --fitnessapp-text-color: #ffffff; // Primary text color
   */
 
-  --fitnessapp-session-bg-content: #718C9E;
-  --fitnessapp-session-bg-header: #495D6A;
-  --fitnessapp-session-bg-content-light: #C3CED6;
-  --fitnessapp-session-bg-content-lighter: #e6e6e6;
+  --fitnessapp-color-palette-content: #718C9E;
+  --fitnessapp-color-palette-header: #495D6A;
+  --fitnessapp-color-palette-content-light: #C3CED6;
+  --fitnessapp-color-palette-content-lighter: #e6e6e6;
+}
+
+.fitnessapp-bg-color-content {
+  background-color: var(--fitnessapp-color-palette-content);
+}
+
+.fitnessapp-bg-color-header {
+  background-color: var(--fitnessapp-color-palette-header);
+}
+
+.fitnessapp-bg-color-content-light {
+  background-color: var(--fitnessapp-color-palette-content-light);
+}
+
+.fitnessapp-bg-color-content-lighter {
+  background-color: var(--fitnessapp-color-palette-content-lighter);
+}
+
+.fitnessapp-text-color-content {
+  color: var(--fitnessapp-color-palette-content);
+}
+
+.fitnessapp-text-color-header {
+  color: var(--fitnessapp-color-palette-header);
+}
+
+.fitnessapp-text-color-content-light {
+  color: var(--fitnessapp-color-palette-content-light);
+}
+
+.fitnessapp-text-color-content-lighter {
+  color: var(--fitnessapp-color-palette-content-lighter);
 }
 
 body {
@@ -198,7 +230,7 @@ body {
 
 .fitnessapp-progress-container {
   width: 100%;
-  background: var(--fitnessapp-session-bg-content-light);
+  background: var(--fitnessapp-color-palette-content-light);
   border-radius: 0.2rem;
   overflow: hidden;
   border: 1px solid darkgray;
@@ -209,7 +241,7 @@ body {
 .fitnessapp-progress-bar {
   height: 100%;
   width: 0%;
-  background: var(--fitnessapp-session-bg-content-header);
+  background: var(--fitnessapp-color-palette-content-header);
   text-align: center;
   color: white;
   transition: width 0.3s ease;
@@ -591,7 +623,7 @@ body {
   padding-right: 0.25rem;
 }
 
-.build-page-outer, .do-session-page-outer {
+.build-page-outer, .do-session-page-outer .home-page-outer {
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 100%;
@@ -613,14 +645,4 @@ body {
 .build-page-exercise {
 }
 
-.do-session-bg-content {
-  background-color: var(--fitnessapp-session-bg-content);
-}
 
-.do-session-bg-header {
-  background-color: var(--fitnessapp-session-bg-header);
-}
-
-.do-session-bg-content-light {
-  background-color: var(--fitnessapp-session-bg-content-light);
-}

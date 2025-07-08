@@ -34,11 +34,11 @@
 
 
 .time-text {
-  position: absolute;
+  /* position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3rem;
+  left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  font-size: 6rem;
   font-weight: bolder;
-  color: #333;
+  color: var(--fitnessapp-color-palette-header);
  }

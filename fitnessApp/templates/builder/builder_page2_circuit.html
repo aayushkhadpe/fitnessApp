@@ -1,18 +1,24 @@
 <div id="div_exercises_{{ ckt_num }}">
-    <fieldset class="border p-2 pb-0 mb-3" style="background-color:ghostwhite; border-radius: var(--bs-border-radius);">
-        <legend class="w-auto fs-6 fw-medium"><small>Circuit {{ ckt_num }}</small></legend>
-        <div class="row mb-1">
-            <div class="col">
-                <input name="exercises_{{ ckt_num }}" class="build-page-exercise" id="exercises_{{ ckt_num }}" autocomplete="off" placeholder="Start typing your exercises...">
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col text-end text-secondary">
-                <small>
+    <div class="row mb-2">
+        <div class="col border mx-3 px-3 pt-2 pb-0 mb-2 mt-1" style="background-color:ghostwhite; border-radius: var(--bs-border-radius);">
+            <div class="row mb-1">
+                <div class="col text-start text-secondary">
+                    <small>
+                        <span class="w-auto fs-6 fw-medium"><small>Circuit {{ ckt_num }}</small></span>
+                    </small>
+                </div>
+                <div class="col text-end text-secondary">
+                    <small>
                         <span>Exercises:&nbsp;</span>
                         <span id="count_exercises_{{ ckt_num }}">0</span>
-                </small>
+                    </small>
+                </div>
             </div>
-        </div>
-    </fieldset>
+            <div class="row mb-3">
+                <div class="col">
+                    <input name="exercises_{{ ckt_num }}" class="build-page-exercise" id="exercises_{{ ckt_num }}" autocomplete="off" placeholder="Start typing your exercises...">
+                </div>
+            </div>
+        </div>    
+    </div>
 </div>
