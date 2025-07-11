@@ -31,6 +31,24 @@ function switch_page(from, to) {
 
 }
 
+function switch_quantity_rest() 
+{
+    for (i = 0; i < 5; i++) {
+      for (j = 0; j < 15; j++) {
+        if (document.getElementById("id-quantity-" + (i+1) + "-" + (j+1)).style.display == "none") 
+        {
+          set_display_null("id-quantity-" + (i+1) + "-" + (j+1));
+          set_display_none("id-rest-" + (i+1) + "-" + (j+1));
+        }
+        else 
+        {
+          set_display_none("id-quantity-" + (i+1) + "-" + (j+1));
+          set_display_null("id-rest-" + (i+1) + "-" + (j+1));
+        }
+      }
+    }
+  }
+
 function page_1_next()
 {
   var form = document.getElementById("build_form");

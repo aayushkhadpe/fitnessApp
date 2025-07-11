@@ -1,10 +1,34 @@
 <div id="page_3" class="build-page-3" style="display: none">
 
     <div class="row mb-3">
-    <div class="col ps-3">
-      <span class="text-secondary"><small>Configure rest time, mode, and duration/reps for each exercise.</small></span>
+      <div class="col ps-3">
+        <span class="text-secondary"><small>Configure rest time, mode, and duration/reps for each exercise.</small></span>
+        <!-- <button class="btn btn-success" type="button" onclick="switch_quantity_rest()">Switch</button> -->
+      </div>
     </div>
+
+    <!-- <div class="row mb-3">
+      <div class="col ps-3">
+        <a class="fitnessapp-profile-item" href="#" onclick="switch_quantity_rest()"">
+            <span><small>Show Rest</small></span>
+        </a>
+      </div>
+    </div> -->
+
+    <div class="container">
+    <div class="row no-gutters align-items-center mb-1">
+      <div class="col pe-1 text-end">
+          <span class="text-secondary"><small><small>Mode&nbsp;&nbsp;&nbsp;</small></small></span>
+      </div>
+      <div class="col-2 ps-0 class-quantity text-end text-wrap" id="id-quantity-{{ circuit_num }}-{{ forloop.counter }}" style="display: null">
+          <span class="text-secondary"><small><small>Reps/time</small></small></span>
+      </div>
+      <div class="col-2 ps-0 pe-3 class-rest text-center" id="id-rest-{{ circuit_num }}-{{ forloop.counter }}" style="display: null">
+          <span class="text-secondary"><small><small>Rest</small></small></span>
+      </div>
   </div>
+  </div>
+
 
   {% include 'builder/builder_page3_circuit.html' with circuit_num=1 %}
   {% include 'builder/builder_page3_circuit.html' with circuit_num=2 %}
