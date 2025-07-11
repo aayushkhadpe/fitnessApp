@@ -45,6 +45,14 @@
   color: var(--fitnessapp-color-palette-content-lighter);
 }
 
+.fitnessapp-border-color-content {
+  border: 1px solid var(--fitnessapp-color-palette-content);
+}
+
+.fitnessapp-border-color-content-light {
+  border: 1px solid var(--fitnessapp-color-palette-content-light);
+}
+
 body {
   background: white
 }
@@ -178,12 +186,13 @@ body {
 .workout-section-heading-upcoming,
 .workout-section-heading-past,
 .workout-circuit-heading {
-  border-left: 0.30rem solid;
-  margin-top: 1.0rem;
-  margin-bottom: 1.5rem;
-  height: 1rem;
+  border-left: 0.5rem solid;
+  margin-top: 1.75rem;
+  margin-bottom: 1.0rem;
+  height: 1.25rem;
   padding-left: 0.25rem;
-  line-height: 1rem;
+  line-height: 1.25rem;
+  color: var(--fitnessapp-color-palette-header)
 }
 
 .workout-circuit-heading {

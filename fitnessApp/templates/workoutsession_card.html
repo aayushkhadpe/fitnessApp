@@ -1,33 +1,10 @@
-<div class="fitnessapp-workoutsession-card">
-    <a class="fitnessapp-profile-item" href="{% url 'workoutsession-do' item.id %}">
-        <div class="fitnessapp-workoutsession-item-outer">
-            <div class="fitnessapp-workoutsession-image-grid">
-                <img class="fitnessapp-workoutsession-image"
-                    src="https://img.youtube.com/vi/{{ item.workout.video_id }}/maxresdefault.jpg">
-            </div>
-            <!-- <div class="fitnessapp-workoutsession-name-display">
-                <h6 class="text single-line"><b>{{ item.workout.name }}</b></h6>
-            </div> -->
-            <div class="fitnessapp-workoutsession-duration-display">
-                <span><small><small>{{ item.workout.duration }} minutes</small></small></span>
-            </div>
-            <div class="fitnessapp-workoutsession-username-display">
-                <h6 class="text single-line"><b>{% if item.person == user.person %} Me {% else %} {{ item.person.first_name }} {{ item.person.last_name }}{% endif %}</b></h6>
-            </div>
-            <div class="fitnessapp-workoutsession-time-display">
-                <span><small><small>{{ item.scheduled_time }}</small></small></span>
-            </div>
+<a class="fitnessapp-profile-item" href="{% url 'workoutsession-do' item.id %}">
+    <div class="row fitnessapp-bg-color-content-lighter fitnessapp-border-color-content-light">
+         <div class="col-auto pt-2 pb-2 bg-white font-monospace">
+            <span class="text-secondary fw-bolder"><small>{% if not item.scheduled_date == today %}{{ item.scheduled_date|date:'D m/j'}}&nbsp;{% endif %}{{ item.scheduled_time|date:'h:i A'}}</small></span>
         </div>
-    </a>
-        {% if item.scheduled_date == today %}
-        <div class="fitnessapp-card-button-display">
-        <a class="fitnessapp-profile-item" href="{% url 'workoutsession-do' item.id %}">
-            <i class="bi bi-play-circle fs-2 text-danger"></i>
-        </a>
+        <div class="col pt-2 pb-2 fitnessapp-bg-color-content-lighter">
+            <span class="text-black-50 fw-bolder"><small>{{ item.person.first_name}}</small></span>
         </div>
-        {% else %}
-        <div class="fitnessapp-date-display">
-            <span><small><small>{{ item.scheduled_date }}</small></small></span>
-        </div>
-        {% endif %}
-</div>
+    </div>
+</a>    

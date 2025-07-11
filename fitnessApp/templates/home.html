@@ -7,34 +7,86 @@
 <div>
 
 {% if user.is_authenticated %}
-<h6>Hi <b>{{ user.first_name }}</b>!</h6></br></h6>
+<h6 class="fitnessapp-text-color-header">Hi <b>{{ user.first_name }}</b>!</h6>
 
-<a href="{% url 'build-session' %}">Create Session</a>
-<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<a href="{% url 'build-workout' %}">Create Workout</a>
-
-<div class="workout-section-heading-today"><small><b>TODAY'S PLAN</b></small></div>
-<div>
-{% for item in activeSessions %}
-    {% include 'workoutsession_card.html' %}
-{% empty %}
-    <p><small>Nothing planned for today. Check out some <a href="{% url 'workouts' %}">Workouts</a>.</small></p>
-{% endfor %}
+<div class="workout-section-heading-today fs-5"><small><b>Your sessions today</b></small></div>
+<div class="container-fluid overflow-scroll" style="max-height: 11rem; scrollbar-width: none;">
+    {% for item in activeSessions %}
+        {% include 'workoutsession_card.html' %}
+    {% empty %}
+        <p><small>Nothing planned for today. Check out some <a href="{% url 'workouts' %}">Workouts</a>.</small></p>
+    {% endfor %}
 </div>
 
-<div class="workout-section-heading-upcoming"><small><b>UPCOMING WORKOUTS</b></small></div>
-{% for item in upcomingSessions %}
-    {% include 'workoutsession_card.html' %}
-{% empty %}
-    <p><small>No upcoming workouts. Add some <a href="{% url 'workouts' %}">Workouts</a> to do later.</small></p>
-{% endfor %}
+<div class="workout-section-heading-past fs-5"><small><b>Do more...</b></small></div>
 
-<div class="workout-section-heading-past"><small><b>PAST WORKOUTS</b></small></div>
-{% for item in pastSessions %}
-    {% include 'workoutsession_card.html' %}
-{% empty %}
-    <p><small>Workouts you have completed will appear here.</small></p>
-{% endfor %}
+<ul class="list-group mb-3">
+    
+    <li class="list-group-item">
+        <a class="fitnessapp-profile-item" href="{% url 'build-session' %}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>Schedule a personalized session</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
+        </a>
+    </li>
+    
+    <li class="list-group-item">
+        <a class="fitnessapp-profile-item" href="{% url 'build-session' %}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>Schedule a standard session</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li class="list-group-item">
+        <a class="fitnessapp-profile-item" href="{% url 'build-workout' %}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>Create a standard workout</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
+
+        </a>
+    </li>
+
+    <li class="list-group-item">
+        <a class="fitnessapp-profile-item" href="{% url 'client-create' %}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>Register a new client</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    </ul>
+
+<div class="workout-section-heading-upcoming fs-5"><small><b>Your upcoming sessions</b></small></div>
+
+<div class="container-fluid overflow-scroll" style="scrollbar-width: none;">
+    {% for item in upcomingSessions %}
+        {% include 'workoutsession_card.html' %}
+    {% empty %}
+        <p><small>No upcoming workouts. Add some <a href="{% url 'workouts' %}">Workouts</a> to do later.</small></p>
+    {% endfor %}
+</div>
+
 {% else %}
 <p>Welcome to the Fitness App!</p>
 {% endif %}

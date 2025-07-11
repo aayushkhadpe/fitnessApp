@@ -8,35 +8,55 @@
 
         <li class="list-group-item">
             <a class="fitnessapp-profile-item" href="{% url 'account-details' user.id %}">
-                <div>
-                    My Account
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>My Account</span>
                 </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
             </a>
         </li>
 
         {% if user.person.coach %}
         <li class="list-group-item">
             <a class="fitnessapp-profile-item" href="{% url 'coach-details' user.person.coach.id %}">
-                <div>
-                    My Trainer
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>My Trainer</span>
                 </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
             </a>
         </li>
         {% endif %}
         
         <li class="list-group-item">
             <a class="fitnessapp-profile-item" href="{% url 'password_change' %}">
-                <div>
-                    Change Password
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>Change Password</span>
                 </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
             </a>
         </li>
 
         <li class="list-group-item">
             <a href="#" class="fitnessapp-profile-item" onclick="document.getElementById('logout-form').submit();">
-                <div>
-                    Logout
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span class="fw-bold">Sign out</span>
                 </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
             </a>
         </li>
 
