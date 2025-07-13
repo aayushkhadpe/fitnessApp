@@ -1,7 +1,7 @@
 <a class="fitnessapp-profile-item" href="{% url 'workoutsession-do' item.id %}">
     <div class="row fitnessapp-bg-color-content-lighter fitnessapp-border-color-content-light">
-         <div class="col-auto pt-2 pb-2 bg-white font-monospace">
-            <span class="text-secondary fw-bolder"><small>{% if not item.scheduled_date == today %}{{ item.scheduled_date|date:'D m/j'}}&nbsp;{% endif %}{{ item.scheduled_time|date:'h:i A'}}</small></span>
+        <div class="col-auto pt-2 pb-2 bg-white font-monospace">
+            <span class="text-secondary fw-bolder"><small>{{ item.scheduled_time|date:'h:i A'}}</small></span>
         </div>
         <div class="col pt-2 pb-2 fitnessapp-bg-color-content-lighter">
             <span class="text-black-50 fw-bolder"><small>{{ item.person.first_name}}</small></span>

@@ -14,13 +14,13 @@
     {% for item in activeSessions %}
         {% include 'workoutsession_card.html' %}
     {% empty %}
-        <p><small>Nothing planned for today. Check out some <a href="{% url 'workouts' %}">Workouts</a>.</small></p>
+        <p><small>Nothing planned for today. Create a <a href="{% url 'build-session' %}">personalized session</a>.</small></p>
     {% endfor %}
 </div>
 
 <div class="workout-section-heading-past fs-5"><small><b>Do more...</b></small></div>
 
-<ul class="list-group mb-3">
+<ul class="list-group mb-2">
     
     <li class="list-group-item">
         <a class="fitnessapp-profile-item" href="{% url 'build-session' %}">
@@ -34,9 +34,11 @@
             </div>
         </a>
     </li>
-    
+</ul>
+
+<ul class="list-group mb-2">  
     <li class="list-group-item">
-        <a class="fitnessapp-profile-item" href="{% url 'build-session' %}">
+        <a class="fitnessapp-profile-item" href="{% url 'workouts' %}">
             <div class="row fitnessapp-text-color-header">
                 <div class="col">
                     <span>Schedule a standard session</span>
@@ -47,7 +49,9 @@
             </div>
         </a>
     </li>
+</ul>
 
+<ul class="list-group mb-2">
     <li class="list-group-item">
         <a class="fitnessapp-profile-item" href="{% url 'build-workout' %}">
             <div class="row fitnessapp-text-color-header">
@@ -61,7 +65,9 @@
 
         </a>
     </li>
+</ul>
 
+<ul class="list-group mb-3">
     <li class="list-group-item">
         <a class="fitnessapp-profile-item" href="{% url 'client-create' %}">
             <div class="row fitnessapp-text-color-header">
@@ -74,16 +80,26 @@
             </div>
         </a>
     </li>
-
-    </ul>
+</ul>
 
 <div class="workout-section-heading-upcoming fs-5"><small><b>Your upcoming sessions</b></small></div>
 
 <div class="container-fluid overflow-scroll" style="scrollbar-width: none;">
-    {% for item in upcomingSessions %}
-        {% include 'workoutsession_card.html' %}
+    {% regroup upcomingSessions by scheduled_date as grouped_upcomingSessions %}
+
+    {% for group in grouped_upcomingSessions %}
+
+        <div class="row fitnessapp-bg-color-content-lighter fitnessapp-border-color-content-light mt-2">
+            <div class="col pt-2 pb-2 bg-white font-monospace">
+                <span class="text-secondary fw-bolder"><small>{{ group.grouper|date:'D m/j'}}</small></span>
+            </div>
+        </div>
+        {% for item in group.list %}
+            {% include 'workoutsession_card.html' %}
+        {% endfor %}
     {% empty %}
-        <p><small>No upcoming workouts. Add some <a href="{% url 'workouts' %}">Workouts</a> to do later.</small></p>
+        <p><small>No upcoming sessions. Add some <a href="{% url 'build-session' %}">personalized sessions</a> to do later.</small></p>
+        
     {% endfor %}
 </div>
 
