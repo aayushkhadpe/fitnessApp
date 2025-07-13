@@ -89,9 +89,9 @@
 
     {% for group in grouped_upcomingSessions %}
 
-        <div class="row fitnessapp-bg-color-content-lighter fitnessapp-border-color-content-light mt-2">
-            <div class="col pt-2 pb-2 bg-white font-monospace">
-                <span class="text-secondary fw-bolder"><small>{{ group.grouper|date:'D m/j'}}</small></span>
+        <div class="row fitnessapp-border-color-content">
+            <div class="col pt-2 pb-2 font-monospace fitnessapp-bg-color-content">
+                <span class="text-white fw-bolder"><small>{{ group.grouper|date:'D m/j'}}</small></span>
             </div>
         </div>
         {% for item in group.list %}
