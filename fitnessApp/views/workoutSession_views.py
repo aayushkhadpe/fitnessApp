@@ -13,12 +13,23 @@ class WorkoutSessionCreateView(LoginRequiredMixin, CreateView):
     form_class = WorkoutSessionCreateForm
     success_url = reverse_lazy('home')
 
-    def form_valid(self, form):
-        workout_id = self.kwargs['workout_id']
-        workout = Workout.objects.get(pk=workout_id)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-        form.instance.workout = workout
-        form.instance.person = self.request.user.person
+        workout_id = self.kwargs['workout_id']
+        context['workout'] = Workout.objects.get(pk=workout_id)
+
+        return context;
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+
+        form.instance.workout_id = self.kwargs['workout_id']
+        form.instance.person_id = form.cleaned_data['person_id']
 
         response = super().form_valid(form)
 

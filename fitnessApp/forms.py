@@ -37,18 +37,6 @@ class ClientCreateForm(forms.ModelForm):
         self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
 
-class WorkoutSessionCreateForm(forms.ModelForm):
-    class Meta:
-        model = WorkoutSession
-        fields = ["scheduled_date"]
-        widgets = {
-            'scheduled_date': forms.DateInput(attrs={'type': 'date', 'min': str(date.today())} ),
-        }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['scheduled_date'].required = False
-
 class FitnessAppUserUpdateForm(forms.ModelForm):
 
     class Meta:
@@ -139,3 +127,21 @@ class WorkoutBuildForm(BaseBuildForm):
         
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
+
+class WorkoutSessionCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = WorkoutSession
+        fields = ('person_id', 'scheduled_date', 'scheduled_time', )
+
+    person_id = forms.ChoiceField()
+    scheduled_date = forms.DateField()
+    scheduled_time = forms.TimeField()
+
+    def __init__(self, *args, **kwargs):
+        
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+        clients = FitnessAppPerson.objects.filter(coach=user.person).order_by('first_name')
+        self.fields['person_id'].choices = [("", "Select a client...")] + [(client.id, (client.first_name + " " + client.last_name)) for client in clients]
