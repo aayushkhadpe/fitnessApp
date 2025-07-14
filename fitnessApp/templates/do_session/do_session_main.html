@@ -132,6 +132,13 @@
     currentStep = 1;
   }
 
+  if (currentStep == steps.length)
+  { 
+    set_display_none("id-do-session-start");
+    set_display_none("id-do-session-step");
+    set_display_block("id-do-session-finish");
+  }
+
   /************ Functions ************/
 
   function playBeep(duration)

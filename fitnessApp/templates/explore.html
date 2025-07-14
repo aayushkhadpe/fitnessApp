@@ -1,0 +1,43 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}Explore{% endblock %}
+
+{% block content %}
+<div>
+
+
+<ul class="list-group mb-2">
+    <li class="list-group-item">
+        <a class="fitnessapp-profile-item" href="{% url 'workouts' %}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>Explore Workouts</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
+
+<ul class="list-group mb-2">  
+    <li class="list-group-item">
+        <a class="fitnessapp-profile-item" href="{% url 'exercises' %}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>Explore Exercises</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
+
+
+</div>
+{% endblock %}
+

@@ -4,3 +4,4 @@ from .exercise_views import *
 from .workout_views import *
 from .workoutSession_views import *
 from .client_views import *
+from .explore_views import *

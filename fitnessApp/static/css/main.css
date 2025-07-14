@@ -250,7 +250,7 @@ body {
 .fitnessapp-progress-bar {
   height: 100%;
   width: 0%;
-  background: var(--fitnessapp-color-palette-content-header);
+  background: var(--fitnessapp-color-palette-header);
   text-align: center;
   color: white;
   transition: width 0.3s ease;
