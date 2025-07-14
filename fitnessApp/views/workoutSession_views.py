@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from django.views.generic import CreateView, DetailView, FormView
+from django.views.generic import CreateView, DetailView, FormView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from fitnessApp.data import *
@@ -164,5 +164,16 @@ class WorkoutBuildView(BaseBuildView):
 
         # Redirect to the success URL
         return super().form_valid(form)
+    
+class WorkoutSessionRescheduleView(UpdateView):
+    model = WorkoutSession
+    form_class = WorkoutSessionRescheduleForm
+    success_url = reverse_lazy("home")
+    template_name = "workoutsession_reschedule.html"
+
+class WorkoutSessionDeleteView(DeleteView):
+    model = WorkoutSession
+    success_url = reverse_lazy("home")
+    template_name = "workoutsession_delete.html"
     
 

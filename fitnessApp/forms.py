@@ -55,6 +55,15 @@ class FitnessAppPersonUpdateForm(forms.ModelForm):
     last_name = forms.CharField(label='Last Name', max_length=100, required=False)
     phone_number = forms.CharField(label='Phone Number', max_length=50, required=True)
     email = forms.EmailField(label='Email', max_length=100, required=False)
+
+class WorkoutSessionRescheduleForm(forms.ModelForm):
+
+    class Meta:
+        model = WorkoutSession
+        fields = ("scheduled_date", "scheduled_time")
+
+    scheduled_date = forms.DateField(required=True)
+    scheduled_time = forms.TimeField(required=True)
     
 SETS = [
     ('1', '1'),

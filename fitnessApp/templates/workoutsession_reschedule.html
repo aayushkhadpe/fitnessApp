@@ -1,0 +1,66 @@
+{% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}Reschedule Session{% endblock %}
+
+{% block content %}
+
+<form id="build_form" method="post" onsubmit="disableSubmitButton()">
+    {% csrf_token %}
+
+    <div class="row mb-3">
+      <div class="col">
+        <div class="form-floating">
+          <input name="workout_name" value="{{object.workout.name}}" class="form-control" disabled>
+          <label for="floatingworkoutname">Workout</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Date/time row -->
+    <div class="row mb-3">
+        <div class="col">
+        <div class="form-floating">
+            <input name="scheduled_date" id="id-session-date" type="date" aria-label="Date" class="form-control text-left">
+            <label for="floatingdate">Date</label>
+        </div>
+        </div>
+        <div class="col">
+        <div class="form-floating">
+            <input name="scheduled_time" id="id-session-time" type="time" aria-label="Time" class="form-control">
+            <label for="floatingtime">Time</label>
+        </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-start">
+            <a href="{% url 'home' %}">
+            <button class="btn btn-secondary" type="button">Cancel</button>
+            </a>
+        </div>
+        <div class="col text-end">
+            <button id="id-submit-button" class="btn btn-success" type="submit">Reschedule</button>
+        </div>
+    </div>
+
+</form>
+
+
+{% block scripts %}
+<script>
+    var currentDate = new Date();
+    document.getElementById('id-session-date').value = currentDate.getFullYear() + "-" + String(currentDate.getMonth()+1).padStart(2, "0") + "-" + String(currentDate.getDate()).padStart(2, "0");
+    document.getElementById('id-session-time').value = String((currentDate.getHours()+1) % 24).padStart(2, "0") + ":00";
+
+    function disableSubmitButton()
+    {
+        var btn = document.getElementById('id-submit-button');
+        btn.disabled = true;
+        btn.innerText = 'Rescheduling...';
+    }
+
+</script>
+{% endblock %}
+{% endblock %}

@@ -27,6 +27,8 @@ urlpatterns = [
     path("clients/<int:pk>/details", ClientUpdateView.as_view(), name="client-details"),
 
     path("workoutsessions/<int:pk>/do", WorkoutSessionDoView.as_view(), name="workoutsession-do"),  
+    path("workoutsessions/<int:pk>/reschedule", WorkoutSessionRescheduleView.as_view(), name="workoutsession-reschedule"),  
+    path("workoutsessions/<int:pk>/delete", WorkoutSessionDeleteView.as_view(), name="workoutsession-delete"),  
 
     # api
     path("api/workoutsessions/<int:pk>", APIWorkoutSessionDetail.as_view()),  
