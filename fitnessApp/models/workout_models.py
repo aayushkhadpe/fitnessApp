@@ -12,6 +12,7 @@ class Workout(models.Model):
     target = models.CharField(max_length=20, choices=TARGET_CHOICES, default="WHOLEBODY")
     public_flag = models.BooleanField(default=False)
     video_id = models.CharField(max_length=50, blank=True)
+    creator = models.ForeignKey(FitnessAppPerson, on_delete=models.SET_NULL, null=True)
     #TBD target multiple, user_id
 
     def get_absolute_url(self):

@@ -3,10 +3,10 @@ from fitnessApp.data import *
 from fitnessApp.models import *
 
 @transaction.atomic
-def create_workout(workout_info: WorkoutInfo) -> Workout:
+def create_workout(workout_info: WorkoutInfo, creator_id: int) -> Workout:
 
     # create workout
-    workout = Workout.objects.create(name=workout_info.name)
+    workout = Workout.objects.create(name=workout_info.name, creator_id=creator_id)
     workout.save()
 
     # create workout circuit for each circuit info
@@ -16,7 +16,6 @@ def create_workout(workout_info: WorkoutInfo) -> Workout:
                                                         sets=workout_info.num_sets,
                                                         set_rest=workout_info.set_rest,
                                                         exercise_rest=workout_info.exercise_rest
-
                                                         )
         workout_circuit.save()
 
@@ -38,10 +37,10 @@ def create_workout(workout_info: WorkoutInfo) -> Workout:
     return workout
 
 @transaction.atomic
-def create_workout_session(session_info: SessionInfo, workout_info: WorkoutInfo) -> WorkoutSession:
+def create_workout_session(session_info: SessionInfo, workout_info: WorkoutInfo, creator_id: int) -> WorkoutSession:
 
     # create the workout
-    workout = create_workout(workout_info)
+    workout = create_workout(workout_info, creator_id)
 
     # create the workout session
     workout_session = WorkoutSession.objects.create(workout=workout, 

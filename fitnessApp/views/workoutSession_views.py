@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView, DetailView, FormView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from fitnessApp.data import *
 from fitnessApp.models import *
 from fitnessApp.forms import *
@@ -62,13 +63,13 @@ class BaseBuildView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        exercises = Exercise.objects.all().values('id', 'name')
+        exercises = Exercise.objects.filter(Q(creator=self.request.user.person) | Q(public_flag="True")).values('id', 'name')
         context['num_circuit_exercises'] = range(15)
         context['exercises'] = list(exercises)
 
         return context
 
-    def create_workout_info(self, form):
+    def create_workout_info(self, form, creator_id):
         
         # create workout info
         workout_info = WorkoutInfo( name = "",
@@ -98,7 +99,7 @@ class BaseBuildView(FormView):
                 if exerciseValue.isdigit():
                     exercise_id = int(exerciseValue)
                 else:
-                    new_exercise = Exercise.objects.create(name = exerciseValue)
+                    new_exercise = Exercise.objects.create(name = exerciseValue, creator_id=creator_id)
                     new_exercise.save()
                     exercise_id = new_exercise.id
 
@@ -129,12 +130,12 @@ class WorkoutSessionBuildView(BaseBuildView):
                                     scheduled_date = form.cleaned_data['session_date'],
                                     scheduled_time = form.cleaned_data['session_time'])
         
-        workout_info = self.create_workout_info(form)
+        workout_info = self.create_workout_info(form, self.request.user.person.id)
         # workout_info.name = "Workout @ " + str(session_info.scheduled_date)
         client = FitnessAppPerson.objects.get(pk=session_info.client_id)
         workout_info.name = self.request.user.person.first_name + " - " + client.first_name + " - " + str(session_info.scheduled_date)
 
-        create_workout_session(session_info, workout_info)
+        create_workout_session(session_info, workout_info, self.request.user.person.id)
 
         # Redirect to the success URL
         return super().form_valid(form)
@@ -153,7 +154,7 @@ class WorkoutBuildView(BaseBuildView):
     def form_valid(self, form):
         # Process the valid form data here
         
-        workout_info = self.create_workout_info(form)
+        workout_info = self.create_workout_info(form, self.request.user.person.id)
         # workout_info.name = "Workout @ " + str(session_info.scheduled_date)
         workout_info.name = form.cleaned_data['workout_name']
         workout_info.duration = form.cleaned_data['workout_duration']
