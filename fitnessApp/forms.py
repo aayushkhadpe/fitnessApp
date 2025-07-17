@@ -154,5 +154,8 @@ class WorkoutSessionCreateForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
 
-        clients = FitnessAppPerson.objects.filter(coach=user.person).order_by('first_name')
-        self.fields['person_id'].choices = [("", "Select a client...")] + [(client.id, (client.first_name + " " + client.last_name)) for client in clients]
+        if (user.person.coach_flag == True):
+            clients = FitnessAppPerson.objects.filter(coach=user.person).order_by('first_name')
+            self.fields['person_id'].choices = [("", "Select a client...")] + [(client.id, (client.first_name + " " + client.last_name)) for client in clients]
+        else:
+            self.fields['person_id'].required = False

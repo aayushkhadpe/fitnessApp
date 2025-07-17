@@ -66,6 +66,8 @@
     </li>
 </ul>
 
+{% if user.person.coach_flag %}
+
 <ul class="list-group mb-3">
     <li class="list-group-item">
         <a class="fitnessapp-profile-item" href="{% url 'client-create' %}">
@@ -80,6 +82,8 @@
         </a>
     </li>
 </ul>
+
+{% endif %}
 
 <div class="workout-section-heading-upcoming fs-5"><small><b>Your upcoming sessions</b></small></div>
 

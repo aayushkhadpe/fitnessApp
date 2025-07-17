@@ -34,6 +34,9 @@ class WorkoutSessionCreateView(LoginRequiredMixin, CreateView):
 
         response = super().form_valid(form)
 
+        self.object.creator_id = self.request.user.person.id
+        self.object.save()
+        
         create_workout_session_steps(self.object)
 
         return response
@@ -50,7 +53,7 @@ class WorkoutSessionDoView(LoginRequiredMixin, DetailView):
 
         return context
 
-class BaseBuildView(FormView):
+class BaseBuildView(LoginRequiredMixin, FormView):
     template_name = 'builder/builder_main.html'
     success_url = reverse_lazy("home")
     
@@ -170,18 +173,18 @@ class WorkoutBuildView(BaseBuildView):
         workout_info.difficulty_level = form.cleaned_data['workout_difficulty_level']
         workout_info.target = form.cleaned_data['workout_target']
 
-        create_workout(workout_info)
+        create_workout(workout_info, self.request.user.person.id)
 
         # Redirect to the success URL
         return super().form_valid(form)
     
-class WorkoutSessionRescheduleView(UpdateView):
+class WorkoutSessionRescheduleView(LoginRequiredMixin, UpdateView):
     model = WorkoutSession
     form_class = WorkoutSessionRescheduleForm
     success_url = reverse_lazy("home")
     template_name = "workoutsession_reschedule.html"
 
-class WorkoutSessionDeleteView(DeleteView):
+class WorkoutSessionDeleteView(LoginRequiredMixin, DeleteView):
     model = WorkoutSession
     success_url = reverse_lazy("home")
     template_name = "workoutsession_delete.html"
