@@ -73,6 +73,7 @@ class BaseBuildView(FormView):
         
         # create workout info
         workout_info = WorkoutInfo( name = "",
+                                    personalized_flag=False,
                                     duration = 60,
                                     target = "Unspecified",
                                     difficulty_level = "Unspecified",
@@ -126,15 +127,23 @@ class WorkoutSessionBuildView(BaseBuildView):
     def form_valid(self, form):
         # Process the valid form data here
 
-        session_info = SessionInfo(client_id = int(form.cleaned_data['session_client']), 
+        session_info = SessionInfo(client_id = 0, 
                                     scheduled_date = form.cleaned_data['session_date'],
                                     scheduled_time = form.cleaned_data['session_time'])
         
         workout_info = self.create_workout_info(form, self.request.user.person.id)
         # workout_info.name = "Workout @ " + str(session_info.scheduled_date)
-        client = FitnessAppPerson.objects.get(pk=session_info.client_id)
-        workout_info.name = self.request.user.person.first_name + " - " + client.first_name + " - " + str(session_info.scheduled_date)
+        if (self.request.user.person.coach_flag == True):
+            session_info.client_id = int(form.cleaned_data['session_client'])
+            client = FitnessAppPerson.objects.get(pk=session_info.client_id)
+            workout_info.name = self.request.user.person.first_name + " - " + client.first_name + " - " + str(session_info.scheduled_date)
+        else:
+            workout_info.name = self.request.user.person.first_name + " - " + str(session_info.scheduled_date)
+            session_info.client_id = self.request.user.person.id
 
+
+        workout_info.personalized_flag = True
+        
         create_workout_session(session_info, workout_info, self.request.user.person.id)
 
         # Redirect to the success URL

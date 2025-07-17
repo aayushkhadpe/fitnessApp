@@ -13,6 +13,7 @@ class WorkoutSession(models.Model):
     scheduled_time = models.TimeField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=WORKOUT_SESSION_STATUS_CHOICES, default="CREATED")
     current_step_sequence = models.IntegerField(default = 1)
+    creator = models.ForeignKey(FitnessAppPerson, on_delete=models.SET_NULL, null=True, related_name='creator')
 
 class WorkoutSessionStep(models.Model):
     workoutSession = models.ForeignKey(WorkoutSession, on_delete=models.CASCADE)

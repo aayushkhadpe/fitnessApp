@@ -24,6 +24,7 @@ class CircuitInfo:
 @dataclass
 class WorkoutInfo:
     name: str
+    personalized_flag: bool
     duration: int
     target: str
     difficulty_level: str

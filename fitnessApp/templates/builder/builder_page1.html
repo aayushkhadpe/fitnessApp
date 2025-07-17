@@ -4,6 +4,7 @@
 
   {% if buildMode == "SESSION" %}
     <!-- Client row -->
+    {% if user.person.coach_flag %}
     <div class="row mb-3">
       <div class="col">
         <div class="form-floating">
@@ -12,6 +13,7 @@
         </div>
       </div>
     </div>
+    {% endif %}
 
     <!-- Date/time row -->
     <div class="row mb-3">

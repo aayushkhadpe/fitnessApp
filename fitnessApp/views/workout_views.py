@@ -11,7 +11,7 @@ class WorkoutListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(Q(creator=self.request.user.person) | Q(public_flag="True"))
+        queryset = queryset.filter((Q(creator=self.request.user.person) | Q(public_flag="True")) & Q(personalized_flag="False"))
         return queryset
 
 class WorkoutCreateView(LoginRequiredMixin, CreateView):

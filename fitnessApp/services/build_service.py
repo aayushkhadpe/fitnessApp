@@ -6,7 +6,11 @@ from fitnessApp.models import *
 def create_workout(workout_info: WorkoutInfo, creator_id: int) -> Workout:
 
     # create workout
-    workout = Workout.objects.create(name=workout_info.name, creator_id=creator_id)
+    workout = Workout.objects.create(name=workout_info.name,
+                                     personalized_flag=workout_info.personalized_flag,
+                                     target=workout_info.target,
+                                     difficulty_level=workout_info.difficulty_level,
+                                     creator_id=creator_id)
     workout.save()
 
     # create workout circuit for each circuit info
@@ -44,6 +48,7 @@ def create_workout_session(session_info: SessionInfo, workout_info: WorkoutInfo,
 
     # create the workout session
     workout_session = WorkoutSession.objects.create(workout=workout, 
+                                                    creator_id=creator_id,
                                                     person_id=session_info.client_id, 
                                                     scheduled_date=session_info.scheduled_date, 
                                                     scheduled_time=session_info.scheduled_time, 
