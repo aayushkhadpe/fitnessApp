@@ -10,7 +10,7 @@
 <div>
 <div class="workout-section-heading-today fs-5"><small><b>Today</b></small></div>
     <div class="container-fluid overflow-scroll" style="max-height: 11rem; scrollbar-width: none;">
-        {% for item in activeSessions %}
+        {% for item in object_list %}
             {% include 'workoutsession_card.html' %}
         {% empty %}
             <p><small>Nothing planned for today. Create a <a href="{% url 'build-session' %}">personalized session</a>.</small></p>
