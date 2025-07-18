@@ -10,8 +10,15 @@ class WorkoutListView(ListView):
     paginate_by = 50
 
     def get_queryset(self):
+        
+
         queryset = super().get_queryset()
-        queryset = queryset.filter((Q(creator=self.request.user.person) | Q(public_flag="True")) & Q(personalized_flag="False"))
+
+        if (self.request.user.is_anonymous):
+            queryset = queryset.filter(Q(public_flag="True"))
+        else:
+            queryset = queryset.filter((Q(creator=self.request.user.person) | Q(public_flag="True")) & Q(personalized_flag="False"))
+
         return queryset
 
 class WorkoutCreateView(LoginRequiredMixin, CreateView):

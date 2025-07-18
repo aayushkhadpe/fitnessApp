@@ -107,7 +107,89 @@
 </div>
 
 {% else %}
-<p>Welcome to the Fitness App!</p>
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+    </div>
+</div>   
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+    </div>
+</div>   
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+        <span class="h1 fw-bolder">START YOUR FITNESS JOURNEY HERE!</span>
+    </div>
+</div>
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+    </div>
+</div>   
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+    </div>
+</div>   
+
+<ul class="list-group mb-2">
+    <li class="list-group-item">
+        <a class="fitnessapp-profile-item" href="{% url 'workouts' %}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>Explore Workouts</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
+
+<ul class="list-group mb-2">  
+    <li class="list-group-item">
+        <a class="fitnessapp-profile-item" href="{% url 'exercises' %}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>Explore Exercises</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+        <span class="h6 fw-bolder">Ready to get started?</span>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col text-center fitnessapp-text-color-header">
+        <a class="fitnessapp-text-color-header" href="{% url 'signup' %}"><b><small>SIGN UP</small></b></a>
+    </div>
+</div>
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+        <span class="h6 fw-bolder">Have an account?</span>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col text-center fitnessapp-text-color-header">
+        <a class="fitnessapp-text-color-header" href="{% url 'login' %}"><b><small>LOG IN</small></b></a>
+    </div>
+</div>
+
+
+
+    
 {% endif %}
 
 </div>

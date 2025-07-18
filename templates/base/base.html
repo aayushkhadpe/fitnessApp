@@ -21,18 +21,14 @@
                     <span class="menu_label">Home</span>
                 </div>
             </a>
-            <!-- <a class="menu_link" href="{% url 'exercises' %}">
-                <div class="menu_item">
-                    <img class="menu_img" src="{% static 'images/menu_exercises.svg' %}">
-                    <span class="menu_label">Exercises</span>
-                </div>
-            </a>
-            <a class="menu_link" href="{% url 'workouts' %}">
+            {% if user.is_authenticated %}
+            <a class="menu_link" href="{% url 'sessions' %}">
                 <div class="menu_item">
                     <img class="menu_img" src="{% static 'images/menu_workouts.svg' %}">
-                    <span class="menu_label">Workouts</span>
+                    <span class="menu_label">Sessions</span>
                 </div>
-            </a> -->
+            </a>
+            {% endif %}
             <a class="menu_link" href="{% url 'explore' %}">
                 <div class="menu_item">
                     <img class="menu_img" src="{% static 'images/menu_explore.svg' %}">

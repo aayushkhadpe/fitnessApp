@@ -1,24 +1,29 @@
+        
         <ul class="list-group">
             <li class="list-group-item">
                 <div class="workout-detail-attribute">
-                    <div class="workout-detail-attribute-label"><span><b>Duration</b></span></div>
-                    <div class="workout-detail-attribute-valuee">{{workoutObject.duration}} minutes</div>
-                </div>
-                </li>
-            <li class="list-group-item">
-                <div class="workout-detail-attribute">
-                    <div class="workout-detail-attribute-label"><span><b>Difficulty</b></span></div>
-                    <div class="workout-detail-attribute-valuee">{{workoutObject.get_difficulty_level_display}}</div>
+                    <div class="fitnessapp-text-color-header"><span><b>Duration</b></span></div>
+                    <div class="fitnessapp-text-color-content">{{workoutObject.duration}} minutes</div>
                 </div>
             </li>
+            {% if workoutObject.difficulty_level != "UNSPECIFIED" %}
             <li class="list-group-item">
                 <div class="workout-detail-attribute">
-                    <div class="workout-detail-attribute-label"><span><b>Target</b></span></div>
-                    <div class="workout-detail-attribute-valuee">{{workoutObject.get_target_display}}</div>
+                    <div class="fitnessapp-text-color-header"><span><b>Difficulty</b></span></div>
+                    <div class="fitnessapp-text-color-content">{{workoutObject.get_difficulty_level_display}}</div>
                 </div>
             </li>
+            {% endif %}
+            {% if workoutObject.target != "UNSPECIFIED" %}
+            <li class="list-group-item">
+                <div class="workout-detail-attribute">
+                    <div class="fitnessapp-text-color-header"><span><b>Target</b></span></div>
+                    <div class="fitnessapp-text-color-content">{{workoutObject.get_target_display}}</div>
+                </div>
+            </li>
+            {% endif %}
+
         </ul>
-        </br>
         {% for workoutcircuit in workoutObject.workoutcircuit_set.all %}
             <div class="workout-circuit-heading"><small><b>{{ workoutcircuit.name }} &nbsp;&nbsp;&nbsp;</b>{{ workoutcircuit.sets }} sets</small></div>
                     {% for circuitexercise in workoutcircuit.circuitexercise_set.all %}

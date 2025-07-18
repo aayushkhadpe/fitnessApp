@@ -5,8 +5,33 @@
 {% block content %}
 
 <div>
-        {% include 'exercise_video.html' with video_id=object.video_id %}
-        <p><b><h6>Exercise Name: </b><small>{{ object.name }}</small></h6></p>
-        <p><b><h6>Description: </b><small>{{ object.description }}</small></h6></p>
+
+    <ul class="list-group">
+        <li class="list-group-item">
+                <div class="workout-detail-attribute">
+                        <div class="fitnessapp-text-color-header"><span><b>Name</b></span></div>
+                        <div class="fitnessapp-text-color-content">{{ object.name }}</div>
+                </div>
+        </li>
+        <li class="list-group-item">
+                <div class="workout-detail-attribute">
+                        <div class="fitnessapp-text-color-header"><span><b>Description</b></span></div>
+                        <div class="fitnessapp-text-color-content">{{ object.description }}</div>
+                </div>
+        </li>
+        <li class="list-group-item">
+                <div class="workout-detail-attribute">
+                        <div class="fitnessapp-text-color-header"><span><b>Weight</b></span></div>
+                        <div class="fitnessapp-text-color-content">
+                        <input type="checkbox" value="{{ object.weight_flag }}" disabled>
+                        </div>
+                </div>
+        </li>
+    </ul>
+    <div class="fitnessapp-bg-color-content-light">
+    {% include 'exercise_video.html' with video_id=object.video_id %}
+    </div>
+
+</div>
 
 {% endblock %}

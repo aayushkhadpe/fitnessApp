@@ -1,0 +1,34 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}Past Sessions{% endblock %}
+
+{% block content %}
+<div>
+
+{% if user.is_authenticated %}
+
+<div class="workout-section-heading-past fs-5"><small><b>Past sessions</b></small></div>
+
+<div class="container-fluid overflow-scroll" style="scrollbar-width: none;">
+    {% regroup pastSessions by scheduled_date as grouped_pastSessions %}
+
+    {% for group in grouped_pastSessions %}
+
+        <div class="row fitnessapp-border-color-content">
+            <div class="col pt-2 pb-2 font-monospace fitnessapp-bg-color-content">
+                <span class="text-white fw-bolder"><small>{{ group.grouper|date:'D m/j'}}</small></span>
+            </div>
+        </div>
+        {% for item in group.list %}
+            {% include 'workoutsession_card.html' %}
+        {% endfor %}
+    {% empty %}
+        <p><small>No past sessions. Add some <a href="{% url 'build-session' %}">personalized sessions</a> to do later.</small></p>
+        
+    {% endfor %}
+</div>
+
+</div>
+{% endif %}
+{% endblock %}

@@ -1,23 +1,14 @@
-<div class="fitnessapp-exercise-card">
-    <a class="fitnessapp-profile-item" href="{% url 'exercise-detail' item.id %}">
-        <div class="fitnessapp-exercise-item-outer">
-            <div class="fitnessapp-exercise-image-grid">
-                <img class="fitnessapp-exercise-image"
-                    src="https://img.youtube.com/vi/{{ item.video_id }}/maxresdefault.jpg">
+<ul class="list-group mb-2">
+    <li class="list-group-item">
+        <a class="fitnessapp-profile-item" href="{% url 'exercise-detail' item.id %}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span class="fitnessapp-text-color-header">{{ item.name }}</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
             </div>
-            <div class="fitnessapp-exercise-name-display">
-                <h6 class="text single-line"><b>{{ item.name }}</b></h6>
-            </div>
-            <div class="fitnessapp-exercise-mode-display">
-                {% if circuitexercise is None %}
-                {% else %}
-                    {% if circuitexercise.mode == "REPS" %}
-                        <small><small>{{ circuitexercise.reps }} reps</small></small>
-                    {% else %}
-                        <small><small>{{ circuitexercise.time }} seconds</small></small>
-                    {% endif %}
-                {% endif %}
-            </div>
-        </div>
-    </a>
-</div>
+        </a>
+    </li>
+</ul>

@@ -4,6 +4,13 @@
 
 {% block content %}
     <div>
+        <div class="row mb-2">
+            <div class="col text-end pe-3">
+                <a class="fitnessapp-profile-item" href="{% url 'workoutsession-create' object.id %}">
+                    <i class="bi bi-calendar-plus"></i><span><small>&nbsp;&nbsp;Schedule Workout</small></span>
+                </a>
+            </div>
+        </div>
         {% include 'workout_detail_card.html' with workoutObject=object %}
     </div>
 {% endblock %}

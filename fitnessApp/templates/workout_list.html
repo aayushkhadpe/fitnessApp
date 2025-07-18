@@ -6,26 +6,32 @@
 
 <div>
     {% for item in object_list %}
-    <div class="fitnessapp-workout-card">
-        <a class="fitnessapp-profile-item" href="{% url 'workout-detail' item.id %}">
-            <div class="fitnessapp-workout-item-outer">
-                <div class="fitnessapp-workout-image-grid">
-                    <img class="fitnessapp-workout-image" src="https://img.youtube.com/vi/{{ item.video_id }}/maxresdefault.jpg">
+    
+    <ul class="list-group mb-2">
+        <li class="list-group-item">
+            <a class="fitnessapp-profile-item" href="{% url 'workout-detail' item.id %}">
+                <div class="row mb-1">
+                    <div class="col text-start">
+                        <span class="fitnessapp-text-color-header"><b>{{ item.name }}</b></span>
+                    </div>
                 </div>
-                <div class="fitnessapp-workout-name-display">
-                    <h6 class="text single-line"><b>{{ item.name }}</b></h6>
+                <div class="row mb-1">
+                    <div class="col text-start">
+                        <span class="fitnessapp-text-color-content"><small>{{ item.get_target_display }}</small></span>
+                    </div>
                 </div>
-                <div class="fitnessapp-workout-duration-display">
-                    <p><small><small>{{ item.duration }} minutes</small></small></p>
+                <div class="row mb-1">
+                    <div class="col-6 text-start">
+                        <span class="fitnessapp-text-color-content"><small>{{ item.get_difficulty_level_display }}</small></span>
+                    </div>
+                    <div class="col-6 text-end">
+                        <span class="fitnessapp-text-color-content"><small>{{ item.duration }} minutes</small></span>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <div class="fitnessapp-card-button-display">
-            <a href="{% url 'workoutsession-create' item.id %}">
-                <button class="btn btn-primary" type="button">+</button>
             </a>
-        </div>
-    </div>
+        </li>
+    </ul>
+    
     {% empty %}
     No workouts yet.
     {% endfor %}

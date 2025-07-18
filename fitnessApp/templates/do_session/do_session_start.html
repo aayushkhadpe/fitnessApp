@@ -16,7 +16,7 @@
 
     {% if user.person.coach_flag %}
 
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-6 text-start">
             <div class="row p-3">
                 <a class="btn btn-outline-secondary" href="{% url 'workoutsession-reschedule' object.id %}">
@@ -34,4 +34,16 @@
     </div>
 
     {% endif %}
+
+    <div>
+        {% if user.person.coach_flag %}
+            {% include 'workout_detail_card.html' with workoutObject=object.workout %}
+        {% else %}
+            {% now "F j, Y" as today_date %}
+            {% if object.scheduled_date|date:"F j, Y" == today_date %}
+                {% include 'workout_detail_card.html' with workoutObject=object.workout %}
+            {% endif%}
+        {% endif %}
+    </div>
+
 </div>

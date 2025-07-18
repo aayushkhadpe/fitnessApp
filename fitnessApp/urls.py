@@ -13,6 +13,10 @@ urlpatterns = [
     path("exercises/create", ExerciseCreateView.as_view(), name="exercise-create"),
     path("exercises/<int:pk>/details", ExerciseDetailView.as_view(), name="exercise-detail"),
 
+    path("sessions", SessionView.as_view(), name="sessions"),
+    path("sessions/upcoming", UpcomingSessionView.as_view(), name="upcoming-sessions"),
+    path("sessions/past", PastSessionView.as_view(), name="past-sessions"),
+
     path("explore", ExploreView.as_view(), name="explore"),
 
     path("workouts/<int:workout_id>/workoutsession/create", WorkoutSessionCreateView.as_view(), name="workoutsession-create"),
