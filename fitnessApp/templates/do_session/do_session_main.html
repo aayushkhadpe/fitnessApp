@@ -2,6 +2,9 @@
 
 {% block title %}{{ object.workout.name }}{% endblock %}
 
+{% block header-right-link %}{% url 'home' %}{% endblock %}
+{% block header-right-icon %}<i class="bi bi-x-lg"></i>{% endblock %}
+
 {% block content %}
 
   {{ steps|json_script:"id-steps-json" }}

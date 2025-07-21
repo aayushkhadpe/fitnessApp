@@ -5,14 +5,25 @@
 
 <body>
 <div class="page-no-footer">
-    <div class="header-no-footer">
-        <div class="header-inner">
-            <div class="header-text">
-                <h5 class="fitnessapp-page-title">{% block title %}{% endblock %}</h5>
+    <div class="header">
+<div class="row text-center align-items-center">
+            <div class="col-2">
+                <a href="{% block header-left-link %}{% endblock %}" class="text-decoration-none text-dark">
+                    <div class="row h-100 align-items-center">
+                        <div class="col fs-6">
+                            {% block header-left-icon %}{% endblock %}
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="header-x-button">
-                <a class="menu_link" href="{% url 'home' %}">
-                    <i class="bi bi-x-circle h4"></i>
+            <div class="col"><h5 class="fitnessapp-page-title">{% block title %}{% endblock %}</h5></div>
+            <div class="col-2">
+                <a href="{% block header-right-link %}{% endblock %}" class="text-decoration-none text-dark">
+                    <div class="row h-100 align-items-center">
+                        <div class="col fs-6">
+                            {% block header-right-icon %}{% endblock %}
+                        </div>
+                    </div>
                 </a>
             </div>
         </div>

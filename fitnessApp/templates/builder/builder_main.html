@@ -4,6 +4,10 @@
 
 {% block title %}{% if buildMode == "SESSION" %}Create Session{% else %}Create Workout{% endif %}{% endblock %}
 
+{% block header-right-link %}{% url 'home' %}{% endblock %}
+{% block header-right-icon %}<i class="bi bi-x-lg"></i>{% endblock %}
+
+
 {% block content %}
 
 <!-- Create the javascript element with the exercises from the context -->

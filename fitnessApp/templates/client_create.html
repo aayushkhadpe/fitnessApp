@@ -3,6 +3,9 @@
 
 {% block title %}Create Client{% endblock %}
 
+{% block header-right-link %}{% url 'clients' %}{% endblock %}
+{% block header-right-icon %}<i class="bi bi-x-lg"></i>{% endblock %}
+
 {% block content %}
 
 <form action="" method="post">{% csrf_token %}
