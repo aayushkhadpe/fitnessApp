@@ -152,5 +152,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('email')
 EMAIL_HOST_PASSWORD = os.getenv('email_password')
-
-CSRF_TRUSTED_ORIGINS = ["https://localhost:8000",]
