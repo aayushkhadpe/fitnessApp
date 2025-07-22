@@ -1,6 +1,6 @@
 {% extends "base/base_no_footer.html" %}
 
-{% block title %}{{ object.workout.name }}{% endblock %}
+{% block title %}{{ object.workout.name }}&nbsp;-&nbsp;{{ object.person.first_name }}{% endblock %}
 
 {% block header-right-link %}{% url 'home' %}{% endblock %}
 {% block header-right-icon %}<i class="bi bi-x-lg"></i>{% endblock %}

@@ -4,7 +4,7 @@
             <span class="text-secondary fw-bolder"><small>{{ item.scheduled_time|date:'h:i A'}}</small></span>
         </div>
         <div class="col pt-2 pb-2 fitnessapp-bg-color-content-lighter">
-            <span class="text-black-50 fw-bolder"><small>{{ item.person.first_name}}</small></span>
+            <span class="text-black-50 fw-bolder"><small>{{ item.person.first_name }}:&nbsp;{{ item.workout.name }}</small></span>
         </div>
         {% if item.status == "COMPLETED" %}
         <div class="col-1 fitnessapp-bg-color-content-lighter text-end d-flex align-items-center">

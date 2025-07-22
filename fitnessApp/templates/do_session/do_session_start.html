@@ -1,15 +1,40 @@
 <div id="id-do-session-start" class="do-session-start">
+
+    <ul class="list-group">
+        {% if user.person.coach_flag %}
+        <li class="list-group-item">
+            <div class="workout-detail-attribute">
+                <div class="fitnessapp-text-color-header"><span><b>Client</b></span></div>
+                <div class="fitnessapp-text-color-content">{{object.person.first_name}}&nbsp;{{object.person.last_name}}</div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="workout-detail-attribute">
+                <div class="fitnessapp-text-color-header"><span><b>Phone</b></span></div>
+                <a class="fitnessapp-text-color-content text-decoration-none" href="tel:{{ object.person.phone_number }}"><span class=""><i class="bi bi-telephone-outbound"></i>&nbsp;&nbsp;&nbsp;{{ object.person.phone_number }}</a></span></a>
+            </div>
+        </li>
+        {% endif %}
+        <li class="list-group-item">
+            <div class="workout-detail-attribute">
+                <div class="fitnessapp-text-color-header"><span><b>Date</b></span></div>
+                <div class="fitnessapp-text-color-content">{{object.scheduled_date|date:'D m/j'}}</div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="workout-detail-attribute">
+                <div class="fitnessapp-text-color-header"><span><b>Time</b></span></div>
+                <div class="fitnessapp-text-color-content">{{object.scheduled_time|date:'h:i A'}}</div>
+            </div>
+        </li>
+    </ul>
+
     <div class="row mt-3 mb-3">
         <div class="col text-center">
             <span class="text-secondary">Turn off silent mode on your phone, and turn up the volume to hear the timer beeps.</span>
         </div>
     </div>
 
-    <div class="row mt-3">
-        <div class="col-12 text-center">
-        </div>
-    </div>
-    
     <div class="row mt-3 p-3">
         <button class="btn btn-primary btn-lg" onClick="startWorkout()" type="submit">{% if object.current_step_sequence == 1 %}Start Workout {% else %}Resume Workout {% endif %}</button>
     </div>

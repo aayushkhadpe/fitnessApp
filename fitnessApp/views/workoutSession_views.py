@@ -135,17 +135,14 @@ class WorkoutSessionBuildView(BaseBuildView):
                                     scheduled_time = form.cleaned_data['session_time'])
         
         workout_info = self.create_workout_info(form, self.request.user.person.id)
-        # workout_info.name = "Workout @ " + str(session_info.scheduled_date)
+
         if (self.request.user.person.coach_flag == True):
             session_info.client_id = int(form.cleaned_data['session_client'])
-            client = FitnessAppPerson.objects.get(pk=session_info.client_id)
-            workout_info.name = self.request.user.person.first_name + " - " + client.first_name + " - " + str(session_info.scheduled_date)
         else:
-            workout_info.name = self.request.user.person.first_name + " - " + str(session_info.scheduled_date)
             session_info.client_id = self.request.user.person.id
 
-
         workout_info.personalized_flag = True
+        workout_info.name = "Personalized Session"
         
         create_workout_session(session_info, workout_info, self.request.user.person.id)
 

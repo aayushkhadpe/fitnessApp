@@ -4,6 +4,9 @@
 
 {% block title %}Schedule Standard Workout{% endblock %}
 
+{% block header-right-link %}{% url 'workouts' %}{% endblock %}
+{% block header-right-icon %}<i class="bi bi-x-lg"></i>{% endblock %}
+
 {% block content %}
 
 <form id="build_form" method="post" onsubmit="disableSubmitButton()">

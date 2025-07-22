@@ -7,7 +7,6 @@
 <div class="row mb-2">
     <div class="col text-end pe-3">
         <a class="fitnessapp-profile-item" href="{% url 'client-create' %}">
-            <!-- <button class="btn btn-primary" type="button">Create Client</button> -->
              <i class="bi bi-plus-circle"></i><span><small>&nbsp;&nbsp;Add Client</small></span>
         </a>
     </div>
@@ -24,8 +23,8 @@
                         <div class="client-detail-name">
                             <h5 class="text single-line"><b>{{ item.first_name }} {{ item.last_name }}</b></h5>
                         </div>
-                        <div class="client-detail-phone-number">
-                            <h6 class="text single-line">{{ item.phone_number }}</h6>
+                        <div class="client-detail-phone-number pt-1">
+                            <a class="fitnessapp-profile-item" href="tel:{{ item.phone_number }}"><span class="fs-6 text single-line"><small><small><i class="bi bi-telephone-outbound"></i>&nbsp;&nbsp;&nbsp;{{ item.phone_number }}</a></small></small></span></a>
                         </div>
                         <div class="client-detail-edit">
                             <i class="bi bi-chevron-right"></i>

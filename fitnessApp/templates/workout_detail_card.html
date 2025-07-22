@@ -2,6 +2,12 @@
         <ul class="list-group">
             <li class="list-group-item">
                 <div class="workout-detail-attribute">
+                    <div class="fitnessapp-text-color-header"><span><b>Workout</b></span></div>
+                    <div class="fitnessapp-text-color-content">{{workoutObject.name}}</div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="workout-detail-attribute">
                     <div class="fitnessapp-text-color-header"><span><b>Duration</b></span></div>
                     <div class="fitnessapp-text-color-content">{{workoutObject.duration}} minutes</div>
                 </div>
@@ -24,6 +30,7 @@
             {% endif %}
 
         </ul>
+
         {% for workoutcircuit in workoutObject.workoutcircuit_set.all %}
             <div class="workout-circuit-heading"><small><b>{{ workoutcircuit.name }} &nbsp;&nbsp;&nbsp;</b>{{ workoutcircuit.sets }} sets</small></div>
                     {% for circuitexercise in workoutcircuit.circuitexercise_set.all %}
