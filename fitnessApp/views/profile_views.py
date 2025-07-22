@@ -18,3 +18,7 @@ class AccountUpdateView(LoginRequiredMixin, UpdateView):
 class CoachDetailView(LoginRequiredMixin, DetailView):
     model = FitnessAppPerson
     template_name = "coach_detail.html"
+
+class PWASetupView(View):
+    def get(self, request):
+        return render(request, 'pwa_setup.html')

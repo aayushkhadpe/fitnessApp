@@ -25,6 +25,7 @@ urlpatterns = [
     path("profile", ProfileView.as_view(), name="profile"),
     path("profile/<int:pk>/details", AccountUpdateView.as_view(), name="account-details"),  
     path("profile/coach/<int:pk>/details", CoachDetailView.as_view(), name="coach-details"),
+    path("profile/pwa-setup", PWASetupView.as_view(), name="pwa-setup"),
     
     path("clients", ClientListView.as_view(), name="clients"),
     path("clients/create", ClientCreateView.as_view(), name="client-create"),

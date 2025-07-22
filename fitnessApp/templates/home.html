@@ -4,7 +4,9 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div>
+
+<div class="row h-100">
+<div class="col">
 
 {% if user.is_authenticated %}
 <h6 class="fitnessapp-text-color-header">Hi <b>{{ user.first_name }}</b>!</h6>
@@ -87,7 +89,7 @@
 
 <div class="workout-section-heading-upcoming fs-5"><small><b>Your upcoming sessions</b></small></div>
 
-<div class="container-fluid overflow-scroll" style="scrollbar-width: none;">
+<div class="container-fluid" style="scrollbar-width: none;">
     {% regroup upcomingSessions by scheduled_date as grouped_upcomingSessions %}
 
     {% for group in grouped_upcomingSessions %}
@@ -187,11 +189,35 @@
     </div>
 </div>
 
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+    </div>
+</div>   
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+    </div>
+</div>   
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+    </div>
+</div>   
 
-
-    
 {% endif %}
 
+<div class="row" style="position: sticky; bottom: 0rem; z-index: 1;">
+    <div class="col w-100">
+        <div class="toast align-items-center fade show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Add to Home Screen for a better experience. <a class="fitnessapp-profile-item fw-bold text-decoration-underline" href="{% url 'pwa-setup' %}">Click here</a> to learn more.
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
 </div>
 {% endblock %}
 
