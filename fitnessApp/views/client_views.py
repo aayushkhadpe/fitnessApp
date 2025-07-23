@@ -7,7 +7,7 @@ from fitnessApp.forms import *
 class ClientListView(LoginRequiredMixin, ListView):
     model = FitnessAppPerson
     template_name = "client_list.html"
-    paginate_by = 10
+    paginate_by = 50
 
     def get_queryset(self):
         queryset = super().get_queryset()

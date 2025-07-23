@@ -5,4 +5,3 @@ from .workout_views import *
 from .workoutSession_views import *
 from .client_views import *
 from .explore_views import *
-from .session_views import *

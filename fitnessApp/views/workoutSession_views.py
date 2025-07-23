@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404
-from django.views.generic import CreateView, DetailView, FormView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, FormView, UpdateView, DeleteView, ListView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
+from django.db.models import Q, F
 from fitnessApp.data import *
 from fitnessApp.models import *
 from fitnessApp.forms import *
@@ -149,7 +149,6 @@ class WorkoutSessionBuildView(BaseBuildView):
         # Redirect to the success URL
         return super().form_valid(form)
     
-
 class WorkoutBuildView(BaseBuildView):
     form_class = WorkoutBuildForm
 
@@ -186,4 +185,47 @@ class WorkoutSessionDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("home")
     template_name = "workoutsession_delete.html"
     
+class SessionView(LoginRequiredMixin, ListView):
+    model = WorkoutSession
+    template_name = "session.html"
+    paginate_by = 50
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        if (self.request.user.person.coach_flag):
+            queryset = queryset.filter(Q(creator=self.request.user.person), scheduled_date=date.today()).order_by((F('scheduled_time').asc(nulls_last=True)))
+        else: 
+            queryset = queryset.filter(person=self.request.user.person, scheduled_date=date.today()).order_by((F('scheduled_time').asc(nulls_last=True)))
+
+        return queryset
+   
+class UpcomingSessionView(LoginRequiredMixin, ListView):
+    model = WorkoutSession
+    template_name = "upcoming_session.html"
+    paginate_by = 50
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        if (self.request.user.person.coach_flag):
+            queryset = queryset.filter(Q(creator=self.request.user.person) & (Q(scheduled_date__gt=date.today()) | Q(scheduled_date__isnull=True))).order_by((F('scheduled_date').asc(nulls_last=True)), (F('scheduled_time').asc(nulls_last=True)))
+        else: 
+            queryset = queryset.filter(Q(person=self.request.user.person) & (Q(scheduled_date__gt=date.today()) | Q(scheduled_date__isnull=True))).order_by((F('scheduled_date').asc(nulls_last=True)), (F('scheduled_time').asc(nulls_last=True)))
+
+        return queryset
+          
+class PastSessionView(LoginRequiredMixin, ListView):
+    model = WorkoutSession
+    template_name = "past_session.html"
+    paginate_by = 50
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        if (self.request.user.person.coach_flag):
+            queryset = queryset.filter(Q(creator=self.request.user.person) & (Q(scheduled_date__lt=date.today()) | Q(scheduled_date__isnull=True))).order_by((F('scheduled_date').desc(nulls_last=True)), (F('scheduled_time').desc(nulls_last=True)))
+        else: 
+            queryset = queryset.filter(Q(person=self.request.user.person) & (Q(scheduled_date__lt=date.today()) | Q(scheduled_date__isnull=True))).order_by((F('scheduled_date').desc(nulls_last=True)), (F('scheduled_time').desc(nulls_last=True)))
+
+        return queryset
