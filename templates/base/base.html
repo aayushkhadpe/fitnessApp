@@ -37,21 +37,21 @@
         <div class="menu">
             <a class="menu_link" href="{% url 'home' %}">
                 <div class="menu_item">
-                    <img class="menu_img" src="{% static 'images/menu_home.svg' %}">
+                    <img class="menu_img" src="{% static 'fitnessApp/images/menu/home.svg' %}">
                     <span class="menu_label">Home</span>
                 </div>
             </a>
             {% if user.is_authenticated %}
             <a class="menu_link" href="{% url 'sessions' %}">
                 <div class="menu_item">
-                    <img class="menu_img" src="{% static 'images/menu_workouts.svg' %}">
+                    <img class="menu_img" src="{% static 'fitnessApp/images/menu/sessions.svg' %}">
                     <span class="menu_label">Sessions</span>
                 </div>
             </a>
             {% endif %}
             <a class="menu_link" href="{% url 'explore' %}">
                 <div class="menu_item">
-                    <img class="menu_img" src="{% static 'images/menu_explore.svg' %}">
+                    <img class="menu_img" src="{% static 'fitnessApp/images/menu/explore.svg' %}">
                     <span class="menu_label">Explore</span>
                 </div>
             </a>
@@ -59,7 +59,7 @@
             {% if user.is_authenticated and user.person.coach_flag %}
             <a class="menu_link" href="{% url 'clients' %}">
                 <div class="menu_item">
-                    <img class="menu_img" src="{% static 'images/menu_clients.svg' %}">
+                    <img class="menu_img" src="{% static 'fitnessApp/images/menu/clients.svg' %}">
                     <span class="menu_label">Clients</span>
                 </div>
             </a>
@@ -68,14 +68,14 @@
             {% if user.is_authenticated %}
             <a class="menu_link" href="{% url 'profile' %}">
                 <div class="menu_item">
-                    <img class="menu_img" src="{% static 'images/menu_user.svg' %}">
+                    <img class="menu_img" src="{% static 'fitnessApp/images/menu/user.svg' %}">
                     <span class="menu_label">Profile</span>
                 </div>
             </a>
             {% else %}
             <a class="menu_link" href="{% url 'login' %}">
                 <div class="menu_item">
-                    <img class="menu_img" src="{% static 'images/menu_user.svg' %}">
+                    <img class="menu_img" src="{% static 'fitnessApp/images/menu/user.svg' %}">
                     <span class="menu_label">Sign In</span>
                 </div>
             </a>
