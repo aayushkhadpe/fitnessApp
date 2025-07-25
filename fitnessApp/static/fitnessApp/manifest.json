@@ -1,9 +1,9 @@
 {
-    "id": "fitnessApp",
+    "id": "simplyfit",
 
-    "name": "Fitness App",
-    "short_name": "Fitness App",
-    "description": "A fitness app",
+    "name": "Simply Fit",
+    "short_name": "Simply Fit",
+    "description": "Simply Fit is a fitness app for trainers and individuals to manage their fitness journey.",
     "categories": ["fitness", "health", "sports"],
 
     "start_url": "../../",
