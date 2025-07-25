@@ -2,6 +2,7 @@
 
     <ul class="list-group">
         {% if user.person.coach_flag %}
+        {% if object.person.id != user.person.id %}
         <li class="list-group-item">
             <div class="workout-detail-attribute">
                 <div class="fitnessapp-text-color-header"><span><b>Client</b></span></div>
@@ -14,6 +15,7 @@
                 <a class="fitnessapp-text-color-content text-decoration-none" href="tel:{{ object.person.phone_number }}"><span class=""><i class="bi bi-telephone-outbound"></i>&nbsp;&nbsp;&nbsp;{{ object.person.phone_number }}</a></span></a>
             </div>
         </li>
+        {% endif %}
         {% endif %}
         <li class="list-group-item">
             <div class="workout-detail-attribute">

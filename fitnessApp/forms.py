@@ -123,7 +123,7 @@ class WorkoutSessionBuildForm(BaseBuildForm):
 
         if (user.person.coach_flag == True):
             clients = FitnessAppPerson.objects.filter(coach=user.person).order_by('first_name')
-            self.fields['session_client'].choices = [("", "Select a client...")] + [(client.id, (client.first_name + " " + client.last_name)) for client in clients]
+            self.fields['session_client'].choices = [("", "Select a client...")] + [(user.person.id, "Me")] + [(client.id, (client.first_name + " " + client.last_name)) for client in clients]
         else:
             self.fields['session_client'].required = False
 
@@ -156,6 +156,6 @@ class WorkoutSessionCreateForm(forms.ModelForm):
 
         if (user.person.coach_flag == True):
             clients = FitnessAppPerson.objects.filter(coach=user.person).order_by('first_name')
-            self.fields['person_id'].choices = [("", "Select a client...")] + [(client.id, (client.first_name + " " + client.last_name)) for client in clients]
+            self.fields['person_id'].choices = [("", "Select a client...")] + [(user.person.id, "Me")] + [(client.id, (client.first_name + " " + client.last_name)) for client in clients]
         else:
             self.fields['person_id'].required = False
