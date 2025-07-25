@@ -1,9 +1,9 @@
 {% load widget_tweaks %}
 
-<div id="page_2" class="build-page-2" style="display: none">
+<div id="page_2" class="build-page-2 fitnessApp-display-none">
   <div class="row mb-3">
     <div class="col ps-3">
-      <span class="text-secondary"><small>Enter exercises for each circuit. You can configure each exercise in the next step.</small></span>
+      <span class="text-secondary"><small>Enter exercises for each circuit. Start typing and select from existing exercises or use the Add option in the dropdown. You can configure each exercise in the next step.</small></span>
     </div>
   </div>
   {% include 'builder/builder_page2_circuit.html' with ckt_num=1 %}
@@ -12,12 +12,12 @@
   {% include 'builder/builder_page2_circuit.html' with ckt_num=4 %}
   {% include 'builder/builder_page2_circuit.html' with ckt_num=5 %}
 
-  <div class="row" style="position: sticky; bottom: 0rem; z-index: 1;">
+  <div class="row position-sticky bottom-0">
     <div class="col">
-      <button class="btn btn-success" type="button" onclick="page_2_previous()">Back</button>
+      <button id="id-builder-page-2-prev" class="btn btn-success" type="button">Back</button>
     </div>
     <div class="col-auto">
-      <button class="btn btn-success" type="button" onclick="page_2_next()">Next</button>
+      <button id="id-builder-page-2-next" class="btn btn-success" type="button">Next</button>
     </div>
   </div>
 

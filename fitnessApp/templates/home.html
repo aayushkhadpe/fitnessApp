@@ -12,7 +12,7 @@
 <h6 class="fitnessapp-text-color-header">Hi <b>{{ user.first_name }}</b>!</h6>
 
 <div class="workout-section-heading-today fs-5"><small><b>Your sessions today</b></small></div>
-<div class="container-fluid overflow-scroll" style="max-height: 11rem; scrollbar-width: none;">
+<div class="container-fluid overflow-scroll fitnessApp-scrollbar-width-none fitnessApp-max-height-11rem">
     {% for item in activeSessions %}
         {% include 'workoutsession_card.html' %}
     {% empty %}
@@ -89,7 +89,7 @@
 
 <div class="workout-section-heading-upcoming fs-5"><small><b>Your upcoming sessions</b></small></div>
 
-<div class="container-fluid" style="scrollbar-width: none;">
+<div class="container-fluid fitnessApp-scrollbar-width-none">
     {% regroup upcomingSessions by scheduled_date as grouped_upcomingSessions %}
 
     {% for group in grouped_upcomingSessions %}
@@ -204,14 +204,14 @@
 
 {% endif %}
 
-<div id="id-pwa-message" class="row" style="position: sticky; bottom: 0rem; z-index: 1; display: none;">
+<div id="id-pwa-message" class="row position-sticky bottom-0 fitnessApp-display-none fitnessApp-zindex-1">
     <div class="col w-100">
         <div class="toast align-items-center fade show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body">
                     Add to Home Screen for a better experience. <a class="fitnessapp-profile-item fw-bold text-decoration-underline" href="{% url 'pwa-setup' %}">Click here</a> to learn more.
                 </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" class="btn text-decoration-none me-1 m-auto" data-bs-dismiss="toast" aria-label="Close"><i class="bi bi-x-lg"></i></button>
             </div>
         </div>
     </div>
@@ -221,17 +221,31 @@
 </div>
 
 {% block scripts %}
-<script>
+
+<script type="text/javascript" nonce="{{CSP_NONCE}}">
 
 function isRunningStandalone() {
-  return window.matchMedia('(display-mode: standalone)').matches;
+    return window.matchMedia('(display-mode: standalone)').matches;
 }
-    
+
+// display PWA prompt
 if (!isRunningStandalone()) {
-  document.getElementById('id-pwa-message').style.display = 'block';
+    document.getElementById('id-pwa-message').style.display = 'block';
+}
+
+// Register Service Worker
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register("{% static 'fitnessApp/js/service-worker.js' %}").then((registration) => {
+        console.log('Service worker registration succeeded:', registration);
+    }, (error) => {
+        console.error(`Service worker registration failed: ${error}`);
+    });
+} else {
+    console.error('Service workers are not supported.');
 }
 
 </script>
+
 {% endblock %}
 
 

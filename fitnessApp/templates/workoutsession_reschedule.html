@@ -1,12 +1,13 @@
 {% extends "base/base.html" %}
 {% load crispy_forms_tags %}
 {% load widget_tweaks %}
+{% load static %}
 
 {% block title %}Reschedule Session{% endblock %}
 
 {% block content %}
 
-<form id="build_form" method="post" onsubmit="disableSubmitButton()">
+<form id="id-form" method="post">
     {% csrf_token %}
 
     <div class="row mb-3">
@@ -22,13 +23,13 @@
     <div class="row mb-3">
         <div class="col">
         <div class="form-floating">
-            <input name="scheduled_date" id="id-session-date" type="date" aria-label="Date" class="form-control text-left">
+            <input name="scheduled_date" id="id-session-date" type="date" aria-label="Date" class="form-control text-left" value="{{ object.scheduled_date|date:"Y-m-d" }}">
             <label for="floatingdate">Date</label>
         </div>
         </div>
         <div class="col">
         <div class="form-floating">
-            <input name="scheduled_time" id="id-session-time" type="time" aria-label="Time" class="form-control">
+            <input name="scheduled_time" id="id-session-time" type="time" aria-label="Time" class="form-control" value="{{ object.scheduled_time|date:"H:i" }}">
             <label for="floatingtime">Time</label>
         </div>
         </div>
@@ -49,12 +50,12 @@
 
 
 {% block scripts %}
-<script>
-    var currentDate = new Date();
-    document.getElementById('id-session-date').value = currentDate.getFullYear() + "-" + String(currentDate.getMonth()+1).padStart(2, "0") + "-" + String(currentDate.getDate()).padStart(2, "0");
-    document.getElementById('id-session-time').value = String((currentDate.getHours()+1) % 24).padStart(2, "0") + ":00";
 
-    function disableSubmitButton()
+<script type="text/javascript" nonce="{{CSP_NONCE}}">
+
+    document.getElementById('id-form').addEventListener("submit", rescheduleWorkoutSession);
+
+    function rescheduleWorkoutSession()
     {
         var btn = document.getElementById('id-submit-button');
         btn.disabled = true;
@@ -62,5 +63,7 @@
     }
 
 </script>
+
 {% endblock %}
+
 {% endblock %}

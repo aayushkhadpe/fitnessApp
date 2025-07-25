@@ -1,7 +1,8 @@
-django
-django-crispy-forms
-crispy-bootstrap5
-python-dotenv
-django-widget-tweaks
-mysqlclient
-djangorestframework
+django==5.2.1
+django-crispy-forms==2.4
+crispy-bootstrap5==2025.4
+python-dotenv==1.1.0
+django-widget-tweaks==1.5.0
+mysqlclient==2.2.7
+djangorestframework==3.16.0
+django-csp==v4.0

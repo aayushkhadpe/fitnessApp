@@ -1,4 +1,4 @@
-<div id="id-do-session-finish" style="display: none;">
+<div id="id-do-session-finish" class="fitnessApp-display-none">
     <div class="row m-3">
         <div class="col">
             <h3 class="text-center fitnessapp-text-color-header">Congratulations!</h3>
@@ -9,16 +9,22 @@
             <p class="text-secondary text-center">You have completed this workout.</p>
         </div>
     </div>
+
+    <div class="row mb-3">
+        <div class="col-8 text-start">
+            <div class="row p-3">
+                <a class="btn btn-outline-secondary" href="{% url 'build-session' %}">
+                    <i class="bi bi-calendar"></i><span><small>&nbsp;Schedule Next Session</small></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <div class="row p-3">
+                <a class="btn btn-outline-secondary" href="{% url 'home' %}">
+                    <i class="bi bi-house"></i><span><small>&nbsp;Home</small></span>
+                </a>
+            </div>
+        </div>
+    </div>
     
-    <div class="row fitnessapp-text-color-header mt-3 mb-2">
-        <div class="col">
-            <span>Schedule your next&nbsp;<a href="{% url 'build-session' %}">session</a>.</span>
-        </div>
-    </div>
-        
-    <div class="row fitnessapp-text-color-header mt-2">
-        <div class="col">
-            <span>Return&nbsp;<a href="{% url 'home' %}">home</a>.</span>
-        </div>
-    </div>
 </div>

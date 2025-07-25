@@ -13,7 +13,7 @@
 
 <div class="workout-section-heading-upcoming fs-5"><small><b>Upcoming sessions</b></small></div>
 
-<div class="container-fluid overflow-scroll" style="scrollbar-width: none;">
+<div class="container-fluid overflow-scroll fitnessApp-scrollbar-width-none">
     {% regroup object_list by scheduled_date as grouped_upcomingSessions %}
 
     {% for group in grouped_upcomingSessions %}

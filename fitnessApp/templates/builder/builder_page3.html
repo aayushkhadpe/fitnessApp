@@ -1,29 +1,21 @@
-<div id="page_3" class="build-page-3" style="display: none">
+<div id="page_3" class="build-page-3 fitnessApp-display-none">
 
     <div class="row mb-3">
       <div class="col ps-3">
-        <span class="text-secondary"><small>Configure rest time, mode, and duration/reps for each exercise.</small></span>
-        <!-- <button class="btn btn-success" type="button" onclick="switch_quantity_rest()">Switch</button> -->
+        <span class="text-secondary"><small>Configure mode, reps/time, and rest for each exercise.</small></span>
       </div>
     </div>
 
-    <!-- <div class="row mb-3">
-      <div class="col ps-3">
-        <a class="fitnessapp-profile-item" href="#" onclick="switch_quantity_rest()"">
-            <span><small>Show Rest</small></span>
-        </a>
-      </div>
-    </div> -->
 
     <div class="container">
     <div class="row no-gutters align-items-center mb-1">
       <div class="col pe-1 text-end">
           <span class="text-secondary"><small><small>Mode&nbsp;&nbsp;&nbsp;</small></small></span>
       </div>
-      <div class="col-2 ps-0 class-quantity text-end text-wrap" id="id-quantity-{{ circuit_num }}-{{ forloop.counter }}" style="display: null">
+      <div class="col-2 ps-0 class-quantity text-end text-wrap fitnessApp-display-null" id="id-quantity-{{ circuit_num }}-{{ forloop.counter }}">
           <span class="text-secondary"><small><small>Reps/time</small></small></span>
       </div>
-      <div class="col-2 ps-0 pe-3 class-rest text-center" id="id-rest-{{ circuit_num }}-{{ forloop.counter }}" style="display: null">
+      <div class="col-2 ps-0 pe-3 class-rest text-center fitnessApp-display-null" id="id-rest-{{ circuit_num }}-{{ forloop.counter }}">
           <span class="text-secondary"><small><small>Rest</small></small></span>
       </div>
   </div>
@@ -36,9 +28,9 @@
   {% include 'builder/builder_page3_circuit.html' with circuit_num=4 %}
   {% include 'builder/builder_page3_circuit.html' with circuit_num=5 %}
 
-  <div class="row" style="position: sticky; bottom: 0rem;">
+  <div class="row position-sticky bottom-0">
       <div class="col">
-        <button class="btn btn-success" type="button" onclick="page_3_previous()">Back</button>
+        <button id="id-builder-page-3-prev" class="btn btn-success" type="button">Back</button>
       </div>
       <div class="col-auto">
           <button id="id-builder-submit-button" class="btn btn-success" type="submit">Create</button>

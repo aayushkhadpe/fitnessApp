@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+import csp
+from csp.constants import SELF, NONCE, NONE
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     'dotenv',
     'rest_framework',
     'accounts',
+    'csp',
     'fitnessApp',
 ]
 
@@ -58,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "csp.middleware.CSPMiddleware",
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -73,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'csp.context_processors.nonce',
             ],
         },
     },
@@ -154,3 +159,23 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('email')
 EMAIL_HOST_PASSWORD = os.getenv('email_password')
 
+# Content Security Policy
+CONTENT_SECURITY_POLICY = {
+    "DIRECTIVES":
+    {
+        "default-src": [SELF,],
+        "style-src": [SELF, "cdn.jsdelivr.net", "cdnjs.cloudflare.com",],
+        "script-src": [SELF, NONCE, "code.jquery.com", "cdn.jsdelivr.net", "ajax.googleapis.com", "www.googletagmanager.com", "www.google-analytics.com",],
+        "font-src": [SELF, "fonts.gstatic.com", "cdn.jsdelivr.net", "cdnjs.cloudflare.com",],
+        "img-src": [SELF,],
+        "connect-src": [SELF,],
+        "manifest-src": [SELF,],
+        "object-src": [NONE,],
+        "base-uri": [NONE,],
+        "form-action": [SELF,],
+        "frame_ancestors": [NONE,],
+        "include-nonce-in": ['script-src',],
+    },
+}
+
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')

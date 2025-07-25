@@ -3,6 +3,8 @@
   --fitnessapp-color-palette-header: #495D6A;
   --fitnessapp-color-palette-content-light: #C3CED6;
   --fitnessapp-color-palette-content-lighter: #e6e6e6;
+  --fitnessapp-color-palette-content-lightest: #f8f8ff;
+
 }
 
 .fitnessapp-bg-color-content {
@@ -19,6 +21,10 @@
 
 .fitnessapp-bg-color-content-lighter {
   background-color: var(--fitnessapp-color-palette-content-lighter);
+}
+
+.fitnessapp-bg-color-content-lightest {
+  background-color: var(--fitnessapp-color-palette-content-lightest);
 }
 
 .fitnessapp-text-color-content {
@@ -325,7 +331,7 @@ body {
   padding-left: 0.75rem;
 }
 
-.text.single-line {
+.single-line {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -406,4 +412,52 @@ body {
 .build-page-exercise {
 }
 
+.dosession-timer-restart, .dosession-timer-skip {
 
+}
+
+.fitnessApp-scrollbar-width-none {
+  scrollbar-width: none;
+}
+
+.fitnessApp-max-height-11rem {
+  max-height: 11rem;
+}
+
+.fitnessApp-height-3rem {
+  height: 3rem;
+}
+
+.fitnessApp-height-6rem {
+  height: 6rem;
+}
+
+.fitnessApp-height-8rem {
+  height: 8rem;
+}
+
+.fitnessApp-display-none {
+  display: none;
+}
+
+.fitnessApp-display-empty {
+  display: '';
+}
+
+.fitnessApp-display-null {
+  display: null;
+}
+
+.fitnessApp-zindex-1 {
+  z-index: 1;
+}
+
+.fitnessApp-zindex-5 {
+  z-index: 5;
+}
+
+.fitnessApp-reps-time-svg-text {
+  white-space: pre;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+}

@@ -9,7 +9,7 @@
 {% if user.is_authenticated %}
 <div>
 <div class="workout-section-heading-today fs-5"><small><b>Today</b></small></div>
-    <div class="container-fluid overflow-scroll" style="max-height: 11rem; scrollbar-width: none;">
+    <div class="container-fluid overflow-scroll fitnessApp-scrollbar-width-none fitnessApp-max-height-11rem">
         {% for item in object_list %}
             {% include 'workoutsession_card.html' %}
         {% empty %}

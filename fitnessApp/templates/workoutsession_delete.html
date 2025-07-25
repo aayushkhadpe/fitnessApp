@@ -1,12 +1,13 @@
 {% extends "base/base.html" %}
 {% load crispy_forms_tags %}
 {% load widget_tweaks %}
+{% load static %}
 
 {% block title %}Delete Session{% endblock %}
 
 {% block content %}
 
-<form method="post" onsubmit="disableSubmitButton()">
+<form id="id-form" method="post">
     {% csrf_token %}
 
     <div class="row mb-3">
@@ -14,9 +15,39 @@
             <span class="text-secondary">Are you sure you want to delete this session?</span>
         </div>
     </div>
+
+    <ul class="list-group">
+        {% if user.person.coach_flag %}
+        <li class="list-group-item">
+            <div class="workout-detail-attribute">
+                <div class="fitnessapp-text-color-header"><span><b>Client</b></span></div>
+                <div class="fitnessapp-text-color-content">{{object.person.first_name}}&nbsp;{{object.person.last_name}}</div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="workout-detail-attribute">
+                <div class="fitnessapp-text-color-header"><span><b>Phone</b></span></div>
+                <a class="fitnessapp-text-color-content text-decoration-none" href="tel:{{ object.person.phone_number }}"><span class=""><i class="bi bi-telephone-outbound"></i>&nbsp;&nbsp;&nbsp;{{ object.person.phone_number }}</a></span></a>
+            </div>
+        </li>
+        {% endif %}
+        <li class="list-group-item">
+            <div class="workout-detail-attribute">
+                <div class="fitnessapp-text-color-header"><span><b>Date</b></span></div>
+                <div class="fitnessapp-text-color-content">{{object.scheduled_date|date:'D m/j'}}</div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="workout-detail-attribute">
+                <div class="fitnessapp-text-color-header"><span><b>Time</b></span></div>
+                <div class="fitnessapp-text-color-content">{{object.scheduled_time|date:'h:i A'}}</div>
+            </div>
+        </li>
+    </ul>
+
     <div class="row mt-3">
         <div class="col text-start">
-            <a href="{% url 'home' %}">
+            <a href="{% url 'workoutsession-do' object.id %}">
             <button class="btn btn-secondary" type="button">Cancel</button>
             </a>
         </div>
@@ -28,8 +59,12 @@
 </form>
 
 {% block scripts %}
-<script>
-    function disableSubmitButton()
+
+<script type="text/javascript" nonce="{{CSP_NONCE}}">
+
+    document.getElementById('id-form').addEventListener("submit", deleteWorkoutSession);
+
+    function deleteWorkoutSession()
     {
         var btn = document.getElementById('id-submit-button');
         btn.disabled = true;
@@ -37,6 +72,7 @@
     }
 
 </script>
+
 {% endblock %}
 
 {% endblock %}
