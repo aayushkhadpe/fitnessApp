@@ -70,7 +70,12 @@
 {% block scripts %}
 
 <script type="text/javascript" nonce="{{CSP_NONCE}}">
-    document.getElementById('id-logout-link').addEventListener("click", document.getElementById('logout-form').submit());
+    document.getElementById('id-logout-link').addEventListener("click", logout);
+
+    function logout()
+    {
+        document.getElementById('logout-form').submit()
+    }
 </script>
 
 {% endblock %}
