@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, TemplateView
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/fitnessApp/'), name='default'),
@@ -24,4 +24,7 @@ urlpatterns = [
     path("fitnessApp/", include("fitnessApp.urls")),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),
+
+    # PWA Android assetlinks
+    path(".well-known/assetlinks.json", TemplateView.as_view(template_name="assetlinks.json", content_type="application/json"))
 ]
