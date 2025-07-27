@@ -225,7 +225,10 @@
 <script type="text/javascript" nonce="{{CSP_NONCE}}">
 
 function isRunningStandalone() {
-    return window.matchMedia('(display-mode: standalone)').matches;
+    return (
+        window.matchMedia('(display-mode: standalone)').matches == true ||
+        navigator.userAgent.includes("PWAShell") == true ||
+        (window.matchMedia('(display-mode: fullscreen)').matches == true && navigator.userAgent.includes("Android") == true));
 }
 
 // display PWA prompt
