@@ -29,8 +29,17 @@
         </div>
     </div>
     
-    <div class="mainbody-no-footer">
+    <div id="id-mainbody" class="mainbody-no-footer">
+        <div class="mainbody-no-footer-portrait">
         {% block content %}{% endblock %}
+        </div>
+        <div class="mainbody-no-footer-landscape">
+            <div class="row h-100 text-center align-items-center">
+                <div class="col">
+                    <span class="fitnessapp-text-color-content">Landscape mode is not supported in the Simply Fit app. Please rotate your device to continue.</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="footer-no-footer">

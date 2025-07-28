@@ -70,7 +70,7 @@ body {
 .page {
   display: grid;
   height: 100%;
-  max-width: 500px;
+  max-width: 100%;
   margin: auto;
   grid-template-rows: 3rem 1fr 5rem;
   grid-template-columns: 100%;
@@ -80,7 +80,7 @@ body {
 .page-no-footer {
   display: grid;
   height: 100%;
-  max-width: 500px;
+  max-width: 100%;
   margin: auto;
   grid-template-rows: 3rem 1fr 5rem 0.5rem;
   grid-template-columns: 100%;
@@ -100,6 +100,26 @@ body {
   scrollbar-width: none;
   background-color: rgb(243, 242, 248);
   padding: 10px;
+}
+
+@media (min-width: 576px) and (orientation: landscape) {
+  .mainbody-portrait, .mainbody-no-footer-portrait {
+    display: none;
+  }
+
+  .mainbody-landscape, .mainbody-no-footer-landscape {
+    display: block;
+  }
+}
+
+@media (orientation: portrait) or ((max-width: 576px) and (orientation: landscape)) {
+  .mainbody-portrait, .mainbody-no-footer-portrait {
+    display: block;
+  }
+
+  .mainbody-landscape, .mainbody-no-footer-landscape {
+    display: none;
+  }
 }
 
 .mainbody-no-footer {
@@ -161,7 +181,7 @@ body {
   height: 1.25rem;
   padding-left: 0.25rem;
   line-height: 1.25rem;
-  color: var(--fitnessapp-color-palette-header)
+  color: var(--fitnessapp-color-palette-header);
 }
 
 .workout-circuit-heading {

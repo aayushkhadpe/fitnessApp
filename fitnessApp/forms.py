@@ -20,9 +20,9 @@ class ClientCreateForm(forms.ModelForm):
         model = FitnessAppPerson
         fields = ("first_name", "last_name", "phone_number", "email",)
 
-    first_name = forms.CharField(label='First Name', max_length=100, required=True)
+    first_name = forms.CharField(label='First Name', max_length=50, required=True)
     last_name = forms.CharField(label='Last Name', max_length=100, required=False)
-    phone_number = forms.CharField(label='Phone Number', max_length=50, required=True)
+    phone_number = forms.CharField(label='Phone Number', max_length=20, required=True)
     email = forms.EmailField(label='Email', max_length=100, required=False)
 
     def save(self, commit=True):
@@ -51,9 +51,9 @@ class FitnessAppPersonUpdateForm(forms.ModelForm):
         model = FitnessAppPerson
         fields = ("first_name", "last_name", "phone_number", "email")
 
-    first_name = forms.CharField(label='First Name', max_length=100, required=True)
+    first_name = forms.CharField(label='First Name', max_length=50, required=True)
     last_name = forms.CharField(label='Last Name', max_length=100, required=False)
-    phone_number = forms.CharField(label='Phone Number', max_length=50, required=True)
+    phone_number = forms.CharField(label='Phone Number', max_length=20, required=True)
     email = forms.EmailField(label='Email', max_length=100, required=False)
 
 class WorkoutSessionRescheduleForm(forms.ModelForm):
