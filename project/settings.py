@@ -153,10 +153,11 @@ LOGOUT_REDIRECT_URL = '/fitnessApp'
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'smtpout.secureserver.net'
+EMAIL_HOST = 'smtp.office365.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('email')
+DEFAULT_FROM_EMAIL = os.getenv('email')
 EMAIL_HOST_PASSWORD = os.getenv('email_password')
 
 # Content Security Policy
