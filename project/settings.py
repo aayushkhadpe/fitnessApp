@@ -153,7 +153,7 @@ LOGOUT_REDIRECT_URL = '/fitnessApp'
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtpout.secureserver.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('email')
@@ -167,7 +167,7 @@ CONTENT_SECURITY_POLICY = {
         "style-src": [SELF, "cdn.jsdelivr.net", "cdnjs.cloudflare.com",],
         "script-src": [SELF, NONCE, "code.jquery.com", "cdn.jsdelivr.net", "ajax.googleapis.com", "www.googletagmanager.com", "www.google-analytics.com",],
         "font-src": [SELF, "fonts.gstatic.com", "cdn.jsdelivr.net", "cdnjs.cloudflare.com",],
-        "img-src": [SELF,],
+        "img-src": [SELF, "data:"],
         "connect-src": [SELF,],
         "manifest-src": [SELF,],
         "object-src": [NONE,],

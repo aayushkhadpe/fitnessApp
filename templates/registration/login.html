@@ -1,12 +1,13 @@
 {% extends "base/base.html" %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
 {% block title %}Sign In{% endblock %}
 
 {% block content %}
 
 {% if form.errors %}
-  <p>Your username and password didn't match. Please try again.</p>
+  <p class="text-danger">Your username and password didn't match. Please try again.</p>
 {% endif %}
 
 {% if next %}
@@ -20,9 +21,20 @@
 <p><h3><b>WELCOME BACK!</b></h3></p>
 
 <form method="post">{% csrf_token %}
-  {{ form|crispy }}
-  <input class="btn btn-success" type="submit" value="Sign In">
-  <input type="hidden" name="next" value="{{ next }}">
+    {% for field in form %}
+    <div class="form-floating mb-3">
+        {% render_field field class="form-control" %}
+        <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
+        {% if field.help_text %}
+            <div class="form-text">{{ field.help_text }}</div>
+        {% endif %}
+        {% for error in field.errors %}
+            <div class="invalid-feedback d-block">{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <input class="btn btn-success" type="submit" value="Log In">
+    <input type="hidden" name="next" value="{{ next }}">
 </form>
 
 <p><a class="link-body-emphasis" href="{% url 'password_reset' %}">Forgot Password?</a></p>

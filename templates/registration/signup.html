@@ -1,4 +1,5 @@
 {% extends "base/base.html" %}
+{% load widget_tweaks %}
 {% load crispy_forms_tags %}
 
 {% block title %}Sign Up{% endblock %}
@@ -10,7 +11,27 @@
 <div>
 <p><h6><b>WELCOME TO YOUR FITNESS JOURNEY!</b></h6></p>
 <form method="POST">{% csrf_token %}
-    {{ form|crispy }}
+    
+    {% for field in form %}
+    {% if field.name != 'request_coach' %}
+    <div class="form-floating mb-3">
+        {% render_field field class="form-control" %}
+        <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
+        {% if field.help_text %}
+            <div class="form-text">{{ field.help_text }}</div>
+        {% endif %}
+        {% for error in field.errors %}
+            <div class="invalid-feedback d-block">{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="request_coach" name="request_coach">
+        <label class="form-check-label" for="request_coach">I am a trainer. Check this box for a trainer account.</label>
+    </div>
+
     <button class="btn btn-success" type="submit">Sign Up</button>
 </form>
 </div>

@@ -1,6 +1,5 @@
 from django import forms
-from datetime import date
-from django.forms import CharField
+from django.db import transaction
 from fitnessApp.choices import *
 from fitnessApp.models import Exercise, Workout, WorkoutSession, FitnessAppUser, FitnessAppPerson
 
@@ -41,9 +40,35 @@ class FitnessAppUserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = FitnessAppUser
-        fields = ("first_name", "last_name")
-        field_classes = {"first_name": CharField, "last_name": CharField}
-        labels = {"first_name": "First Name", "last_name": "Last Name"}
+        fields = ("email",)
+
+        email = forms.EmailField(label='Email', max_length=100, required=False)
+
+    first_name = forms.CharField(label='First Name', max_length=50, required=True)
+    last_name = forms.CharField(label='Last Name', max_length=100, required=False)
+    phone_number = forms.CharField(label='Phone Number', max_length=20, required=False)
+
+    field_order = ['email', 'first_name', 'last_name', 'phone_number']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if self.instance and self.instance.pk:
+            self.fields['first_name'].initial = self.instance.person.first_name
+            self.fields['last_name'].initial = self.instance.person.last_name
+            self.fields['phone_number'].initial = self.instance.person.phone_number
+
+    @transaction.atomic
+    def save(self, commit=True):
+        user = super().save(commit=commit)
+
+        user.person.first_name=self.cleaned_data['first_name']
+        user.person.last_name=self.cleaned_data['last_name']
+        user.person.phone_number=self.cleaned_data['phone_number']
+        user.person.email=self.cleaned_data['email']
+        user.person.save()
+
+        return user 
 
 class FitnessAppPersonUpdateForm(forms.ModelForm):
 
