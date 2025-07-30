@@ -9,7 +9,7 @@
 <div class="col">
 
 {% if user.is_authenticated %}
-<h6 class="fitnessapp-text-color-header">Hi <b>{{ user.first_name }}</b>!</h6>
+<h6 class="fitnessapp-text-color-header">Hi <b>{{ user.person.first_name }}</b>!</h6>
 
 <div class="workout-section-heading-today fs-5"><small><b>Your sessions today</b></small></div>
 <div class="container-fluid overflow-scroll fitnessApp-scrollbar-width-none fitnessApp-max-height-11rem">

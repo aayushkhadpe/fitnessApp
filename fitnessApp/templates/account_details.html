@@ -10,23 +10,41 @@
 {% block content %}
 
 <div>
-<form method="POST">{% csrf_token %}
-    
-    {% for field in form %}
-    <div class="form-floating mb-3">
-        {% render_field field class="form-control" %}
-        <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
-        {% if field.help_text %}
-            <div class="form-text">{{ field.help_text }}</div>
-        {% endif %}
-        {% for error in field.errors %}
-            <div class="invalid-feedback d-block">{{ error }}</div>
+    <form id="id-form" method="POST">
+        
+        {% csrf_token %}
+        
+        {% for field in form %}
+        <div class="form-floating mb-3">
+            {% render_field field class="form-control" %}
+            <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
+            {% if field.help_text %}
+                <div class="form-text">{{ field.help_text }}</div>
+            {% endif %}
+            {% for error in field.errors %}
+                <div class="invalid-feedback d-block">{{ error }}</div>
+            {% endfor %}
+        </div>
         {% endfor %}
-    </div>
-    {% endfor %}
 
-    <button class="btn btn-success" type="submit">Save</button>
-</form>
+        <button id="id-submit-button" class="btn btn-success" type="submit">Save</button>
+    </form>
 </div>
+
+{% block scripts %}
+
+<script type="text/javascript" nonce="{{CSP_NONCE}}">
+
+  document.getElementById('id-form').addEventListener("submit", createClient);
+
+  function createClient() {
+    var btn = document.getElementById('id-submit-button');
+    btn.disabled = true;
+    btn.innerText = 'Saving...';
+  }
+
+</script>
+
+{% endblock %}
 
 {% endblock %}
