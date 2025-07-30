@@ -13,3 +13,13 @@ class FitnessAppUserAdmin(admin.ModelAdmin):
 class FitnessAppPersonAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email', 'phone_number',)
     search_fields = ('first_name', 'last_name', 'email', 'phone_number',)
+
+@admin.register(Workout)
+class WorkoutAdmin(admin.ModelAdmin):
+    list_display = ('name', 'duration', 'difficulty_level', 'target', 'public_flag', 'personalized_flag', 'video_id', 'creator', )
+    search_fields = ('name', 'duration', 'difficulty_level', 'target', 'public_flag', 'personalized_flag', 'creator',)
+
+@admin.register(Exercise)
+class ExerciseAdmin(admin.ModelAdmin):
+    list_display = ('name', 'public_flag', 'weight_flag', 'video_id', 'creator', )
+    search_fields = ('name', 'public_flag', 'weight_flag', 'creator',)
