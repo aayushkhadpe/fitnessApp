@@ -75,9 +75,9 @@
   document.getElementById('id-session-date').value = currentDate.getFullYear() + "-" + String(currentDate.getMonth() + 1).padStart(2, "0") + "-" + String(currentDate.getDate()).padStart(2, "0");
   document.getElementById('id-session-time').value = String((currentDate.getHours() + 1) % 24).padStart(2, "0") + ":00";
 
-  document.getElementById('id-form').addEventListener("submit", createWorkoutSession);
+  document.getElementById('id-form').addEventListener("submit", submitForm);
 
-  function createWorkoutSession() {
+  function submitForm() {
     var btn = document.getElementById('id-submit-button');
     btn.disabled = true;
     btn.innerText = 'Creating...';
