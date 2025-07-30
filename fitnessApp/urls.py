@@ -39,5 +39,8 @@ urlpatterns = [
     path("api/workoutsessions/<int:pk>", APIWorkoutSessionDetail.as_view()),  
 
     # PWA manifest
-    path("manifest", TemplateView.as_view(template_name="manifest.webmanifest", content_type="application/manifest+json"), name="webmanifest")
+    path("manifest", TemplateView.as_view(template_name="manifest.webmanifest", content_type="application/manifest+json"), name="webmanifest"),
+
+    # Pages
+    path('pages/support', TemplateView.as_view(template_name="pages/support.html"), name='pages-support'),
 ]
