@@ -43,4 +43,5 @@ urlpatterns = [
 
     # Pages
     path('pages/support', TemplateView.as_view(template_name="pages/support.html"), name='pages-support'),
+    path('pages/privacy-policy', TemplateView.as_view(template_name="pages/privacy_policy.html"), name='pages-privacy-policy'),
 ]
