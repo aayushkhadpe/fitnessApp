@@ -5,7 +5,7 @@
 
 {% block content %}
 
-    <ul class="list-group">
+    <ul class="list-group mb-3">
 
         <li class="list-group-item">
             <a class="fitnessapp-profile-item" href="{% url 'account-details' user.id %}">
@@ -49,6 +49,19 @@
         </li>
 
         <li class="list-group-item">
+            <a class="fitnessapp-profile-item" href="{% url 'account-delete' user.id %}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>Delete Account</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
+            </a>
+        </li>
+        
+        <li class="list-group-item">
             <a href="#" id="id-logout-link" class="fitnessapp-profile-item">
             <div class="row fitnessapp-text-color-header">
                 <div class="col">
@@ -61,6 +74,48 @@
             </a>
         </li>
 
+    </ul>
+
+    <ul class="list-group mb-3">
+        <li class="list-group-item">
+            <a class="fitnessapp-profile-item" href="{% url 'pages-support'%}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>Support</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a class="fitnessapp-profile-item" href="{% url 'pages-privacy-policy'%}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span>Privacy Policy</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a class="fitnessapp-profile-item" href="{% url 'account-delete' user.id %}">
+            <div class="row fitnessapp-text-color-header">
+                <div class="col">
+                    <span class="text-danger">Delete Account</span>
+                </div>
+                <div class="col-auto d-flex text-end align-items-center">
+                    <i class="bi bi-chevron-right fs-6"></i>
+                </div>
+            </div>
+            </a>
+        </li>        
     </ul>
 
     <form id="logout-form" method="post" action="{% url 'logout' %}">

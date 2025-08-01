@@ -15,6 +15,12 @@ class AccountUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("profile")
     template_name = "account_details.html"
 
+class AccountDeleteView(LoginRequiredMixin, UpdateView):
+    model = FitnessAppUser
+    form_class = FitnessAppUserDeleteForm
+    success_url = reverse_lazy("home")
+    template_name = "account_delete.html"
+
 class CoachDetailView(LoginRequiredMixin, DetailView):
     model = FitnessAppPerson
     template_name = "coach_detail.html"

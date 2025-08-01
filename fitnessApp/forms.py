@@ -184,3 +184,28 @@ class WorkoutSessionCreateForm(forms.ModelForm):
             self.fields['person_id'].choices = [("", "Select a client...")] + [(user.person.id, "Me")] + [(client.id, (client.first_name + " " + client.last_name)) for client in clients]
         else:
             self.fields['person_id'].required = False
+
+class FitnessAppUserDeleteForm(forms.ModelForm):
+
+    class Meta:
+        model = FitnessAppUser
+        fields = ("last_login",)
+
+        email = forms.DateTimeField()
+
+    confirm_delete = forms.BooleanField(label='I confirm I want to delete my account.', required=False, initial=False)
+
+    @transaction.atomic
+    def save(self, commit=True):
+        user = super().save(commit=commit)
+
+        user.is_active = False
+        user.save()
+
+        return user 
+
+class ContactUsForm(forms.Form):
+
+    email = forms.EmailField(label="Your email", widget=forms.TextInput(attrs={"placeholder": "Your e-mail"}))
+    subject = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Subject"}))
+    message = forms.CharField(widget=forms.Textarea(attrs={"placeholder": "Your message"}))

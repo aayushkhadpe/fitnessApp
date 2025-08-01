@@ -2,11 +2,14 @@
 
 {% block title %}Privacy Policy{% endblock %}
 
+{% block header-left-link %}{% url 'profile' %}{% endblock %}
+{% block header-left-icon %}<i class="bi bi-chevron-left"></i>{% endblock %}
+
 {% block content %}
 
-<div class="row">
+<div class="row mb-3">
     <div class="col text-wrap">
-        <span class="fs-5 text-secondary"><small><small>Simply Fit respects your privacy. Simply Fit does not share your data with third parties. Your information is only shared with you and your trainer (if you have one). Your email address is used for login and password reset.</small></small></span>
+        <span class="fs-5 text-secondary"><small><small>Simply Fit respects your privacy. We do not share your data with third parties. Your information is only shared with you and your trainer (if you have one). Your email is used for login and password reset.</small></small></span>
     </div>
 </div>
 {% endblock content %}

@@ -26,6 +26,7 @@ urlpatterns = [
     path("profile/<int:pk>/details", AccountUpdateView.as_view(), name="account-details"),  
     path("profile/coach/<int:pk>/details", CoachDetailView.as_view(), name="coach-details"),
     path("profile/pwa-setup", PWASetupView.as_view(), name="pwa-setup"),
+    path("profile/<int:pk>/delete", AccountDeleteView.as_view(), name="account-delete"),  
     
     path("clients", ClientListView.as_view(), name="clients"),
     path("clients/create", ClientCreateView.as_view(), name="client-create"),
@@ -42,6 +43,7 @@ urlpatterns = [
     path("manifest", TemplateView.as_view(template_name="manifest.webmanifest", content_type="application/manifest+json"), name="webmanifest"),
 
     # Pages
-    path('pages/support', TemplateView.as_view(template_name="pages/support.html"), name='pages-support'),
+    path('pages/support', SupportView.as_view(), name='pages-support'),
     path('pages/privacy-policy', TemplateView.as_view(template_name="pages/privacy_policy.html"), name='pages-privacy-policy'),
+    path('pages/contactus-success', ContactUsSuccessView.as_view(), name='pages-contactus-success'),
 ]

@@ -1,0 +1,15 @@
+{% extends "base/base.html" %}
+
+{% block title %}Email Sent{% endblock %}
+
+{% block header-right-link %}{% url 'clients' %}{% endblock %}
+{% block header-right-icon %}<i class="bi bi-x-lg"></i>{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <span class="fs-5 text-secondary"><small><small>Your email has been received. Simply Fit team will respond to your email within 48 hours.</small></small></span></a>
+    </div>
+</div>
+{% endblock content %}

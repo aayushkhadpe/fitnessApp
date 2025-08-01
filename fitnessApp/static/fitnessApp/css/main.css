@@ -70,7 +70,7 @@ body {
 .page {
   display: grid;
   height: 100%;
-  max-width: 100%;
+  max-width: 4000px;
   margin: auto;
   grid-template-rows: 3rem 1fr 5rem;
   grid-template-columns: 100%;
@@ -80,7 +80,7 @@ body {
 .page-no-footer {
   display: grid;
   height: 100%;
-  max-width: 100%;
+  max-width: 4000px;
   margin: auto;
   grid-template-rows: 3rem 1fr 5rem 0.5rem;
   grid-template-columns: 100%;
@@ -102,7 +102,7 @@ body {
   padding: 10px;
 }
 
-@media (min-width: 576px) and (orientation: landscape) {
+@media (min-width: 4000px) and (orientation: landscape) {
   .mainbody-portrait, .mainbody-no-footer-portrait {
     display: none;
   }
@@ -112,7 +112,7 @@ body {
   }
 }
 
-@media (orientation: portrait) or ((max-width: 576px) and (orientation: landscape)) {
+@media (orientation: portrait) or ((max-width: 4000px) and (orientation: landscape)) {
   .mainbody-portrait, .mainbody-no-footer-portrait {
     display: block;
   }

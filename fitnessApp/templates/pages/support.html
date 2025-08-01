@@ -1,12 +1,62 @@
 {% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
 {% block title %}Support{% endblock %}
 
+{% block header-left-link %}{% url 'profile' %}{% endblock %}
+{% block header-left-icon %}<i class="bi bi-chevron-left"></i>{% endblock %}
+
 {% block content %}
 
-<div class="row">
+<div class="row mb-3">
     <div class="col">
-        <span class="fs-5 text-secondary"><small><small>For any support issues contact us at</small></small></span><a class="fitnessapp-profile-item" href="mailto:support@simplyfit.fit"><span class="fs-5 text single-line"><small><small>&nbsp;support@simplyfit.fit</a></small></small></span></a>
+        <span class="fs-5 text-secondary"><small><small>For any support issues contact us at</small></small></span><a class="fitnessapp-profile-item" href="mailto:support@simplyfit.fit"><span class="fs-5 text single-line fw-bold"><small><small>&nbsp;support@simplyfit.fit</a></small></small></span></a>
     </div>
 </div>
+
+<div class="row mt-3 mb-3">
+    <div class="col">
+        <span class="fs-5 text-secondary"><small><small>Or, you can contact us by filling this form:</small></small></span></a>
+    </div>
+</div>
+
+<div>
+    <form id="id-form" method="POST">
+        
+        {% csrf_token %}
+        
+        {% for field in form %}
+        <div class="form-floating mb-3">
+            {% render_field field class="form-control" %}
+            <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
+            {% if field.help_text %}
+                <div class="form-text">{{ field.help_text }}</div>
+            {% endif %}
+            {% for error in field.errors %}
+                <div class="invalid-feedback d-block">{{ error }}</div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        <button id="id-submit-button" class="btn btn-success" type="submit">Send</button>
+    </form>
+</div>
+
+{% block scripts %}
+
+<script type="text/javascript" nonce="{{CSP_NONCE}}">
+
+  document.getElementById('id-form').addEventListener("submit", submitForm);
+
+  function submitForm() {
+    var btn = document.getElementById('id-submit-button');
+    btn.disabled = true;
+    btn.innerText = 'Sending...';
+  }
+
+</script>
+
+{% endblock scripts %}
+
 {% endblock content %}
