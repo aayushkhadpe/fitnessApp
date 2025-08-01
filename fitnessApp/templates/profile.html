@@ -6,7 +6,6 @@
 {% block content %}
 
     <ul class="list-group mb-3">
-
         <li class="list-group-item">
             <a class="fitnessapp-profile-item" href="{% url 'account-details' user.id %}">
             <div class="row fitnessapp-text-color-header">
@@ -49,19 +48,6 @@
         </li>
 
         <li class="list-group-item">
-            <a class="fitnessapp-profile-item" href="{% url 'account-delete' user.id %}">
-            <div class="row fitnessapp-text-color-header">
-                <div class="col">
-                    <span>Delete Account</span>
-                </div>
-                <div class="col-auto d-flex text-end align-items-center">
-                    <i class="bi bi-chevron-right fs-6"></i>
-                </div>
-            </div>
-            </a>
-        </li>
-        
-        <li class="list-group-item">
             <a href="#" id="id-logout-link" class="fitnessapp-profile-item">
             <div class="row fitnessapp-text-color-header">
                 <div class="col">
@@ -73,7 +59,6 @@
             </div>
             </a>
         </li>
-
     </ul>
 
     <ul class="list-group mb-3">
@@ -89,6 +74,7 @@
             </div>
             </a>
         </li>
+        
         <li class="list-group-item">
             <a class="fitnessapp-profile-item" href="{% url 'pages-privacy-policy'%}">
             <div class="row fitnessapp-text-color-header">
