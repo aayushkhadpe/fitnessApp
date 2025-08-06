@@ -34,13 +34,17 @@
 
 <script type="text/javascript" nonce="{{CSP_NONCE}}">
 
-  document.getElementById('id-form').addEventListener("submit", submitForm);
+    {% if object.person %}
+        document.getElementById('id_email').disabled = true;
+    {% endif %}
 
-  function submitForm() {
-    var btn = document.getElementById('id-submit-button');
-    btn.disabled = true;
-    btn.innerText = 'Saving...';
-  }
+    document.getElementById('id-form').addEventListener("submit", submitForm);
+
+    function submitForm() {
+        var btn = document.getElementById('id-submit-button');
+        btn.disabled = true;
+        btn.innerText = 'Saving...';
+    }
 
 </script>
 
