@@ -8,8 +8,8 @@
     "description": "Simply Fit is a fitness app for trainers and individuals to manage their fitness journey.",
     "categories": ["fitness", "health", "sports"],
 
-    "start_url": "/",
-    "scope": "/",
+    "start_url": "./",
+    "scope": "./",
 
     "background_color": "#f3f2f8",
     "theme_color": "#f3f2f8", 
