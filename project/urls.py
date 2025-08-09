@@ -19,7 +19,7 @@ from django.urls import path, include
 from django.views.generic import RedirectView, TemplateView
 
 urlpatterns = [
-    path('', RedirectView.as_view(url='/fitnessApp/'), name='default'),
+    path("", TemplateView.as_view(template_name="index.html"), name="index"),
     path('simplyfitadmin/', admin.site.urls),
     path("fitnessApp/", include("fitnessApp.urls")),
     path('accounts/', include('django.contrib.auth.urls')),

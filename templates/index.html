@@ -1,0 +1,62 @@
+{% extends "base/base_no_footer.html" %}
+{% load static %}
+
+{% block title %}Simply Fit{% endblock %}
+
+{% block content %}
+
+<div class="row h-100">
+<div class="col">
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+    </div>
+</div>   
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+    </div>
+</div>   
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+        <span class="h1 fw-bolder">START YOUR FITNESS JOURNEY HERE!</span>
+    </div>
+</div>
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+    </div>
+</div>   
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+    </div>
+</div>   
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+        <a href="https://apps.apple.com/us/app/simply-fit-app/id6749191571">
+            <img src="{% static 'fitnessApp/images/download/iOS.svg' %}" alt="...">
+        </a>
+    </div>
+</div>   
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+            <span class="fw-bold">OR</span>
+    </div>
+</div>
+
+<div class="row mt-3 pt-3">
+    <div class="col text-center fitnessapp-text-color-header">
+        <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"" href="{% url 'home' %}">
+            <span>Continue to the web app</span>
+        </a>
+    </div>
+</div>
+
+</div>
+</div>
+
+{% endblock %}
+
