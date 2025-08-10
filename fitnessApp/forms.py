@@ -206,6 +206,6 @@ class FitnessAppUserDeleteForm(forms.ModelForm):
 
 class ContactUsForm(forms.Form):
 
-    email = forms.EmailField(label="Your email", widget=forms.TextInput(attrs={"placeholder": "Your e-mail"}))
-    subject = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Subject"}))
-    message = forms.CharField(widget=forms.Textarea(attrs={"placeholder": "Your message"}))
+    email = forms.EmailField(label="Email address", widget=forms.TextInput())
+    subject = forms.CharField(label="Subject", widget=forms.TextInput())
+    message = forms.CharField(label="Message", widget=forms.Textarea())
