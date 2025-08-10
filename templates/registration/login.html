@@ -6,9 +6,9 @@
 
 {% block content %}
 
-{% if form.errors %}
-  <p class="text-danger">Your username and password didn't match. Please try again.</p>
-{% endif %}
+{% for error in form.non_field_errors %}
+  <p class="text-danger">{{error}}</p>
+{% endfor %}
 
 {% if next %}
   {% if user.is_authenticated %}
