@@ -2,16 +2,18 @@
 
 class DoTimer {
     #isTimer = true;
+    #isRest = true;
     #time = 0;
     #textElementId = null;
     #circleSvgId = null;
     #doneCallback = null;
     #easyTimer = null;
 
-    startTimer(isTimer, time, textElementId, circleSvgId, doneCallback) {
+    startTimer(isTimer, time, textElementId, circleSvgId, doneCallback, isRest) {
         this.stopTimer();
 
         this.#isTimer = isTimer;
+        this.#isRest = isRest;
         this.#time = time;
         this.#textElementId = textElementId;
         this.#circleSvgId = circleSvgId;
@@ -30,9 +32,16 @@ class DoTimer {
         var easyTimer = this.#easyTimer;
         var doneCallback = this.#doneCallback;
         var isTimer = this.#isTimer;
+        var isRest = this.#isRest;
+        var index = currentStep - 1;
+        var text = "Begin " + steps[index].exercise__name + " for " + (steps[index].circuit_exercise__mode == "REPS" ? steps[index].circuit_exercise__reps + " reps" : steps[index].circuit_exercise__time + " seconds")
 
         this.#easyTimer.addEventListener('secondsUpdated', function (e) {
             document.getElementById(textElementId).textContent = formatTime(easyTimer.getTotalTimeValues().seconds);
+
+            if (isTimer && easyTimer.getTotalTimeValues().seconds == 11 && isRest) {
+                speak(text);
+            }
 
             if (isTimer && easyTimer.getTotalTimeValues().seconds <= 6 && easyTimer.getTotalTimeValues().seconds != 0) {
                 playBeep(easyTimer.getTotalTimeValues().seconds == 1 ? 800 : 200);
@@ -224,6 +233,16 @@ function updateStep() {
     document.getElementById("id-pause-resume-button-icon").classList.add("bi-pause-circle");
     document.getElementById("id-pause-resume-button-icon").classList.remove("bi-play-circle");
 
+    speak("Rest for " + steps[index].rest_before + " seconds, then " + steps[index].exercise__name + " for " + (steps[index].circuit_exercise__mode == "REPS" ? steps[index].circuit_exercise__reps + " reps" : steps[index].circuit_exercise__time + " seconds"));
+
+}
+
+function speak(text)
+{
+    const synth = window.speechSynthesis;
+    synth.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    synth.speak(utterance);    
 }
 
 function startRest() {
@@ -236,11 +255,12 @@ function startRest() {
     document.getElementById("id-exercise-div").classList.add("opacity-50");
     set_display_null("id-nextup-div");
 
-    doTimer.startTimer(true, steps[currentStep - 1].rest_before, "id-time-text-rest", "circle-progress-rest", startWork);
+    doTimer.startTimer(true, steps[currentStep - 1].rest_before, "id-time-text-rest", "circle-progress-rest", startWork, true);
 }
 
 function startWork() {
     set_display_none("id-div-timer-rest");
+
     if (steps[currentStep - 1].circuit_exercise__mode == "REPS")
         startRepsExercise();
     else
@@ -256,13 +276,13 @@ function startWork() {
 function startRepsExercise() {
     set_display_none("id-div-timer-time");
     set_display_null("id-div-timer-reps");
-    doTimer.startTimer(false, 0, "id-time-text-reps", "circle-progress-reps", null);
+    doTimer.startTimer(false, 0, "id-time-text-reps", "circle-progress-reps", null, false);
 }
 
 function startTimedExercise() {
     set_display_none("id-div-timer-reps");
     set_display_null("id-div-timer-time");
-    doTimer.startTimer(true, steps[currentStep - 1].circuit_exercise__time, "id-time-text-time", "circle-progress-time", doneWork);
+    doTimer.startTimer(true, steps[currentStep - 1].circuit_exercise__time, "id-time-text-time", "circle-progress-time", doneWork, false);
 }
 
 function doneWork() {

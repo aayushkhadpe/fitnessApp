@@ -22,8 +22,8 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="index.html"), name="index"),
     path('simplyfitadmin/', admin.site.urls),
     path("fitnessApp/", include("fitnessApp.urls")),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/', include('accounts.urls')),
+    path('fitnessApp/accounts/', include('django.contrib.auth.urls')),
+    path('fitnessApp/accounts/', include('accounts.urls')),
 
     # PWA Android assetlinks
     path(".well-known/assetlinks.json", TemplateView.as_view(template_name="assetlinks.json", content_type="application/json"))

@@ -70,7 +70,7 @@ body {
 .page {
   display: grid;
   height: 100%;
-  max-width: 4000px;
+  width: calc(50vmin * 2);
   margin: auto;
   grid-template-rows: 3rem 1fr 5rem;
   grid-template-columns: 100%;
@@ -80,6 +80,7 @@ body {
 .page-no-footer {
   display: grid;
   height: 100%;
+  width: calc(50vmin * 2);
   max-width: 4000px;
   margin: auto;
   grid-template-rows: 3rem 1fr 5rem 0.5rem;
