@@ -34,13 +34,13 @@ class DoTimer {
         var isTimer = this.#isTimer;
         var isRest = this.#isRest;
         var index = currentStep - 1;
-        var text = "Begin " + steps[index].exercise__name + " for " + (steps[index].circuit_exercise__mode == "REPS" ? steps[index].circuit_exercise__reps + " reps" : steps[index].circuit_exercise__time + " seconds")
+        // var text = "Begin " + steps[index].exercise__name + " for " + (steps[index].circuit_exercise__mode == "REPS" ? steps[index].circuit_exercise__reps + " reps" : steps[index].circuit_exercise__time + " seconds")
 
         this.#easyTimer.addEventListener('secondsUpdated', function (e) {
             document.getElementById(textElementId).textContent = formatTime(easyTimer.getTotalTimeValues().seconds);
 
             if (isTimer && easyTimer.getTotalTimeValues().seconds == 11 && isRest) {
-                speak(text);
+                // speak(text);
             }
 
             if (isTimer && easyTimer.getTotalTimeValues().seconds <= 6 && easyTimer.getTotalTimeValues().seconds != 0) {
