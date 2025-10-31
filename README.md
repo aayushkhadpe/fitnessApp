@@ -8,7 +8,7 @@ Install on iOS devices from the [App store](https://apps.apple.com/us/app/simply
 
 ## Overview
 
-Simply Fit is an app designed to allow trainers to create personalized workouts for their clients with ease. Spoken instructions, timers, and alerts make it easy to run the workout session. Trainers can manage their clients easily as well. Additionally, the trainer has the option to create workouts for repeated use or even choose from existing standard workouts.
+Simply Fit is an app designed to allow trainers to create personalized workouts for their clients with ease. Spoken instructions, video, timers, and alerts make it easy to run the workout session. Trainers can manage their clients easily as well. Additionally, the trainer has the option to create workouts for repeated use or even choose from existing standard workouts.
 
 For individual users, Simply Fit allows them to create workouts for personal use or use existing workouts. Just like a trainer, they can run them and see them on their schedule. While Simply Fit is specifically designed for trainers and clients, these options provide the individual with the freedom to do what they choose. In addition, clients who have a trainer can use the app with their trainer.
 
