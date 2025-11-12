@@ -26,6 +26,8 @@ Features:
 - Django Crispy Forms
 - Django Auth
 - Django Rest Framework
+- tom-select.js (for interactive drop down list of exercises with inline creation of new exercises)
+- easytimer.js (for timer and stopwatch)
 - Bootstrap 5
 - Bootstrap Icons
 - PostgreSQL / SQLite (dev)
